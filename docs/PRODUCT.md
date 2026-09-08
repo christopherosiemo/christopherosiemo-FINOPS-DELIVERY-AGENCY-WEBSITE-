@@ -1,0 +1,50 @@
+# Product
+
+## Proposition
+
+Cloud Margin Recovery is engineering-led AWS cost reduction, verified against the bill. The core proposition is: “We turn AWS savings opportunities into verified reductions on your bill.”
+
+The operating chain is:
+
+**Find → Validate → Assign → Change → Approve → Verify**
+
+The service identifies economically meaningful AWS savings opportunities, validates engineering risk and commitments, maps work to teams, services, and infrastructure, creates actionable remediation, works through existing engineering approval processes, and verifies realised savings against AWS billing data.
+
+Recommendations are estimated opportunities. Savings become verified only after an approved change is deployed and its impact is evidenced against billing data. The formal verification methodology—including baselines, attribution, exclusions, timing, and dispute handling—requires commercial and product definition and is **TBD**. Unsubstantiated guarantees are prohibited.
+
+## Product concepts and offers
+
+### Savings Ledger
+
+A future product-like visual object that records opportunities, confidence, engineering risk, ownership, remediation, approval state, and the path from estimated to verified savings. Its final schema and interface are TBD; do not build it before the relevant design/product gate.
+
+### 14-Day AWS Savings Sprint
+
+Primary offer: **£5,000 upfront**. Intended deliverables:
+
+- savings opportunities ranked by monetary value, confidence, and engineering risk;
+- Savings Plan and commitment exposure;
+- idle and waste analysis;
+- expensive architectural patterns;
+- specific remediation steps;
+- IaC locations where identifiable;
+- an implementation roadmap.
+
+“14-Day” describes the Savings Sprint. It does not substantiate a guarantee that all changes and verified savings will complete in that period.
+
+### Implementation Sprint
+
+Subsequent offer: **£15,000**. Its purpose is to turn approved recommendations into PRs, tickets, and/or configuration changes, work with engineering through deployment, and establish the realised-savings baseline.
+
+### Verified-savings model
+
+Alternative commercial model: **25% of verified savings**. Contract mechanics and the formal definition of verified savings are TBD.
+
+Thirty days currently refers to the intended post-change verification period. “30-Day Cloud Margin Recovery” must not be presented as a guaranteed end-to-end delivery promise.
+
+## Calls to action
+
+- Primary: **Start a Savings Sprint**
+- Secondary: **See how verification works**
+
+Final form fields, routing, consent language, and lead-qualification logic are TBD.

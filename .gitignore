@@ -141,3 +141,15 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Test output
+playwright-report/
+test-results/
+
+# Local workspace artifacts
+/work/
+/outputs/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
