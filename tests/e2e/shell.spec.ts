@@ -18,9 +18,12 @@ test("desktop shell exposes the approved navigation and footer architecture", as
 
   const header = page.locator("header");
   const primary = header.getByRole("navigation", { name: "Primary navigation" });
+  await expect(page).toHaveTitle("HKGpipi — Cloud Margin Recovery");
   await expect(primary.getByRole("link")).toHaveCount(6);
   await expect(primary.getByRole("link", { name: "Home" })).toHaveCount(0);
-  await expect(header.getByRole("link", { name: "Cloud Margin Recovery home" })).toHaveAttribute("href", "/");
+  const homeLink = header.getByRole("link", { name: "HKGpipi home" });
+  await expect(homeLink).toHaveAttribute("href", "/");
+  await expect(homeLink).toHaveText("HKGpipi");
   await expect(header.getByRole("link", { name: "Start a Savings Sprint" })).toHaveAttribute("href", "/start");
 
   const footer = page.getByRole("contentinfo");
@@ -28,7 +31,10 @@ test("desktop shell exposes the approved navigation and footer architecture", as
   await expect(footer).toContainText("Method");
   await expect(footer).toContainText("Contact");
   await expect(footer.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(footer.getByText("HKGpipi", { exact: true })).toBeVisible();
+  await expect(footer).toContainText("Engineering-led AWS cost reduction, verified against the bill.");
   await expect(footer).not.toContainText("Verification methodology: TBD.");
+  await expect(page.getByText("CMR", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: /design system/i })).toHaveCount(0);
 });
 
@@ -44,7 +50,7 @@ for (const [path, activeLabel] of [
     const primary = page.locator("header").getByRole("navigation", { name: "Primary navigation" });
     await expect(primary.locator('[aria-current="page"]')).toHaveCount(activeLabel ? 1 : 0);
     if (activeLabel) await expect(primary.getByRole("link", { name: activeLabel })).toHaveAttribute("aria-current", "page");
-    await expect(page.getByRole("link", { name: "Cloud Margin Recovery home" })).not.toHaveAttribute(
+    await expect(page.getByRole("link", { name: "HKGpipi home" })).not.toHaveAttribute(
       "aria-current",
       "page",
     );
@@ -55,6 +61,7 @@ for (const path of publicScaffolds) {
   test(`${path} is a live, non-indexed route scaffold`, async ({ page }) => {
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);
+    await expect(page).toHaveTitle(/\| HKGpipi$/);
     await expect(page.locator('main[data-route-stage="scaffold"]')).toHaveCount(1);
     await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
@@ -75,8 +82,17 @@ test("mobile dialog is modal, keyboard operable, and returns focus", async ({ pa
   const dialog = page.getByRole("dialog", { name: "Primary navigation" });
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveJSProperty("open", true);
+  await expect(dialog.getByText("HKGpipi", { exact: true })).toBeVisible();
+  await expect(dialog.getByText("Menu", { exact: true })).toBeVisible();
+  await expect(dialog.getByText("Primary navigation", { exact: true })).toHaveCount(0);
+  await expect(dialog.getByRole("navigation", { name: "Primary navigation menu" })).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Close" })).toBeFocused();
   await expect(dialog.getByRole("link", { name: "Verification" })).toHaveAttribute("aria-current", "page");
+  const routeAndBodyColours = await dialog.getByRole("link", { name: "Method" }).evaluate((element) => ({
+    route: getComputedStyle(element).color,
+    body: getComputedStyle(document.body).color,
+  }));
+  expect(routeAndBodyColours.route).toBe(routeAndBodyColours.body);
 
   for (let index = 0; index < 12; index += 1) await page.keyboard.press("Tab");
   expect(await page.evaluate(() => document.querySelector("dialog")?.contains(document.activeElement))).toBe(true);

@@ -26,7 +26,7 @@ export function SiteFooter() {
       </nav>
       <div className={`container ${styles.bottom}`}>
         <span className={styles.mark}>{siteIdentity.displayMark}</span>
-        <p>Engineering-led AWS cost reduction.</p>
+        <p>{siteIdentity.defaultDescription}</p>
       </div>
     </footer>
   );

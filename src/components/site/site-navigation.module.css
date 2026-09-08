@@ -78,7 +78,6 @@
   border-bottom: var(--border-default);
 }
 
-.dialogMark,
 .dialogTitle,
 .index {
   font-family: var(--font-family-mono);
@@ -86,6 +85,14 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
+}
+
+.dialogMark {
+  font-family: var(--font-family-sans);
+  font-size: 1.0625rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .close {
@@ -144,7 +151,7 @@
   min-height: 3.75rem;
   align-items: center;
   grid-template-columns: 2.5rem 1fr;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.5rem);
   letter-spacing: -0.03em;
   line-height: 1.05;

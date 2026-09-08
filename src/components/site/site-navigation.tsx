@@ -73,7 +73,7 @@ export function SiteNavigation() {
         ref={dialogRef}
         className={styles.dialog}
         id={dialogId}
-        aria-labelledby="mobile-navigation-title"
+        aria-label="Primary navigation"
         onClose={() => {
           setMenuOpen(false);
           triggerRef.current?.focus();
@@ -87,9 +87,7 @@ export function SiteNavigation() {
               <span className={styles.closeIcon} aria-hidden="true" />
             </button>
           </div>
-          <p className={styles.dialogTitle} id="mobile-navigation-title">
-            Primary navigation
-          </p>
+          <p className={styles.dialogTitle}>Menu</p>
           <nav aria-label="Primary navigation menu">
             <ol className={styles.mobileList}>
               {primaryNavigation.map((item, index) => {

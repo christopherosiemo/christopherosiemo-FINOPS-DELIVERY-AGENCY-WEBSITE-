@@ -20,8 +20,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: siteIdentity.descriptiveTitle,
-    template: `%s | ${siteIdentity.descriptiveTitle}`,
+    default: `${siteIdentity.brandName} — ${siteIdentity.categoryDescriptor}`,
+    template: `%s | ${siteIdentity.brandName}`,
   },
   description: siteIdentity.defaultDescription,
   robots: { index: true, follow: true },

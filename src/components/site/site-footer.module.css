@@ -25,13 +25,21 @@
   padding-block: var(--space-12);
 }
 
-.groupTitle,
-.mark {
+.groupTitle {
   font-family: var(--font-family-mono);
   font-size: var(--type-label-size);
   font-weight: var(--weight-medium);
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
+}
+
+.mark {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: 1rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .groupTitle {

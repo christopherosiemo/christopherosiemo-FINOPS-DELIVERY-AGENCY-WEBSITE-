@@ -24,9 +24,16 @@
   display: inline-flex;
   min-height: var(--target-min);
   align-items: center;
-  font-family: var(--font-family-mono);
-  font-size: var(--type-label-size);
-  font-weight: var(--weight-medium);
-  letter-spacing: var(--type-label-tracking);
+  font-family: var(--font-family-sans);
+  font-size: 1.0625rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   text-decoration: none;
+}
+
+@media (min-width: 80rem) {
+  .wordmark {
+    font-size: 1.125rem;
+  }
 }

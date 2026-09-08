@@ -11,9 +11,9 @@ The approved shell navigation is deliberately focused:
 5. Security — `/security`: access and change-control posture.
 6. Pricing — `/pricing`: approved engagement starting points.
 
-The `CMR` working wordmark is the home control and links to `/`; there is no textual Home item. The primary action, “Start a Savings Sprint”, has its own `/start` route so qualification and conversion can later mature independently from editorial contact content. `/contact` remains available in the footer.
+The `HKGpipi` wordmark is the home control and links to `/`; there is no textual Home item. The primary action, “Start a Savings Sprint”, has its own `/start` route so qualification and conversion can later mature independently from editorial contact content. `/contact` remains available in the footer.
 
-`CMR` is a working placeholder identity, not a legal company name, registered brand name, or final public wordmark. Site identity and navigation are centralised in `src/config/site.ts` for deliberate replacement when the real brand is supplied.
+`HKGpipi` is the operator-provided public identity and `hkgpipi.com` is a known domain reference. The retired `CMR` mark was only a working placeholder. Site identity and navigation remain centralised in `src/config/site.ts`.
 
 ## Route maturity
 
@@ -28,4 +28,4 @@ This is the approved shell IA. It does not approve the deeper content or final c
 
 Resources and Company are not exposed in primary navigation because neither has a mature route or approved content architecture. Adding empty dropdowns would misrepresent the current breadth of the public site. Legal routes, evidence/case-study policy, and the final conversion structure remain required before launch but are not fabricated at this gate.
 
-Metadata still requires the real public brand, canonical domain, Open Graph destinations/assets, social identities, and appropriate organisation data before acquisition and production gates. None is inferred from the working placeholder identity.
+Metadata still requires an approved canonical protocol/www policy, Open Graph destinations/assets, social identities, a production logo master, and appropriate organisation data before acquisition and production gates. None is inferred solely from the domain reference.

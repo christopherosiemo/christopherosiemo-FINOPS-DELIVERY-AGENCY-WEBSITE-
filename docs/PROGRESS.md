@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 26%
 
-**Current gate:** Global Shell — implemented and mechanically verified; independent shell review pending
+**Current gate:** Global Shell — calibrated; independent final shell approval pending
 
 ## Completed
 
@@ -20,14 +20,17 @@
 - CI now builds before E2E, tests the built application through `next start`, compares against canonical Linux/Chromium visual baselines, and retains short-lived Playwright failure evidence.
 - Independent visual review approved the Gate 2B captures and design-primitives correction pass.
 - GitHub Actions run `34264386202` completed successfully against Gate 2B commit `6c8965a90de687ca81e648efff705605f5bdc859`.
-- The approved six-route primary navigation, dedicated `/start` action, structured footer, active-route treatment, and working-placeholder identity configuration are implemented.
+- Gate 3A implemented the approved six-route primary navigation, dedicated `/start` action, structured footer, active-route treatment, and centralised identity configuration.
 - Native modal navigation provides the responsive menu below 1280px with focus entry, containment, Escape/explicit close, focus return, reduced-motion handling, and safe-area spacing.
 - Seven public route scaffolds plus the retained contact scaffold provide live, non-indexed targets with minimal approved copy and shared server-rendered structure.
 - Root and scaffold metadata, sticky-header scroll accounting, shell documentation, direct interaction tests, and six independent-review captures are implemented.
+- Independent Gate 3 optical review approved the shell architecture and requested a bounded identity calibration before final approval.
+- The supplied `HKGpipi` identity replaces the retired working placeholder across header, dialog, footer, accessible naming, and root metadata without changing approved shell geometry.
+- The mobile dialog now presents the visible label “Menu” and primary-ink route labels while retaining its meaningful accessible labels and active-route signal.
 
 ## In progress
 
-- Independent optical and interaction review of the completed Global Shell after remote CI is green.
+- Independent final optical and interaction review of the calibrated Global Shell after remote CI is green.
 
 ## Blocked
 
@@ -62,7 +65,10 @@
 - Gate 3A canonical Linux/Chromium visual regression passed 13 tests covering 16 retained and new snapshots at the unchanged 0.002 full-page tolerance.
 - Shell interaction coverage verifies all navigation targets return 200, scaffold robots policy, active-route semantics, modal focus behavior, reduced motion, sticky-header skip behavior, footer landmarks, Axe checks, and no horizontal overflow from 320px through 1728px.
 - Six Gate 3A review PNGs cover desktop/mobile homepage tops, mobile/tablet open navigation, and desktop/mobile footer hierarchy. Independent review has not yet been claimed.
+- Gate 3B preserves the approved breakpoint, navigation, dialog, footer, and macro-spacing architecture while calibrating the operator-provided identity and mobile label hierarchy.
+- Gate 3B validation passed on 2026-09-08: frozen install, lint, strict typecheck, 5 component tests, production build, 36 functional Chromium checks in local and Linux production modes, and 13 canonical Linux visual checks covering 16 snapshots.
+- Responsive inspection at 320, 390, 768, 1024, 1280, 1440, and 1728px found no horizontal overflow or identity/header/footer collisions; six Gate 3B review PNGs were produced for independent assessment.
 
 ## Next gate
 
-Obtain independent optical and interaction review of the six Gate 3A captures and live shell after its CI run is green. Record 28% only if that review approves the shell.
+Obtain independent final optical and interaction review of the six Gate 3B captures and live shell after its CI run is green. Record 28% only if that review approves the calibrated shell.

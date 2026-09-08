@@ -1,9 +1,11 @@
 export const siteIdentity = {
-  displayMark: "CMR",
-  accessibleHomeLabel: "Cloud Margin Recovery home",
-  descriptiveTitle: "Cloud Margin Recovery",
+  displayMark: "HKGpipi",
+  accessibleHomeLabel: "HKGpipi home",
+  brandName: "HKGpipi",
+  categoryDescriptor: "Cloud Margin Recovery",
   defaultDescription: "Engineering-led AWS cost reduction, verified against the bill.",
-  status: "working-placeholder",
+  domainReference: "hkgpipi.com",
+  status: "provided-brand",
 } as const;
 
 export const primaryNavigation = [
