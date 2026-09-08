@@ -411,7 +411,7 @@
   height: 1rem;
   border: 2px solid var(--color-signal);
   background: var(--color-surface);
-  animation: motion-specimen var(--duration-narrative) var(--ease-standard) infinite alternate;
+  animation: motion-specimen var(--duration-narrative) var(--ease-standard) both;
 }
 
 .motionPanel p {
@@ -438,12 +438,8 @@
 }
 
 @media (min-width: 48rem) {
-  .introCopy {
-    grid-column: 1 / span 6;
-  }
-
   .introMeta {
-    grid-column: 6 / -1;
+    grid-column: 1 / -1;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 

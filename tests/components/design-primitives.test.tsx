@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { Button, DirectionalLink } from "../../src/components/ui/actions";
 import { StatusBadge } from "../../src/components/ui/status-badge";
 import { TextField } from "../../src/components/ui/text-field";
+import { VerificationLine } from "../../src/components/ui/verification-line";
 
 describe("design primitives", () => {
   it("preserves button and navigation semantics", () => {
@@ -21,5 +22,12 @@ describe("design primitives", () => {
   it("always renders readable status text", () => {
     render(<StatusBadge status="Verified" />);
     expect(screen.getByText("Verified")).toBeVisible();
+  });
+
+  it("exposes the full illustrative reconciliation without relying on the connector", () => {
+    render(<VerificationLine animated />);
+    expect(screen.getByText("Expected annualised saving")).toBeVisible();
+    expect(screen.getByText("Verified annualised saving")).toBeVisible();
+    expect(screen.getByText(/variance to expected −£7,580 \(−4.1%\)/i)).toBeVisible();
   });
 });

@@ -1,6 +1,6 @@
 # Design system
 
-This document is authoritative for Gate 2A design primitives. The system is implemented but remains pending independent visual calibration; Gate 2A may reach 18%, not the 20% design-primitives exit.
+This document is authoritative for the Gate 2 design primitives. The system has completed its Gate 2B correction pass but remains pending remote CI verification and independent visual approval; it may remain at 18%, not the 20% design-primitives exit.
 
 ## MEASURED doctrine
 
@@ -28,7 +28,7 @@ The visual sensation is large, calm architectural space surrounding dense techni
 | White surface | `#FFFFFF` | Primary evidence surface |
 | Primary ink | `#11120F` | Primary text; avoids indiscriminate pure black |
 | Inverse surface | `#22231F` | Deliberate inverse area |
-| Secondary ink | `#696B64` | Supporting text that still passes AA |
+| Secondary ink | `#60625C` | Optically stronger supporting text that passes AA |
 | Border | `#D8D9D2` | Default structural boundary |
 | Strong border | `#9B9D94` | Deliberate separation |
 | Signal | `#3157FF` | Action and focus |
@@ -51,9 +51,9 @@ Ratios were calculated from sRGB relative luminance and rounded to two decimals.
 | Foreground | Background | Ratio | Normal text |
 | --- | --- | ---: | --- |
 | Primary `#11120F` | Canvas `#F5F5F0` | 17.19:1 | Pass AA/AAA |
-| Secondary `#696B64` | Canvas `#F5F5F0` | 4.94:1 | Pass AA |
+| Secondary `#60625C` | Canvas `#F5F5F0` | 5.65:1 | Pass AA |
 | Primary `#11120F` | Surface `#FFFFFF` | 18.80:1 | Pass AA/AAA |
-| Secondary `#696B64` | Surface `#FFFFFF` | 5.40:1 | Pass AA |
+| Secondary `#60625C` | Surface `#FFFFFF` | 6.18:1 | Pass AA |
 | Inverse text `#FFFFFF` | Inverse surface `#22231F` | 15.81:1 | Pass AA/AAA |
 | Signal `#3157FF` | Canvas `#F5F5F0` | 4.88:1 | Pass AA |
 | Signal `#3157FF` | Surface `#FFFFFF` | 5.33:1 | Pass AA |
@@ -143,7 +143,7 @@ Feedback comes primarily from border, surface, text, or a very small translation
 - Primary easing: `cubic-bezier(0.16, 1, 0.3, 1)`.
 - Linear: only where the underlying value is genuinely linear.
 
-Motion is finite and never required to reveal meaning. Native scrolling is retained. Scroll hijacking, custom cursors, particles, gratuitous parallax, and navigation-blocking animation are prohibited.
+Motion is finite and never required to reveal meaning. Narrative demonstrations run once over 560ms with the primary easing and settle into their final state; infinite decorative animation is prohibited. Native scrolling is retained. Scroll hijacking, custom cursors, particles, gratuitous parallax, and navigation-blocking animation are prohibited.
 
 With `prefers-reduced-motion: reduce`, non-essential animations and transitions resolve in approximately 0.01ms or are removed; smooth scrolling is not forced. The Verification Line and all status/data meaning are complete without animation.
 
@@ -167,9 +167,9 @@ Final schema, interactivity, sorting, provenance presentation, and product integ
 
 ## Verification Line visual concept
 
-The line represents two economic states—Expected and Verified—not percentage completion. Both values and their annualised unit remain visible as text, connected by a thin architectural line with distinct geometric markers. The specimen provides static and motion-enabled forms, uses tabular monetary figures, works without colour, and collapses to a readable mobile stack.
+The line is a reconciliation instrument representing estimate → reconciliation → measured result, not percentage completion. Both annualised values remain dominant and visible as text. A subordinate centre annotation records variance to expected: `£176,420 − £184,000 = −£7,580`, with percentage variance calculated from the expected value as `−£7,580 / £184,000 = −4.119565…%`, displayed as `−4.1%`. The thin architectural connector has no filled track, loading state, or percentage-complete metaphor. Text and marker geometry preserve meaning without colour, and the composition collapses to a readable mobile stack.
 
-The motion demonstration reveals the connecting line and settles the verified marker over 560ms. Reduced motion presents the final state immediately. Final methodology, value attribution, variance explanation, and homepage integration remain TBD.
+The motion demonstration resolves the reconciliation annotation once over 560ms while the economic values and connector remain present throughout. Reduced motion presents the final reconciled state immediately. Final methodology, value attribution, and homepage integration remain TBD.
 
 ## Responsive principles
 

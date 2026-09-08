@@ -35,3 +35,21 @@ for (const viewport of [
     });
   });
 }
+
+test("high-signal design primitives", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/design-system");
+  await page.evaluate(() => document.fonts.ready);
+
+  for (const [name, specimen] of [
+    ["controls", page.getByTestId("control-specimen")],
+    ["financial-typography", page.getByTestId("financial-typography-specimen")],
+    ["savings-ledger", page.getByTestId("savings-ledger-specimen")],
+    ["verification-line", page.getByTestId("verification-line-specimen").first()],
+  ] as const) {
+    await expect(specimen).toHaveScreenshot(`${name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  }
+});

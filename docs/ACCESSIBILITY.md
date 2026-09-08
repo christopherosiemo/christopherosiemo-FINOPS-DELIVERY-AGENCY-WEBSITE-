@@ -17,14 +17,14 @@ Foundation requirements:
 
 ## Design-system decisions
 
-- Ordinary text combinations are measured in `DESIGN_SYSTEM.md`; the lowest approved normal-text pair is secondary text on canvas at approximately 4.94:1.
+- Ordinary text combinations are measured in `DESIGN_SYSTEM.md`; secondary text is `#60625C`, measuring 5.65:1 on canvas and 6.18:1 on white.
 - Attention text uses `#8A4A0A`, not the lower-contrast `#A76513`, on warm-light backgrounds.
 - Global focus uses a 2px outline with 3px offset; inverse surfaces use a white focus token. Future sticky UI must preserve focus visibility.
 - Standalone controls target at least 44×44px. Primary controls are 48px high.
 - Form errors use explicit text, a symbol, `aria-invalid`, and described-by association; colour is supplemental.
 - Lifecycle states always contain readable text and a shape marker. Verified green and attention amber are not the only carriers of meaning.
-- The Savings Ledger uses a semantic table on desktop and labelled records below 1024px, preventing illegible column compression.
-- The Verification Line includes a complete textual equivalent and retains its final meaningful state with reduced motion.
+- The Savings Ledger uses a semantic table at 1280px and above and labelled records below 1280px, preventing illegible column compression.
+- The Verification Line exposes expected, verified, absolute variance, and percentage variance as text; its connector is supplemental, and reduced motion retains the final reconciled state.
 
 Automated Axe checks cover `/` and `/design-system`. Direct browser tests cover skip navigation, keyboard focus visibility, button/link semantics, form label association, reduced motion, indexing metadata, and horizontal overflow at required viewports.
 

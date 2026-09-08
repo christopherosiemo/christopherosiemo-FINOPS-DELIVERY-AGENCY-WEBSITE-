@@ -29,7 +29,7 @@ const colours = [
   ["Canvas", "#F5F5F0", "Page ground"],
   ["Surface", "#FFFFFF", "Primary evidence surface"],
   ["Text primary", "#11120F", "Primary content"],
-  ["Text secondary", "#696B64", "Supporting content"],
+  ["Text secondary", "#60625C", "Supporting content"],
   ["Border", "#D8D9D2", "Structural separation"],
   ["Signal", "#3157FF", "Action and focus"],
   ["Verified", "#17744A", "Verified state only"],
@@ -39,9 +39,9 @@ const colours = [
 
 const contrasts = [
   ["Primary / canvas", "#11120F", "#F5F5F0", "17.19:1"],
-  ["Secondary / canvas", "#696B64", "#F5F5F0", "4.94:1"],
+  ["Secondary / canvas", "#60625C", "#F5F5F0", "5.65:1"],
   ["Primary / surface", "#11120F", "#FFFFFF", "18.80:1"],
-  ["Secondary / surface", "#696B64", "#FFFFFF", "5.40:1"],
+  ["Secondary / surface", "#60625C", "#FFFFFF", "6.18:1"],
   ["Inverse / inverse surface", "#FFFFFF", "#22231F", "15.81:1"],
   ["Signal / canvas", "#3157FF", "#F5F5F0", "4.88:1"],
   ["Verified text / verified surface", "#0D5C39", "#E5F3EC", "7.04:1"],
@@ -68,14 +68,14 @@ export default function DesignSystemPage() {
       <div className="container">
         <header className={styles.intro}>
           <div className="site-grid">
-            <div className={styles.introCopy}>
-              <p className="technical-label">Internal Design System · Gate 2A</p>
+            <div className={styles.introCopy} data-testid="design-system-intro-copy">
+              <p className="technical-label">Internal Design System · Gate 2B</p>
               <h1 className="type-display-xl">MEASURED</h1>
               <p className="type-body-large measure-compact">
                 A calibration instrument for large, calm architectural space surrounding dense technical evidence.
               </p>
             </div>
-            <dl className={styles.introMeta}>
+            <dl className={styles.introMeta} data-testid="design-system-intro-meta">
               <div><dt>Status</dt><dd>Implementation review</dd></div>
               <div><dt>Indexing</dt><dd>Noindex · nofollow</dd></div>
               <div><dt>Audience</dt><dd>Internal</dd></div>
@@ -132,7 +132,7 @@ export default function DesignSystemPage() {
         </SpecimenSection>
 
         <SpecimenSection eyebrow="E · Financial typography" id="financial" title="Values stay aligned as evidence changes.">
-          <div className={styles.financialGrid}>
+          <div className={styles.financialGrid} data-testid="financial-typography-specimen">
             <article><span>Expected monthly</span><strong>£14,380</strong><small>/ month</small></article>
             <article><span>Annualised</span><strong>£172,560</strong><small>/ year</small></article>
             <article><span>Confidence</span><strong>92.4%</strong><small>validated</small></article>
@@ -174,7 +174,7 @@ export default function DesignSystemPage() {
         </SpecimenSection>
 
         <SpecimenSection eyebrow="J · Buttons" id="buttons" title="Controls acknowledge intent.">
-          <div className={styles.controlRows}>
+          <div className={styles.controlRows} data-testid="control-specimen">
             <div><span>Primary</span><ActionLink href="/contact">Start a Savings Sprint</ActionLink></div>
             <div><span>Secondary</span><ActionLink href="#verification" variant="secondary">See how verification works</ActionLink></div>
             <div><span>Quiet</span><Button variant="quiet">Inspect details</Button></div>
@@ -228,7 +228,7 @@ export default function DesignSystemPage() {
 
         <SpecimenSection eyebrow="R · Motion" id="motion" title="Subtle, finite, never required for meaning.">
           <div className={styles.motionPanel}>
-            <span className={styles.motionMarker} aria-hidden="true" />
+            <span className={styles.motionMarker} data-testid="motion-specimen-marker" aria-hidden="true" />
             <div><strong>560ms narrative transition</strong><p>One restrained movement demonstrates timing. The explanatory state is always present.</p></div>
           </div>
         </SpecimenSection>

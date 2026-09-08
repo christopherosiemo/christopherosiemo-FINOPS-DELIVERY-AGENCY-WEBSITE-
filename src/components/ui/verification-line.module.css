@@ -46,20 +46,20 @@
   color: var(--color-verified-text);
 }
 
-.track {
+.reconciliation {
   position: relative;
-  height: 1rem;
+  display: grid;
+  min-height: 4rem;
+  place-items: center;
   margin-block: var(--space-8) var(--space-5);
 }
 
 .line {
   position: absolute;
-  top: calc(50% - 0.5px);
+  top: 50%;
   right: 0;
   left: 0;
-  height: 1px;
-  background: var(--color-border-strong);
-  transform-origin: left;
+  border-top: var(--border-strong);
 }
 
 .expectedMarker,
@@ -85,28 +85,44 @@
   color: var(--color-verified-text);
 }
 
+.variance {
+  z-index: 1;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-inline: var(--border-default);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.variance span {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.variance strong {
+  font-family: var(--font-family-mono);
+  font-size: var(--type-body-small-size);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: var(--weight-medium);
+}
+
 .description {
   margin-bottom: 0;
   color: var(--color-text-secondary);
   font-size: var(--type-body-small-size);
 }
 
-[data-motion="animated"] .line {
-  animation: reveal-line var(--duration-narrative) var(--ease-standard) both;
+[data-motion="animated"] .variance {
+  animation: reconcile-variance var(--duration-narrative) var(--ease-standard) both;
 }
 
-[data-motion="animated"] .verifiedMarker {
-  animation: settle-marker var(--duration-narrative) var(--ease-standard) both;
-}
-
-@keyframes reveal-line {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-@keyframes settle-marker {
-  from { opacity: 0; transform: translateY(-50%) translateX(-0.25rem) rotate(45deg); }
-  to { opacity: 1; transform: translateY(-50%) translateX(0) rotate(45deg); }
+@keyframes reconcile-variance {
+  from { opacity: 0; transform: translateY(var(--space-1)); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 35.999rem) {
@@ -125,8 +141,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-motion="animated"] .line,
-  [data-motion="animated"] .verifiedMarker {
+  [data-motion="animated"] .variance {
     animation: none;
   }
 }

@@ -1,15 +1,13 @@
-name: CI
+name: Generate visual baselines
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  quality:
+  generate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -22,20 +20,13 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm test
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:e2e
-      - run: pnpm test:visual
-      - name: Upload Playwright failure evidence
-        if: failure()
+      - run: pnpm test:visual:update
+      - name: Upload Linux visual baselines for review
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-failure-evidence
-          path: |
-            playwright-report/
-            test-results/
-          if-no-files-found: ignore
+          name: linux-chromium-visual-baselines
+          path: tests/e2e/snapshots/visual.spec.ts/
+          if-no-files-found: error
           retention-days: 7

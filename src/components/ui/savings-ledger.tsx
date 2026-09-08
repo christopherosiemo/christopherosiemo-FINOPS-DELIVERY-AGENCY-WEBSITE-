@@ -20,7 +20,7 @@ const rows: LedgerRow[] = [
 
 export function SavingsLedger() {
   return (
-    <div className={styles.ledger} aria-label="Illustrative Savings Ledger">
+    <div className={styles.ledger} aria-label="Illustrative Savings Ledger" data-testid="savings-ledger-specimen">
       <div className={styles.heading}>
         <div>
           <p className="technical-label">Illustrative dataset</p>

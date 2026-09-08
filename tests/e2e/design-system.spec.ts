@@ -56,7 +56,13 @@ test("normal motion preference enables the finite Verification Line demonstratio
   const animation = page.getByTestId("verification-line-animation").last();
   await expect(animation).toBeVisible();
   expect(await animation.evaluate((element) => getComputedStyle(element).animationName)).not.toBe("none");
-  await expect(page.getByText("Expected £184,000 annualised. Verified £176,420 annualised. Illustrative only.").last()).toBeVisible();
+  expect(await animation.evaluate((element) => getComputedStyle(element).animationIterationCount)).toBe("1");
+  await animation.evaluate((element) => Promise.all(element.getAnimations().map((item) => item.finished)));
+  expect(await animation.evaluate((element) => getComputedStyle(element).opacity)).toBe("1");
+  await expect(page.getByText(/expected annualised saving £184,000; verified annualised saving £176,420; variance to expected −£7,580 \(−4.1%\)/i).last()).toBeVisible();
+
+  const specimenMarker = page.getByTestId("motion-specimen-marker");
+  expect(await specimenMarker.evaluate((element) => getComputedStyle(element).animationIterationCount)).toBe("1");
 });
 
 test("reduced motion resolves the animated specimen without hiding meaning", async ({ page }) => {
@@ -65,8 +71,28 @@ test("reduced motion resolves the animated specimen without hiding meaning", asy
 
   const animation = page.getByTestId("verification-line-animation").last();
   await expect(animation).toBeVisible();
-  await expect(page.getByText("Expected £184,000 annualised. Verified £176,420 annualised. Illustrative only.").last()).toBeVisible();
+  await expect(page.getByText(/expected annualised saving £184,000; verified annualised saving £176,420; variance to expected −£7,580 \(−4.1%\)/i).last()).toBeVisible();
   expect(await animation.evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  expect(await animation.evaluate((element) => getComputedStyle(element).opacity)).toBe("1");
+});
+
+test("tablet introduction metadata forms a separate readable row", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto("/design-system");
+
+  const copyBox = await page.getByTestId("design-system-intro-copy").boundingBox();
+  const meta = page.getByTestId("design-system-intro-meta");
+  const metaBox = await meta.boundingBox();
+  expect(copyBox).not.toBeNull();
+  expect(metaBox).not.toBeNull();
+  expect(metaBox!.y).toBeGreaterThanOrEqual(copyBox!.y + copyBox!.height);
+
+  const items = meta.locator(":scope > div");
+  await expect(items).toHaveCount(3);
+  for (const item of await items.all()) {
+    const box = await item.boundingBox();
+    expect(box?.width).toBeGreaterThan(180);
+  }
 });
 
 for (const viewport of [

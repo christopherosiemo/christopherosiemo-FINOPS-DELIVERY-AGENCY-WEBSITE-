@@ -18,6 +18,8 @@ Instrument Sans is loaded as a variable font and IBM Plex Mono as only the requi
 
 The token system and specimen use static server components and CSS. No client boundary or runtime breakpoint logic was added. The motion specimen is CSS-only and resolves immediately for reduced-motion users. The single accessibility testing dependency is development-only and cannot enter the production client bundle.
 
+CI builds before browser testing and runs Playwright against `next start`, so E2E covers the optimized production output without hiding build failures behind browser-test failures. Local functional E2E retains `next dev` for fast iteration.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.
