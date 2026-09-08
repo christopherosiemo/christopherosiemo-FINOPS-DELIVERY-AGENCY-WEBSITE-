@@ -29,3 +29,12 @@ Foundation requirements:
 Automated Axe checks cover `/` and `/design-system`. Direct browser tests cover skip navigation, keyboard focus visibility, button/link semantics, form label association, reduced motion, indexing metadata, and horizontal overflow at required viewports.
 
 Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/reflow, contrast, and content review. Supported assistive-technology/browser test combinations are TBD before production qualification.
+
+## Global-shell decisions
+
+- Desktop and modal navigation use distinct labelled landmarks, and active primary routes expose `aria-current="page"` with a structural visual marker.
+- Below 1280px, a 44×44px named trigger communicates `aria-expanded`, its dialog relationship, and opens a native modal dialog.
+- Opening moves focus to the explicit Close control. Native modal semantics make the document outside the dialog inert and contain keyboard focus; Escape and the Close control dismiss it, and the close event returns focus to the original trigger.
+- The full-viewport menu respects top and bottom safe-area insets. Reduced-motion preferences collapse its transition without delaying visibility or interaction.
+- The sticky-header height is a semantic token and contributes to document scroll padding, preserving skip-link, focus, and hash-target visibility.
+- Direct Playwright coverage verifies dialog state, focus entry/containment/return, Escape, explicit close, active routes, landmarks, CTA/footer semantics, reduced motion, and overflow across 320–1728px. Axe runs on the homepage, a scaffold, and the open modal state.

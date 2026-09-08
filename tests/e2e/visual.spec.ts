@@ -53,3 +53,49 @@ test("high-signal design primitives", async ({ page }) => {
     });
   }
 });
+
+for (const viewport of [
+  { name: "homepage-top-1440x900", width: 1440, height: 900 },
+  { name: "homepage-top-390x844", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} shell review baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  });
+}
+
+for (const viewport of [
+  { name: "mobile-menu-open-390x844", width: 390, height: 844 },
+  { name: "tablet-menu-open-768x1024", width: 768, height: 1024 },
+]) {
+  test(`${viewport.name} shell review baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await page.getByRole("button", { name: "Open primary navigation" }).click();
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  });
+}
+
+for (const viewport of [
+  { name: "desktop-footer-1440", width: 1440, height: 900 },
+  { name: "mobile-footer-390", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} shell review baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.getByRole("contentinfo")).toHaveScreenshot(`${viewport.name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  });
+}

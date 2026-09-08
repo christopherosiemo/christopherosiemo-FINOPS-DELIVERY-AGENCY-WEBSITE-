@@ -1,14 +1,15 @@
-import Link from "next/link";
+import { RouteScaffold } from "@/components/site/route-scaffold";
+import { scaffoldMetadata } from "@/config/metadata";
 
-export default function ContactPlaceholder() {
+export const metadata = scaffoldMetadata(
+  "Contact",
+  "The contact route for beginning an AWS Savings Sprint conversation.",
+);
+
+export default function ContactPage() {
   return (
-    <main id="main-content" className="simple-page" tabIndex={-1}>
-      <div className="container">
-        <p className="eyebrow">Savings Sprint</p>
-        <h1>Start a Savings Sprint</h1>
-        <p>Contact workflow and qualification logic are TBD.</p>
-        <Link href="/">Return home</Link>
-      </div>
-    </main>
+    <RouteScaffold eyebrow="Contact" title="Start a Savings Sprint.">
+      <p>Begin with a focused conversation about your AWS estate, engineering constraints and current priorities.</p>
+    </RouteScaffold>
   );
 }

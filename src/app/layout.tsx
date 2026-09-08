@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { siteIdentity } from "@/config/site";
 import "@/styles/globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -18,8 +19,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cloud Margin Recovery",
-  description: "Engineering-led AWS cost reduction, verified against the bill.",
+  title: {
+    default: siteIdentity.descriptiveTitle,
+    template: `%s | ${siteIdentity.descriptiveTitle}`,
+  },
+  description: siteIdentity.defaultDescription,
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

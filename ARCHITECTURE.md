@@ -8,6 +8,7 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 
 - `src/app/`: routes, layouts, and route metadata.
 - `src/components/site/`: site-wide composition such as header and footer.
+- `src/config/`: compact site identity, navigation, action, footer, and metadata configuration.
 - `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
 - `src/lib/`: reserved for framework-independent utilities when required.
 - `src/styles/`: global foundations and design tokens.
@@ -18,6 +19,10 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 CSS custom properties remain the source of truth. `src/styles/tokens.css` separates primitive values from semantic roles; `src/styles/globals.css` consumes them for reset, typography, layout, focus, and shared shell behavior. Component values are colocated in CSS Modules only where the component has a genuine local need. Borders and spacing establish hierarchy before shadows or decoration.
 
 `/design-system` is an internal, statically rendered calibration route. It is excluded from public navigation and marked `noindex, nofollow`; it must be removed, access-controlled, or otherwise excluded from the public production experience before launch.
+
+The global header and footer remain server components. `SiteNavigation` is the only shell client boundary because it owns pathname-aware `aria-current` state and the native `<dialog>` lifecycle required for the mobile/tablet menu. The native modal supplies background inertness and contained focus; local code handles opening, explicit/Escape close state, and focus return. No state, menu, icon, or animation dependency is used.
+
+Public navigation values and the explicitly provisional `CMR` identity live in `src/config/site.ts`. Repeated incomplete-route structure is isolated in the server-rendered `RouteScaffold`; it is intentionally not a universal page-template abstraction. Each scaffold exports route metadata with `noindex, nofollow`. Root metadata supplies only a descriptive placeholder title/template and approved description; domain-dependent canonical, social, logo, and organisation metadata remain deferred.
 
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
 

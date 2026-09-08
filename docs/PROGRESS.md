@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 20%
+**Current value:** 26%
 
-**Target for this checkpoint:** 20%
+**Target for this checkpoint:** 26%
 
-**Current gate:** Design Primitives — complete
+**Current gate:** Global Shell — implemented and mechanically verified; independent shell review pending
 
 ## Completed
 
@@ -20,10 +20,14 @@
 - CI now builds before E2E, tests the built application through `next start`, compares against canonical Linux/Chromium visual baselines, and retains short-lived Playwright failure evidence.
 - Independent visual review approved the Gate 2B captures and design-primitives correction pass.
 - GitHub Actions run `34264386202` completed successfully against Gate 2B commit `6c8965a90de687ca81e648efff705605f5bdc859`.
+- The approved six-route primary navigation, dedicated `/start` action, structured footer, active-route treatment, and working-placeholder identity configuration are implemented.
+- Native modal navigation provides the responsive menu below 1280px with focus entry, containment, Escape/explicit close, focus return, reduced-motion handling, and safe-area spacing.
+- Seven public route scaffolds plus the retained contact scaffold provide live, non-indexed targets with minimal approved copy and shared server-rendered structure.
+- Root and scaffold metadata, sticky-header scroll accounting, shell documentation, direct interaction tests, and six independent-review captures are implemented.
 
 ## In progress
 
-- Gate 3A global-shell implementation and mechanical verification.
+- Independent optical and interaction review of the completed Global Shell after remote CI is green.
 
 ## Blocked
 
@@ -32,7 +36,7 @@
 ## Deferred
 
 - Production Savings Ledger and Verification Line components and product behavior.
-- Final information architecture, verification methodology, conversion fields and qualification logic.
+- Deeper route content architecture, verification methodology, conversion fields and qualification logic.
 - Analytics, security integrations, production budgets, and production qualification.
 
 ## Evidence
@@ -54,7 +58,11 @@
 - Axe reported no automatically detectable violations on `/` or `/design-system`.
 - Required 390, 768, 1024, 1440, and 1728px responsive checks found no horizontal page overflow; 320px design-system and homepage checks also passed.
 - Six full-page and four targeted deterministic Linux/Chromium visual baselines are stored under `tests/e2e/snapshots/visual.spec.ts/`.
+- Gate 3A validation passed locally on 2026-09-08: lint, strict typecheck, 5 component tests, 36 Chromium functional E2E checks, and production build with all 11 current routes statically prerendered.
+- Gate 3A canonical Linux/Chromium visual regression passed 13 tests covering 16 retained and new snapshots at the unchanged 0.002 full-page tolerance.
+- Shell interaction coverage verifies all navigation targets return 200, scaffold robots policy, active-route semantics, modal focus behavior, reduced motion, sticky-header skip behavior, footer landmarks, Axe checks, and no horizontal overflow from 320px through 1728px.
+- Six Gate 3A review PNGs cover desktop/mobile homepage tops, mobile/tablet open navigation, and desktop/mobile footer hierarchy. Independent review has not yet been claimed.
 
 ## Next gate
 
-Build and mechanically verify the Gate 3A global shell. Independent optical and interaction review remains required before recording the 28% Global Shell exit.
+Obtain independent optical and interaction review of the six Gate 3A captures and live shell after its CI run is green. Record 28% only if that review approves the shell.

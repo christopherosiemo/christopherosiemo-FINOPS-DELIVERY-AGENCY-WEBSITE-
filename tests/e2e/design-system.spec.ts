@@ -15,10 +15,10 @@ test("internal specimen exposes accessible semantics and remains outside public 
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /nofollow/);
   await expect(page.getByRole("heading", { level: 1, name: "MEASURED" })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link")).toHaveCount(2);
+  await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link")).toHaveCount(6);
   await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: /design system/i })).toHaveCount(0);
 
-  await expect(page.getByRole("link", { name: "Start a Savings Sprint" })).toHaveAttribute("href", "/contact");
+  await expect(page.locator("header").getByRole("link", { name: "Start a Savings Sprint" })).toHaveAttribute("href", "/start");
   await expect(page.getByRole("button", { name: "Inspect details" })).toBeEnabled();
   await expect(page.getByRole("button", { name: "Unavailable action" })).toBeDisabled();
   await expect(page.getByLabel("Reference name")).toHaveAttribute("aria-describedby", "specimen-reference-hint");

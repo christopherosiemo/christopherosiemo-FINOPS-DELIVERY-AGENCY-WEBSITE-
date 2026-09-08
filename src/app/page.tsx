@@ -10,7 +10,7 @@ export default function Home() {
           <p className="hero__summary">
             We turn AWS savings opportunities into verified reductions on your bill.
           </p>
-          <ActionLink className="hero__action" href="/contact">
+          <ActionLink className="hero__action" href="/start">
             Start a Savings Sprint
           </ActionLink>
         </div>

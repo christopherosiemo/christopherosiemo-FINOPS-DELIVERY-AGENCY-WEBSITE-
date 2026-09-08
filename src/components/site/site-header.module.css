@@ -1,0 +1,32 @@
+.header {
+  position: sticky;
+  z-index: var(--z-header);
+  top: 0;
+  border-bottom: var(--border-default);
+  background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+}
+
+@supports (backdrop-filter: blur(0.5rem)) {
+  .header {
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.inner {
+  display: flex;
+  min-height: var(--header-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.wordmark {
+  display: inline-flex;
+  min-height: var(--target-min);
+  align-items: center;
+  font-family: var(--font-family-mono);
+  font-size: var(--type-label-size);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--type-label-tracking);
+  text-decoration: none;
+}

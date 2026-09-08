@@ -126,6 +126,8 @@
   --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-linear: linear;
   --z-skip-link: 100;
+  --z-header: 10;
+  --header-height: 4rem;
   --focus-width: 2px;
   --focus-offset: 3px;
 }

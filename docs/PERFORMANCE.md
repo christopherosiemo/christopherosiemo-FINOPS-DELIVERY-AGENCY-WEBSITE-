@@ -20,6 +20,10 @@ The token system and specimen use static server components and CSS. No client bo
 
 CI builds before browser testing and runs Playwright against `next start`, so E2E covers the optimized production output without hiding build failures behind browser-test failures. Local functional E2E retains `next dev` for fast iteration.
 
+## Global-shell implications
+
+The header frame, footer, site configuration, metadata, and route scaffolds are server-rendered. Client JavaScript is limited to one local `SiteNavigation` boundary for current-path matching and native-dialog control. The shell adds no third-party dependency, icon package, animation runtime, global state, scroll listener, or route-transition code. The production build confirms every current route is statically prerendered; Next.js 16.3.4 does not emit route-level client-byte totals in its standard build table, so no unmeasured bundle-size claim is recorded.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.
