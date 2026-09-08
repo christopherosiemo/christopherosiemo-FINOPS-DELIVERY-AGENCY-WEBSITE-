@@ -1,0 +1,44 @@
+.badge {
+  display: inline-flex;
+  min-height: 1.75rem;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-default);
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+  font-weight: var(--weight-medium);
+  line-height: var(--type-caption-line);
+  white-space: nowrap;
+}
+
+.marker {
+  width: 0.375rem;
+  height: 0.375rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+
+.neutral {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.attention {
+  border-color: var(--color-attention);
+  background: var(--color-attention-surface);
+  color: var(--color-attention-text);
+}
+
+.verified {
+  border-color: var(--color-verified);
+  background: var(--color-verified-surface);
+  color: var(--color-verified-text);
+}
+
+.attention .marker,
+.verified .marker {
+  background: currentColor;
+}

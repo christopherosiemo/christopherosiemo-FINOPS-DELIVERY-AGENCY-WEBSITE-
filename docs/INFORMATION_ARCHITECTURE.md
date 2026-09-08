@@ -5,6 +5,10 @@
 - `/`: minimal foundation shell with proposition and primary CTA.
 - `/contact`: explicit placeholder for the future Savings Sprint conversion flow; fields and qualification logic are TBD.
 
+Internal tooling route (not part of the public commercial information architecture):
+
+- `/design-system`: design calibration specimen; `noindex, nofollow`, absent from public navigation, and subject to removal or access control before production launch.
+
 The primary navigation exists to validate the global shell. Its final labels and destinations are TBD.
 
 ## Intended content hierarchy

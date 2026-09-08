@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 test("homepage foundation is accessible and free of obvious runtime errors", async ({ page }) => {
   const runtimeErrors: string[] = [];
@@ -19,5 +20,7 @@ test("homepage foundation is accessible and free of obvious runtime errors", asy
   await page.keyboard.press("Enter");
   await expect(page.locator("#main-content")).toBeFocused();
 
+  const accessibility = await new AxeBuilder({ page }).analyze();
+  expect(accessibility.violations).toEqual([]);
   expect(runtimeErrors).toEqual([]);
 });

@@ -1,0 +1,157 @@
+:root {
+  /* Primitive colour values: use semantic aliases in components. */
+  --primitive-warm-0: #ffffff;
+  --primitive-warm-50: #fafaf7;
+  --primitive-warm-100: #f5f5f0;
+  --primitive-warm-150: #eef0e9;
+  --primitive-warm-300: #d8d9d2;
+  --primitive-warm-500: #9b9d94;
+  --primitive-warm-700: #696b64;
+  --primitive-ink-900: #22231f;
+  --primitive-ink-950: #11120f;
+  --primitive-blue-500: #3157ff;
+  --primitive-blue-600: #2647d6;
+  --primitive-green-50: #e5f3ec;
+  --primitive-green-500: #17744a;
+  --primitive-green-700: #0d5c39;
+  --primitive-amber-50: #f8ead9;
+  --primitive-amber-500: #a76513;
+  --primitive-amber-700: #8a4a0a;
+
+  /* Semantic colour roles. */
+  --color-canvas: var(--primitive-warm-100);
+  --color-surface: var(--primitive-warm-0);
+  --color-surface-subtle: var(--primitive-warm-150);
+  --color-surface-inverse: var(--primitive-ink-900);
+  --color-text-primary: var(--primitive-ink-950);
+  --color-text-secondary: var(--primitive-warm-700);
+  --color-text-muted: var(--primitive-warm-700);
+  --color-text-inverse: var(--primitive-warm-0);
+  --color-border: var(--primitive-warm-300);
+  --color-border-strong: var(--primitive-warm-500);
+  --color-signal: var(--primitive-blue-500);
+  --color-signal-hover: var(--primitive-blue-600);
+  --color-verified: var(--primitive-green-500);
+  --color-verified-text: var(--primitive-green-700);
+  --color-verified-surface: var(--primitive-green-50);
+  --color-attention: var(--primitive-amber-500);
+  --color-attention-text: var(--primitive-amber-700);
+  --color-attention-surface: var(--primitive-amber-50);
+  --color-focus: var(--primitive-blue-500);
+  --color-focus-inverse: var(--primitive-warm-0);
+
+  /* Font families are populated by next/font on the root html element. */
+  --font-family-sans: var(--font-sans), Arial, sans-serif;
+  --font-family-mono: var(--font-mono), "Courier New", monospace;
+
+  /* Type scale. */
+  --type-display-xl-size: clamp(3rem, 2.25rem + 3.25vw, 5.25rem);
+  --type-display-xl-line: 0.94;
+  --type-display-xl-tracking: -0.045em;
+  --type-display-l-size: clamp(2.5rem, 1.95rem + 2.25vw, 4rem);
+  --type-display-l-line: 0.96;
+  --type-display-l-tracking: -0.04em;
+  --type-heading-1-size: clamp(2.25rem, 1.95rem + 1.25vw, 3rem);
+  --type-heading-1-line: 1;
+  --type-heading-1-tracking: -0.035em;
+  --type-heading-2-size: clamp(2rem, 1.8rem + 0.85vw, 2.5rem);
+  --type-heading-2-line: 1.05;
+  --type-heading-2-tracking: -0.03em;
+  --type-heading-3-size: clamp(1.625rem, 1.45rem + 0.75vw, 2rem);
+  --type-heading-3-line: 1.1;
+  --type-heading-3-tracking: -0.025em;
+  --type-heading-4-size: clamp(1.375rem, 1.3rem + 0.35vw, 1.5rem);
+  --type-heading-4-line: 1.2;
+  --type-body-large-size: clamp(1.125rem, 1.06rem + 0.25vw, 1.25rem);
+  --type-body-large-line: 1.5;
+  --type-body-size: 1rem;
+  --type-body-line: 1.6;
+  --type-body-small-size: 0.875rem;
+  --type-body-small-line: 1.55;
+  --type-caption-size: 0.75rem;
+  --type-caption-line: 1.5;
+  --type-label-size: 0.75rem;
+  --type-label-line: 1.4;
+  --type-label-tracking: 0.06em;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --measure-compact: 45ch;
+  --measure-prose: 65ch;
+  --measure-wide: 75ch;
+
+  /* Spacing: a bounded 4px-led scale. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-30: 7.5rem;
+  --space-40: 10rem;
+
+  /* Layout and rhythm. */
+  --container-max: 80rem;
+  --page-gutter: 1.25rem;
+  --grid-columns: 4;
+  --grid-gap: var(--space-3);
+  --section-standard: 5.5rem;
+  --section-major: 6rem;
+  --group-tight: var(--space-4);
+  --group-standard: var(--space-8);
+  --data-gap: var(--space-3);
+
+  /* Shape, boundaries, and temporary elevation. */
+  --radius-small: 0.25rem;
+  --radius-control: 0.5rem;
+  --radius-panel: 0.75rem;
+  --radius-pill: 999px;
+  --border-default: 1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+  --elevation-raised: 0 0.75rem 2rem rgb(17 18 15 / 0.1);
+
+  /* Interaction and motion. */
+  --control-height: 3rem;
+  --control-height-compact: 2.5rem;
+  --target-min: 2.75rem;
+  --duration-fast: 120ms;
+  --duration-standard: 220ms;
+  --duration-narrative: 560ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-linear: linear;
+  --z-skip-link: 100;
+  --focus-width: 2px;
+  --focus-offset: 3px;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --page-gutter: 1.5rem;
+    --grid-columns: 8;
+    --grid-gap: var(--space-4);
+    --section-standard: 7rem;
+    --section-major: 7.5rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --page-gutter: 2rem;
+    --grid-columns: 12;
+    --grid-gap: var(--space-6);
+    --section-standard: 8rem;
+    --section-major: 10rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  :root {
+    --page-gutter: 3rem;
+  }
+}

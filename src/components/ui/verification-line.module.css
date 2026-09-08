@@ -1,0 +1,132 @@
+.figure {
+  margin: 0;
+  padding: var(--space-6);
+  border: var(--border-strong);
+  background: var(--color-surface);
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+.value {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.value span {
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.value strong {
+  font-family: var(--font-family-mono);
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.035em;
+}
+
+.verified {
+  text-align: right;
+}
+
+.verified strong {
+  color: var(--color-verified-text);
+}
+
+.track {
+  position: relative;
+  height: 1rem;
+  margin-block: var(--space-8) var(--space-5);
+}
+
+.line {
+  position: absolute;
+  top: calc(50% - 0.5px);
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-border-strong);
+  transform-origin: left;
+}
+
+.expectedMarker,
+.verifiedMarker {
+  position: absolute;
+  top: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid currentColor;
+  background: var(--color-surface);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.expectedMarker {
+  left: 0;
+  color: var(--color-text-primary);
+}
+
+.verifiedMarker {
+  right: 0;
+  border-color: var(--color-verified);
+  background: var(--color-verified-surface);
+  color: var(--color-verified-text);
+}
+
+.description {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+[data-motion="animated"] .line {
+  animation: reveal-line var(--duration-narrative) var(--ease-standard) both;
+}
+
+[data-motion="animated"] .verifiedMarker {
+  animation: settle-marker var(--duration-narrative) var(--ease-standard) both;
+}
+
+@keyframes reveal-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes settle-marker {
+  from { opacity: 0; transform: translateY(-50%) translateX(-0.25rem) rotate(45deg); }
+  to { opacity: 1; transform: translateY(-50%) translateX(0) rotate(45deg); }
+}
+
+@media (max-width: 35.999rem) {
+  .caption,
+  .values {
+    grid-template-columns: 1fr;
+  }
+
+  .caption {
+    display: grid;
+  }
+
+  .verified {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="animated"] .line,
+  [data-motion="animated"] .verifiedMarker {
+    animation: none;
+  }
+}

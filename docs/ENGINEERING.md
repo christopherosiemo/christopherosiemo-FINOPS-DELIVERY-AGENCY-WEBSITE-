@@ -21,6 +21,12 @@ pnpm test:e2e
 pnpm build
 ```
 
+Playwright includes focused deterministic visual baselines for `/design-system` at 390×844, 768×1024, 1440×900, and 1728×1117, plus homepage review baselines at 390×844 and 1440×900. Animations are frozen, data is deterministic, and fonts are awaited before capture. Update snapshots only for an intentional, reviewed design-language change:
+
+```bash
+pnpm test:e2e --update-snapshots=all
+```
+
 CI runs those checks on pull requests and pushes to `main`, using the pnpm cache. A substantial task must update `docs/PROGRESS.md` when gate status or evidence changes.
 
 ## Change discipline

@@ -1,0 +1,89 @@
+.control {
+  display: inline-flex;
+  min-height: var(--control-height);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-strong);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--duration-standard) var(--ease-standard),
+    border-color var(--duration-standard) var(--ease-standard),
+    color var(--duration-standard) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.control:hover {
+  transform: translateY(-1px);
+}
+
+.control:active {
+  transform: translateY(1px);
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
+.primary {
+  border-color: var(--color-text-primary);
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+}
+
+.primary:hover:not(:disabled) {
+  border-color: var(--color-signal-hover);
+  background: var(--color-signal-hover);
+}
+
+.secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: var(--color-text-primary);
+  background: var(--color-surface-subtle);
+}
+
+.quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.quiet:hover:not(:disabled) {
+  background: var(--color-surface-subtle);
+}
+
+.directional {
+  display: inline-flex;
+  min-height: var(--target-min);
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-signal-hover);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+}
+
+.arrow {
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+
+.directional:hover .arrow {
+  transform: translateX(var(--space-1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control:hover,
+  .control:active,
+  .directional:hover .arrow {
+    transform: none;
+  }
+}

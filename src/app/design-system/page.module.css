@@ -1,0 +1,526 @@
+.page {
+  padding-bottom: var(--section-major);
+}
+
+.intro {
+  padding-block: var(--section-standard) var(--section-major);
+}
+
+.introCopy {
+  grid-column: 1 / -1;
+}
+
+.introCopy > p:first-child,
+.sectionHeader > p {
+  margin-bottom: var(--space-6);
+  color: var(--color-signal);
+}
+
+.introCopy h1 {
+  margin-bottom: var(--space-8);
+}
+
+.introCopy > p:last-child {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.introMeta {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-12) 0 0;
+  padding-top: var(--space-6);
+  border-top: var(--border-strong);
+}
+
+.introMeta div {
+  min-width: 0;
+}
+
+.introMeta dt,
+.dataGrid dt {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.introMeta dd,
+.dataGrid dd {
+  margin: var(--space-1) 0 0;
+  font-size: var(--type-body-small-size);
+}
+
+.section {
+  padding-block: var(--section-standard);
+  border-top: var(--border-default);
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-bottom: var(--space-12);
+}
+
+.sectionHeader > p,
+.sectionHeader > h2 {
+  grid-column: 1 / -1;
+}
+
+.sectionHeader h2 {
+  max-width: 20ch;
+  margin-bottom: 0;
+}
+
+.sectionBody > :last-child {
+  margin-bottom: 0;
+}
+
+.doctrine {
+  margin: 0;
+  padding: 0;
+  border-top: var(--border-strong);
+  list-style: none;
+  counter-reset: doctrine;
+}
+
+.doctrine li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-bottom: var(--border-default);
+  counter-increment: doctrine;
+  font-size: var(--type-body-large-size);
+}
+
+.doctrine li::before {
+  content: "0" counter(doctrine);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+}
+
+.swatches,
+.contrastGrid,
+.financialGrid,
+.rhythmGrid,
+.surfaceGrid,
+.formGrid,
+.verificationGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+}
+
+.swatch {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  min-height: 7rem;
+  border: var(--border-default);
+  background: var(--color-surface);
+}
+
+.swatchColour {
+  border-right: var(--border-default);
+}
+
+.swatch div {
+  min-width: 0;
+  padding: var(--space-4);
+}
+
+.swatch h3,
+.swatch p {
+  margin-bottom: 0;
+}
+
+.swatch h3 {
+  font-size: 1rem;
+}
+
+.swatch code {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--type-caption-size);
+}
+
+.swatch p {
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.contrastSample {
+  display: grid;
+  min-height: 9rem;
+  align-content: space-between;
+  padding: var(--space-5);
+  border: 1px solid rgb(17 18 15 / 0.16);
+}
+
+.contrastSample span,
+.contrastSample small {
+  font-size: var(--type-caption-size);
+}
+
+.contrastSample strong {
+  font-family: var(--font-family-mono);
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-medium);
+}
+
+.typeStack {
+  border-top: var(--border-strong);
+}
+
+.typeStack > div {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-6);
+  border-bottom: var(--border-default);
+}
+
+.typeStack span,
+.controlRows > div > span {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+}
+
+.typeStack p {
+  margin-bottom: 0;
+}
+
+.financialGrid article {
+  display: grid;
+  min-width: 0;
+  padding: var(--space-5);
+  border: var(--border-default);
+  background: var(--color-surface);
+}
+
+.financialGrid span,
+.financialGrid small {
+  color: var(--color-text-secondary);
+  font-size: var(--type-caption-size);
+}
+
+.financialGrid strong {
+  margin-block: var(--space-4);
+  font-family: var(--font-family-mono);
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.04em;
+}
+
+.financialGrid .identifier {
+  overflow-wrap: anywhere;
+  font-size: clamp(1rem, 0.82rem + 0.8vw, 1.5rem);
+  letter-spacing: -0.02em;
+}
+
+.spacingScale {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.spacingScale div {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.spacingScale span {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+  text-align: right;
+}
+
+.spacingScale i {
+  display: block;
+  max-width: 100%;
+  height: 0.5rem;
+  background: var(--color-signal);
+}
+
+.annotation {
+  margin-top: var(--space-6);
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.gridDemo {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.gridDemo span {
+  display: grid;
+  min-height: 5rem;
+  place-items: center;
+  border: var(--border-default);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-mono);
+  font-size: var(--type-caption-size);
+}
+
+.rhythmGrid article {
+  padding: var(--space-5);
+  border-top: var(--border-strong);
+}
+
+.rhythmGrid span,
+.surfaceGrid span {
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.rhythmGrid strong {
+  display: block;
+  margin-block: var(--space-5);
+  font-family: var(--font-family-mono);
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-medium);
+}
+
+.rhythmGrid p,
+.surfaceGrid p {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-small-size);
+}
+
+.squareSurface,
+.panelSurface,
+.inverseSurface {
+  min-height: 12rem;
+  padding: var(--space-6);
+  border: var(--border-default);
+  background: var(--color-surface);
+}
+
+.panelSurface {
+  border-radius: var(--radius-panel);
+}
+
+.inverseSurface {
+  border-color: var(--color-surface-inverse);
+  background: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
+}
+
+.inverseSurface span,
+.inverseSurface p {
+  color: var(--color-text-inverse);
+}
+
+.inverseSurface a {
+  display: inline-block;
+  margin-top: var(--space-5);
+}
+
+.controlRows {
+  border-top: var(--border-strong);
+}
+
+.controlRows > div {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-bottom: var(--border-default);
+}
+
+.controlRows a,
+.controlRows button {
+  justify-self: start;
+}
+
+.linkRow,
+.focusRow,
+.statusList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.focusRow {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  border: var(--border-default);
+  background: var(--color-surface);
+}
+
+.formGrid {
+  align-items: start;
+}
+
+.statusList {
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.dataGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  border-top: var(--border-strong);
+}
+
+.dataGrid div {
+  min-width: 0;
+  padding-block: var(--space-4);
+  border-bottom: var(--border-default);
+}
+
+.dataGrid dd {
+  overflow-wrap: anywhere;
+  color: var(--color-text-primary);
+}
+
+.verificationGrid {
+  align-items: start;
+}
+
+.motionPanel {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  border: var(--border-default);
+  background: var(--color-surface);
+}
+
+.motionMarker {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--color-signal);
+  background: var(--color-surface);
+  animation: motion-specimen var(--duration-narrative) var(--ease-standard) infinite alternate;
+}
+
+.motionPanel p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-secondary);
+}
+
+@keyframes motion-specimen {
+  from { transform: translateX(0) rotate(0); }
+  to { transform: translateX(var(--space-1)) rotate(45deg); }
+}
+
+.finalNote {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  border-left: 3px solid var(--color-attention);
+  background: var(--color-attention-surface);
+  color: var(--color-attention-text);
+}
+
+.finalNote p {
+  max-width: var(--measure-prose);
+  margin: var(--space-3) 0 0;
+}
+
+@media (min-width: 48rem) {
+  .introCopy {
+    grid-column: 1 / span 6;
+  }
+
+  .introMeta {
+    grid-column: 6 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sectionHeader > p {
+    grid-column: 1 / span 2;
+  }
+
+  .sectionHeader > h2 {
+    grid-column: 3 / -1;
+  }
+
+  .swatches,
+  .contrastGrid,
+  .financialGrid,
+  .rhythmGrid,
+  .surfaceGrid,
+  .formGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .typeStack > div,
+  .controlRows > div {
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 6fr);
+  }
+
+  .dataGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+}
+
+@media (min-width: 80rem) {
+  .introCopy {
+    grid-column: 1 / span 8;
+  }
+
+  .introMeta {
+    grid-column: 9 / -1;
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: var(--space-6);
+    border-top: 0;
+    border-left: var(--border-strong);
+  }
+
+  .sectionHeader > p {
+    grid-column: 1 / span 3;
+  }
+
+  .sectionHeader > h2 {
+    grid-column: 4 / span 7;
+  }
+
+  .swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contrastGrid,
+  .financialGrid,
+  .rhythmGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .surfaceGrid,
+  .formGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .verificationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motionMarker {
+    animation: none;
+    transform: translateX(var(--space-1)) rotate(45deg);
+  }
+}

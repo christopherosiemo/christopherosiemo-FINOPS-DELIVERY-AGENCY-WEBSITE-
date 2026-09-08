@@ -8,14 +8,16 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 
 - `src/app/`: routes, layouts, and route metadata.
 - `src/components/site/`: site-wide composition such as header and footer.
-- `src/components/ui/`: reserved for proven, reusable primitives; currently absent to avoid premature abstraction.
+- `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
 - `src/lib/`: reserved for framework-independent utilities when required.
 - `src/styles/`: global foundations and design tokens.
 - `tests/components/`: lightweight component tests.
 - `tests/e2e/`: browser-level critical-path tests.
 - `docs/`: authoritative product, brand, engineering, and quality-gate context.
 
-CSS custom properties are the source of truth for visual primitives. A single global foundation is appropriate at this stage; component-level styles may be colocated once the UI grows. Borders and spacing establish hierarchy before shadows or decoration.
+CSS custom properties remain the source of truth. `src/styles/tokens.css` separates primitive values from semantic roles; `src/styles/globals.css` consumes them for reset, typography, layout, focus, and shared shell behavior. Component values are colocated in CSS Modules only where the component has a genuine local need. Borders and spacing establish hierarchy before shadows or decoration.
+
+`/design-system` is an internal, statically rendered calibration route. It is excluded from public navigation and marked `noindex, nofollow`; it must be removed, access-controlled, or otherwise excluded from the public production experience before launch.
 
 ## Rendering and data
 
