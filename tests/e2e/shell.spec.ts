@@ -154,5 +154,7 @@ test("homepage, scaffold, and open dialog have no detectable Axe violations", as
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   }
   await page.getByRole("button", { name: "Open primary navigation" }).click();
+  const dialog = page.getByRole("dialog", { name: "Primary navigation" });
+  await expect(dialog).toHaveCSS("opacity", "1");
   expect((await new AxeBuilder({ page }).include("dialog").analyze()).violations).toEqual([]);
 });
