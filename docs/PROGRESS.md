@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 26%
+**Current value:** 28%
 
-**Target for this checkpoint:** 26%
+**Target for this checkpoint:** 28%
 
-**Current gate:** Global Shell — calibrated; independent final shell approval pending
+**Current gate:** Global Shell — complete
 
 ## Completed
 
@@ -27,10 +27,13 @@
 - Independent Gate 3 optical review approved the shell architecture and requested a bounded identity calibration before final approval.
 - The supplied `HKGpipi` identity replaces the retired working placeholder across header, dialog, footer, accessible naming, and root metadata without changing approved shell geometry.
 - The mobile dialog now presents the visible label “Menu” and primary-ink route labels while retaining its meaningful accessible labels and active-route signal.
+- Gate 3A shell architecture and Gate 3B HKGpipi identity calibration have been independently reviewed and approved.
+- Desktop and mobile header and footer treatments are approved, together with the 390px and 768px modal navigation.
+- The current typography-based HKGpipi identity treatment is approved for the Global Shell.
 
 ## In progress
 
-- Independent final optical and interaction review of the calibrated Global Shell after remote CI is green.
+- Homepage narrative and static production composition.
 
 ## Blocked
 
@@ -68,7 +71,9 @@
 - Gate 3B preserves the approved breakpoint, navigation, dialog, footer, and macro-spacing architecture while calibrating the operator-provided identity and mobile label hierarchy.
 - Gate 3B validation passed on 2026-09-08: frozen install, lint, strict typecheck, 5 component tests, production build, 36 functional Chromium checks in local and Linux production modes, and 13 canonical Linux visual checks covering 16 snapshots.
 - Responsive inspection at 320, 390, 768, 1024, 1280, 1440, and 1728px found no horizontal overflow or identity/header/footer collisions; six Gate 3B review PNGs were produced for independent assessment.
+- The independently approved Global Shell is recorded at commit `da66ccb622eb97de69f5017bf9ed020638016464`.
+- GitHub Actions run `34281844179` completed successfully on that exact commit.
 
 ## Next gate
 
-Obtain independent final optical and interaction review of the six Gate 3B captures and live shell after its CI run is green. Record 28% only if that review approves the calibrated shell.
+Build the homepage narrative and static production composition. Record 38% only after Gate 4A mechanical criteria pass; signature interaction and independent final homepage review remain later sub-gates.
