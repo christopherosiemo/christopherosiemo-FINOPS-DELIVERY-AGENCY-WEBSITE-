@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 18%
+**Current value:** 20%
 
-**Target for this task:** 18%
+**Target for this checkpoint:** 20%
 
-**Current gate:** Design Primitives — recalibrated; remote CI verification and independent visual approval pending
+**Current gate:** Design Primitives — complete
 
 ## Completed
 
@@ -18,10 +18,12 @@
 - Responsive, accessibility, reduced-motion, overflow, runtime, and focused visual-regression coverage established.
 - Gate 2B corrections strengthen secondary text, remove looping motion, separate the tablet introduction metadata, and make the Verification Line a variance-led reconciliation instrument.
 - CI now builds before E2E, tests the built application through `next start`, compares against canonical Linux/Chromium visual baselines, and retains short-lived Playwright failure evidence.
+- Independent visual review approved the Gate 2B captures and design-primitives correction pass.
+- GitHub Actions run `34264386202` completed successfully against Gate 2B commit `6c8965a90de687ca81e648efff705605f5bdc859`.
 
 ## In progress
 
-- Remote CI verification of the Gate 2B commit and independent approval of the corrected captures are pending; the 20% exit criterion is not met.
+- Gate 3A global-shell implementation and mechanical verification.
 
 ## Blocked
 
@@ -55,4 +57,4 @@
 
 ## Next gate
 
-Push the Gate 2B correction only when authorized, confirm GitHub Actions is green, and obtain independent approval of the corrected captures before recording the 20% Design Primitives exit. Do not begin the global shell first.
+Build and mechanically verify the Gate 3A global shell. Independent optical and interaction review remains required before recording the 28% Global Shell exit.
