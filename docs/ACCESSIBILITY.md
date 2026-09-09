@@ -47,6 +47,15 @@ Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/re
 - The conceptual verification equation has an equivalent accessible label. Illustrative values and evidence boundaries remain explicit in text.
 - Automated coverage checks Axe, keyboard and JavaScript-disabled access, semantic tables, runtime logs, truthful claims, metadata, and overflow across 320–1728px. Manual review remains required.
 
+## Conversion decisions
+
+- `/start` has one H1; every visible control has a persistent label, required controls use native `required`, and the optional native select is explicitly identified.
+- Validation renders a linked summary, per-control text, `aria-invalid`, and `aria-describedby`; colour is supplemental. Enhanced submissions move focus to validation, failure, or success output.
+- The submit control exposes “Sending…” and disables repeat activation while pending. The form remains usable through native submission without JavaScript.
+- The honeypot is visually off-screen, `aria-hidden`, excluded from the tab order, and does not disable useful autocomplete on legitimate fields.
+- Inputs retain a minimum 16px font, controls meet the existing 44px target, textareas are comfortably tall, and the native select retains platform keyboard behavior.
+- Automated coverage includes labels, required state, summaries, focus, pending state, keyboard submit, Axe, no-JavaScript results, and overflow across 320–1728px. Manual keyboard, zoom/reflow, and screen-reader review still remain required.
+
 ## Global-shell decisions
 
 - Desktop and modal navigation use distinct labelled landmarks, and active primary routes expose `aria-current="page"` with a structural visual marker.

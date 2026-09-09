@@ -2,10 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { settleHomepageMotion } from "./helpers/home-motion";
 
-const publicScaffolds = [
-  "/start",
-  "/contact",
-];
+const publicScaffolds = ["/contact"];
 
 const revenueRoutes = ["/savings-sprint", "/implementation", "/pricing"];
 const trustRoutes = ["/method", "/verification", "/security"];

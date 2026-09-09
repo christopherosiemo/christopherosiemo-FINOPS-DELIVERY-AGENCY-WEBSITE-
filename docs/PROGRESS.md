@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 70%
+**Current value:** 75%
 
-**Target for this checkpoint:** 70%
+**Target for this checkpoint:** 75%
 
-**Current gate:** Conversion — Trust complete; conversion foundation not yet implemented
+**Current gate:** Conversion — interface and server submission boundary implemented; authorised production delivery and external verification pending
 
 ## Completed
 
@@ -73,20 +73,27 @@
 - Security now states that the engagement-specific access model is reviewed before AWS access is granted, avoiding language that could imply independent production authority.
 - The Trust gate has received independent final approval. The approved result includes the Method responsibility split, Verification measurement model, Security discovery/implementation boundaries, and Security mobile composition.
 - Trust routes resolve conversion once before the structural footer, and the ambiguous “production access” wording has been removed.
+- `/start` now provides the canonical production-quality commercial enquiry interface with the approved five required fields, one optional spend-range field, clear engagement/access boundary, accurate bounded privacy disclosure, and point-of-conversion Trust links.
+- A typed Next.js Server Action validates and normalises an explicit field allow-list, applies origin, body-size, honeypot, issued-time, and rate-limit boundaries, generates a non-sensitive request reference, and invokes a provider-neutral delivery interface.
+- Gate 7A has no external destination: production delivery is disabled and fails closed, while explicitly enabled in-process test adapters provide deterministic success, retryable failure, and permanent failure without internet calls.
+- `/contact` points AWS savings and implementation enquiries to `/start` and does not create a competing form or delivery pipeline.
 
 ## In progress
 
-- Gate 7A conversion interface, server submission boundary, validation, and anti-abuse foundation.
+- Gate 7B authorised delivery integration, external destination verification, privacy approval, and independent conversion review.
 
 ## Blocked
 
-- None currently identified.
+- Gate 7B requires an authorised production delivery destination and approved provider credentials/configuration.
+- Gate 7B requires a production-durable anti-abuse/rate-limit decision.
+- Gate 7B and public conversion launch require an approved privacy policy and legal disclosure.
+- Gate 7B requires controlled end-to-end delivery verification at the external destination and independent conversion approval.
 
 ## Deferred
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
 - Engagement-specific verification contractual mechanics.
-- Analytics, security integrations, production budgets, and production qualification.
+- Analytics implementation, broader security integrations, production budgets, and production qualification.
 
 ## Evidence
 
@@ -145,7 +152,12 @@
 - Five neutral-focus Gate 6B review captures are stored under `outputs/gate-6b-review/` and supported the subsequent independent final Trust approval.
 - Gate 6A Trust implementation is recorded at `e1b5aa80466628f130ef3e01b9016e704583a1c7`; the independently approved final calibrated Trust state is `b780cb9e22a689284c14915f4a853c3587015856`.
 - GitHub Actions run `34409622107` passed against exact Trust SHA `b780cb9e22a689284c14915f4a853c3587015856`.
+- Gate 7A validation passed on 2026-09-10: frozen install, lint, strict typecheck, 22 unit/component tests, production build, 96 functional Chromium checks, and 40 canonical Linux/Chromium visual comparisons at the retained `0.002` tolerance.
+- Enquiry tests cover required, invalid, overlong, whitespace, enum, CR/LF, script-like, and unknown-field inputs; success and both delivery-failure categories; production-disabled fail-closed behavior; honeypot, fast-submit, origin, rate-limit, safe logging, and payload allow-list boundaries.
+- Browser coverage verifies labels, required state, linked error summary, `aria-invalid`, `aria-describedby`, focus movement, pending state, repeat-submit prevention, keyboard submission, native select sizing, Axe, JavaScript-disabled success, no PII in URLs, no external delivery request, no runtime/hydration warning, and responsive overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
+- Six canonical conversion snapshots cover normal, validation, success, and failure states at desktop/mobile widths. Eight neutral-focus review captures are stored under `outputs/gate-7a-review/`; no independent conversion approval is claimed.
+- The production build adds no dependency and reports `/start` as request-rendered, while all previously static routes retain their rendering classification. Next.js does not report route client-byte totals in the standard build table.
 
 ## Next gate
 
-70–75% — Production conversion interface, server boundary, validation, and anti-abuse foundation.
+75–78% — Authorised delivery integration, end-to-end external verification, and independent conversion approval.

@@ -1,18 +1,23 @@
-import { RouteScaffold } from "@/components/site/route-scaffold";
+import { connection } from "next/server";
+import { StartPage } from "@/components/conversion/start-page";
 import { scaffoldMetadata } from "@/config/metadata";
 
 export const metadata = scaffoldMetadata(
   "Start a Savings Sprint",
-  "Begin with a 14-day AWS Savings Sprint focused on valuable, credible opportunities.",
+  "Tell HKGpipi about your AWS estate, engineering constraint and savings priority.",
 );
 
-export default function StartPage() {
-  return (
-    <RouteScaffold eyebrow="Next step" title="Start a Savings Sprint.">
-      <p>
-        The AWS Savings Sprint ranks opportunities by monetary value, confidence and engineering risk and produces
-        specific remediation and an implementation roadmap.
-      </p>
-    </RouteScaffold>
-  );
+type PageProps = {
+  searchParams: Promise<{ scenario?: string }>;
+};
+
+export default async function StartRoute({ searchParams }: PageProps) {
+  await connection();
+  const { scenario } = await searchParams;
+  const deliveryScenario = process.env.ENQUIRY_TEST_MODE === "1" ? scenario : undefined;
+  // Request time is intentional: this value supports the fast-submit heuristic.
+  // eslint-disable-next-line react-hooks/purity
+  const issuedAt = Date.now();
+
+  return <StartPage issuedAt={issuedAt} deliveryScenario={deliveryScenario} />;
 }

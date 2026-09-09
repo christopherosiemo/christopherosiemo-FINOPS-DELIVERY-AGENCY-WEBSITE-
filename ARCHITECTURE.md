@@ -11,9 +11,11 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 - `src/components/home/`: bespoke server-rendered homepage narrative units and their shared static composition styles.
 - `src/components/revenue/`: shared server-rendered revenue-page structure and CSS-only commercial decision patterns.
 - `src/components/trust/`: shared server-rendered Trust-page composition and CSS-only evidence structures.
+- `src/components/conversion/`: the server-rendered `/start` composition and its narrowly scoped form-state client boundary.
 - `src/config/`: compact site identity, navigation, action, footer, metadata, commercial, and Trust-fact configuration.
 - `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
-- `src/lib/`: reserved for framework-independent utilities when required.
+- `src/lib/`: framework-independent utilities.
+- `src/lib/enquiry/`: typed enquiry validation, delivery, rate-limit, and submission boundaries.
 - `src/styles/`: global foundations and design tokens.
 - `tests/components/`: lightweight component tests.
 - `tests/e2e/`: browser-level critical-path tests.
@@ -33,11 +35,13 @@ The Savings Sprint, Implementation, and Pricing routes use a small set of revenu
 
 The Method, Verification, and Security routes use a small set of Trust-specific Server Components for shared hero, section introduction, and action structure. Immutable operating stages and approved boundary phrases live in `src/config/trust.ts`; detailed narratives remain route-local. Their semantic matrices reflow into labelled records below 1280px. Because every current Trust route ends with route-specific actions, `TrustPage` emits the existing stable footer-CTA suppression attribute by default; footer navigation and identity remain unchanged. The three routes share one CSS Module, add no client boundary or dependency, and retain `noindex, nofollow` metadata.
 
+`/start` is request-rendered so each form receives a fresh anti-abuse timestamp. Static commercial context remains in a Server Component; `EnquiryForm` is the only conversion client boundary and owns React action state, pending feedback, repeat-submit prevention, and focus movement. The form progressively posts to a Server Action, which treats all input as untrusted, validates an allow-list, invokes an explicit delivery interface, and returns bounded state. The Gate 7A production adapter is disabled and fails closed; deterministic in-process adapters require the explicit test-harness switch and make no external request. `/contact` remains a small server-rendered pointer to the canonical enquiry flow.
+
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
 
 ## Rendering and data
 
-Content is server-rendered by default. Client components must be small and justified by actual interactivity. There is no persistence, authentication, external API, analytics provider, or CMS at this gate; each is TBD pending product requirements and security review.
+Content is server-rendered by default. Client components must be small and justified by actual interactivity. There is no persistence, authentication, authorised external delivery, analytics provider, or CMS at this gate; each is TBD pending product requirements and security review.
 
 ## Decisions
 

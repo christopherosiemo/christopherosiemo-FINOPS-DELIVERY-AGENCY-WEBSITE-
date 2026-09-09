@@ -1,6 +1,18 @@
 import { expect, test } from "@playwright/test";
 import { settleHomepageMotion } from "./helpers/home-motion";
 
+async function fillVisualEnquiry(page: import("@playwright/test").Page) {
+  await page.getByLabel(/Work email/).fill("alex@example.test");
+  await page.getByLabel(/^Name/).fill("Alex Engineer");
+  await page.getByLabel(/^Company/).fill("Example Infrastructure Ltd");
+  await page.getByLabel(/What should we know/).fill("A multi-account estate with material RDS cost pressure.");
+  await page.getByLabel(/What do you want to change/).fill("Rightsizing work is blocked by unclear service ownership.");
+  await page.getByLabel(/Approximate monthly AWS spend/).selectOption("25k-100k");
+  await page.locator('input[name="__issuedAt"]').evaluate((input) => {
+    (input as HTMLInputElement).value = String(Date.now() - 5_000);
+  });
+}
+
 const designSystemViewports = [
   { name: "design-system-390x844", width: 390, height: 844 },
   { name: "design-system-768x1024", width: 768, height: 1024 },
@@ -56,6 +68,68 @@ for (const [name, path, selector] of [
     await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, { animations: "disabled", caret: "initial" });
   });
 }
+
+for (const viewport of [
+  { name: "start-form-1440", width: 1440, height: 900 },
+  { name: "start-form-390", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} conversion baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/start");
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+      fullPage: true,
+    });
+  });
+}
+
+for (const viewport of [
+  { name: "start-validation-errors-1440", width: 1440, height: 900 },
+  { name: "start-validation-errors-390", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} conversion baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/start");
+    await page.getByRole("button", { name: "Send enquiry" }).click();
+    await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+      fullPage: true,
+    });
+  });
+}
+
+test("start-success-1440 conversion baseline", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/start?scenario=success");
+  await fillVisualEnquiry(page);
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await expect(page).toHaveScreenshot("start-success-1440.png", {
+    animations: "disabled",
+    caret: "initial",
+    fullPage: true,
+  });
+});
+
+test("start-failure-390 conversion baseline", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/start?scenario=retryable-failure");
+  await fillVisualEnquiry(page);
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await expect(page).toHaveScreenshot("start-failure-390.png", {
+    animations: "disabled",
+    caret: "initial",
+    fullPage: true,
+  });
+});
 
 test("savings-sprint-ledger-mobile high-signal revenue baseline", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

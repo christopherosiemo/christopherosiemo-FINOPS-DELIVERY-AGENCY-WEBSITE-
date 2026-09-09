@@ -1,15 +1,17 @@
 import { RouteScaffold } from "@/components/site/route-scaffold";
+import { ActionLink } from "@/components/ui/actions";
 import { scaffoldMetadata } from "@/config/metadata";
 
 export const metadata = scaffoldMetadata(
-  "Contact",
-  "The contact route for beginning an AWS Savings Sprint conversation.",
+  "Talk to HKGpipi",
+  "For AWS savings and implementation enquiries, use the canonical Savings Sprint enquiry.",
 );
 
 export default function ContactPage() {
   return (
-    <RouteScaffold eyebrow="Contact" title="Start a Savings Sprint.">
-      <p>Begin with a focused conversation about your AWS estate, engineering constraints and current priorities.</p>
+    <RouteScaffold eyebrow="Contact" title="Talk to HKGpipi.">
+      <p>For AWS savings and implementation enquiries, start with the Savings Sprint enquiry.</p>
+      <ActionLink href="/start">Start an enquiry</ActionLink>
     </RouteScaffold>
   );
 }

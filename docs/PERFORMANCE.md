@@ -36,6 +36,10 @@ Gate 5A adds three static, server-rendered revenue routes with shared CSS-only c
 
 Gate 6A adds three static, server-rendered Trust routes with shared CSS-only composition and a compact immutable facts module. It adds no route-specific client boundary, animation, image, external request, runtime dependency, or JavaScript breakpoint logic. Production build output must confirm `/method`, `/verification`, and `/security` remain statically prerendered.
 
+## Conversion implications
+
+Gate 7A adds no dependency, form library, analytics script, external request, image, or custom control. `/start` renders static commercial context on the server and hydrates one local form boundary for action state, pending feedback, repeat-submit prevention, and focus management. Request-time rendering issues the anti-abuse timestamp; CSS handles responsive composition. The standard Next.js build table does not report route client-byte totals, so no bundle-size claim is made.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.

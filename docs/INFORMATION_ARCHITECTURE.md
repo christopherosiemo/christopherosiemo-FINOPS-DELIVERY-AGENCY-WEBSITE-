@@ -19,15 +19,15 @@ The `HKGpipi` wordmark is the home control and links to `/`; there is no textual
 
 - `/`: live foundation page; final homepage narrative begins after Global Shell approval.
 - `/savings-sprint`, `/implementation`, `/pricing`: independently approved Revenue Pages; retained as `noindex, nofollow` pending legal review, conversion readiness, and release approval.
-- `/method`, `/verification`, `/security`: production Gate 6A Trust narratives; retained as `noindex, nofollow` pending independent trust/security consistency and optical approval.
-- `/start`: structural scaffold with minimal approved copy; `noindex, nofollow` until conversion requirements pass.
-- `/contact`: live structural scaffold without a form; `noindex, nofollow` until qualification, privacy, anti-spam, delivery, and telemetry requirements are approved.
+- `/method`, `/verification`, `/security`: independently approved Trust narratives; retained as `noindex, nofollow` pending release approval.
+- `/start`: canonical production-quality enquiry interface and server boundary; retained as `noindex, nofollow` while authorised delivery, privacy, durable anti-abuse, and external verification remain blocked.
+- `/contact`: a small route directing AWS savings and implementation enquiries to `/start`; no competing form or pipeline; retained as `noindex, nofollow`.
 - `/design-system`: internal calibration specimen; `noindex, nofollow`, absent from public navigation, and subject to removal or access control before production launch.
 
-This is the approved shell IA. Deeper content and composition are specified in `REVENUE_PAGES.md` and `TRUST.md`; neither approves remaining scaffold routes.
+This is the approved shell IA. Deeper content and composition are specified in `REVENUE_PAGES.md`, `TRUST.md`, and `CONVERSION.md`.
 
 ## Deferred architecture
 
-Resources and Company are not exposed in primary navigation because neither has a mature route or approved content architecture. Adding empty dropdowns would misrepresent the current breadth of the public site. Legal routes, evidence/case-study policy, and the final conversion structure remain required before launch but are not fabricated at this gate.
+Resources and Company are not exposed in primary navigation because neither has a mature route or approved content architecture. Adding empty dropdowns would misrepresent the current breadth of the public site. Legal routes, evidence/case-study policy, and authorised conversion delivery remain required before launch but are not fabricated at this gate.
 
 Metadata still requires an approved canonical protocol/www policy, Open Graph destinations/assets, social identities, a production logo master, and appropriate organisation data before acquisition and production gates. None is inferred solely from the domain reference.
