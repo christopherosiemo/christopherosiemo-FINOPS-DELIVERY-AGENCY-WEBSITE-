@@ -35,6 +35,7 @@ Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/re
 - Each revenue route has one H1, labelled semantic sections, logical H2/H3 hierarchy, and server-rendered content that remains complete with JavaScript disabled.
 - Savings Sprint and implementation sequences use ordered lists. Scope and requirement relationships use description lists or semantic articles.
 - The illustrative Savings Ledger and implementation comparison retain semantic tables at larger widths and reflow into labelled row records on narrow screens without page-level horizontal scrolling.
+- Revenue tables include programmatic captions, scoped column headers, and meaningful row headers; visible table labels remain available outside each table.
 - Commercial routes, verification context, security context, and the first action use keyboard-accessible links with the existing visible focus treatment.
 - Automated coverage checks Axe, keyboard access, heading structure, robots metadata, content truth, and horizontal overflow across 320–1728px. Manual review still remains required.
 

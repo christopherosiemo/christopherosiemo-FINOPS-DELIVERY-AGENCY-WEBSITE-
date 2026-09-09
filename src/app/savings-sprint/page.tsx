@@ -28,7 +28,7 @@ export default function SavingsSprintPage() {
   ] as const;
 
   return (
-    <RevenuePage>
+    <RevenuePage suppressFooterCta>
       <RevenueHero eyebrow="14-DAY AWS SAVINGS SPRINT" title="Find what is worth changing in 14 days." summary="A focused engineering and cost review that ranks the AWS opportunities worth acting on and produces a specific implementation roadmap.">
         <p className="technical-label">{commercialFacts.savingsSprint.name}</p>
         <strong className={styles.price}>{commercialFacts.savingsSprint.price}</strong>
@@ -68,12 +68,17 @@ export default function SavingsSprintPage() {
           </SectionIntro>
           <div className={styles.tableFrame} data-testid="sprint-ledger">
             <div className={styles.tableCaption}><strong>Illustrative</strong><span>Decision-quality fields, not a customer result</span></div>
-            <table className={styles.dataTable}>
-              <thead><tr><th>Priority</th><th>Opportunity</th><th>Expected saving</th><th>Confidence</th><th>Engineering risk</th><th>Owner</th><th>Remediation status</th></tr></thead>
-              <tbody><tr><td data-label="Priority">01</td><td data-label="Opportunity">Opportunity description</td><td data-label="Expected saving">Estimated value</td><td data-label="Confidence">Evidence level</td><td data-label="Engineering risk">Assessed risk</td><td data-label="Owner">Accountable team</td><td data-label="Remediation status">Required change mapped</td></tr></tbody>
+            <table className={`${styles.dataTable} ${styles.ledgerTable}`}>
+              <caption className={styles.tableSemanticCaption}>Illustrative Savings Sprint Ledger showing synthetic decision records</caption>
+              <thead><tr><th scope="col">Priority</th><th scope="col">Opportunity</th><th scope="col">Expected saving</th><th scope="col">Confidence</th><th scope="col">Engineering risk</th><th scope="col">Owner</th><th scope="col">Remediation status</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Priority">01</td><th scope="row" data-label="Opportunity">RDS rightsizing</th><td className={styles.financialValue} data-label="Expected saving">£4,820 / mo</td><td data-label="Confidence">High</td><td data-label="Engineering risk">Low</td><td data-label="Owner">Platform</td><td data-label="Remediation status">Change mapped</td></tr>
+                <tr><td data-label="Priority">02</td><th scope="row" data-label="Opportunity">NAT architecture</th><td className={styles.financialValue} data-label="Expected saving">£2,140 / mo</td><td data-label="Confidence">Medium</td><td data-label="Engineering risk">Medium</td><td data-label="Owner">Core infra</td><td data-label="Remediation status">Architecture change mapped</td></tr>
+                <tr><td data-label="Priority">03</td><th scope="row" data-label="Opportunity">Idle EC2</th><td className={styles.financialValue} data-label="Expected saving">£980 / mo</td><td data-label="Confidence">High</td><td data-label="Engineering risk">Low</td><td data-label="Owner">Data</td><td data-label="Remediation status">Awaiting approval</td></tr>
+              </tbody>
             </table>
           </div>
-          <p className={styles.tableNote}>The Ledger becomes the implementation backlog. The example shows the structure used to support a decision; it is not a real report, live account or customer result.</p>
+          <p className={styles.tableNote}>Approved Ledger items become the implementation backlog. The example shows the structure used to support a decision; it is synthetic and illustrative, not a real report, live account or customer result.</p>
         </div>
       </section>
 

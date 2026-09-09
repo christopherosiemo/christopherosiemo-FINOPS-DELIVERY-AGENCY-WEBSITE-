@@ -27,9 +27,37 @@ test("Savings Sprint explains scope, sequence, deliverable and boundaries", asyn
   const ledger = page.getByTestId("sprint-ledger");
   await expect(ledger.getByText("Illustrative", { exact: true })).toBeVisible();
   await expect(ledger.getByRole("columnheader")).toHaveText(["Priority", "Opportunity", "Expected saving", "Confidence", "Engineering risk", "Owner", "Remediation status"]);
+  await expect(ledger.locator("caption")).toHaveText("Illustrative Savings Sprint Ledger showing synthetic decision records");
+  await expect(ledger.locator('thead th[scope="col"]')).toHaveCount(7);
+  await expect(ledger.getByRole("rowheader")).toHaveText(["RDS rightsizing", "NAT architecture", "Idle EC2"]);
+  await expect(ledger.locator("tbody tr")).toHaveCount(3);
+  const expectedRows = [
+    ["01", "RDS rightsizing", "£4,820 / mo", "High", "Low", "Platform", "Change mapped"],
+    ["02", "NAT architecture", "£2,140 / mo", "Medium", "Medium", "Core infra", "Architecture change mapped"],
+    ["03", "Idle EC2", "£980 / mo", "High", "Low", "Data", "Awaiting approval"],
+  ];
+  for (const [index, expectedValues] of expectedRows.entries()) {
+    const rowText = await ledger.locator("tbody tr").nth(index).innerText();
+    for (const value of expectedValues) expect(rowText).toContain(value);
+  }
+  await expect(page.getByText(/Approved Ledger items become the implementation backlog/)).toBeVisible();
+  await expect(page.getByText(/synthetic and illustrative, not a real report, live account or customer result/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "What we need from your team." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Discovery, not uncontrolled change." })).toBeVisible();
   await expect(page.getByRole("link", { name: "Compare implementation options" })).toHaveAttribute("href", "/implementation");
+  await expect(page.getByRole("link", { name: "Start a Savings Sprint" }).last()).toHaveAttribute("href", "/start");
+  const footer = page.getByRole("contentinfo");
+  await expect(page.locator('main[data-suppress-footer-cta="true"]')).toBeVisible();
+  await expect(footer.locator("[data-footer-cta]")).toBeHidden();
+  await expect(footer.getByRole("navigation", { name: "Footer navigation" })).toBeVisible();
+  await expect(footer.getByRole("link", { name: "Implementation" })).toHaveAttribute("href", "/implementation");
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const row of await ledger.locator("tbody tr").all()) {
+    await expect(row).toBeVisible();
+    await expect(row.locator('[data-label="Priority"]')).toBeVisible();
+    await expect(row.locator('[data-label="Remediation status"]')).toBeVisible();
+  }
 });
 
 test("Implementation presents alternative models and customer-controlled delivery", async ({ page }) => {
@@ -42,8 +70,13 @@ test("Implementation presents alternative models and customer-controlled deliver
   await expect(page.getByText("25%")).toBeVisible();
   await expect(page.getByText("of verified savings")).toBeVisible();
   await expect(page.getByText("The contractual verification basis is agreed before outcome-based implementation begins.")).toBeVisible();
+  const comparison = page.getByTestId("implementation-comparison");
+  await expect(comparison.locator("caption")).toHaveText("Known distinctions between fixed and outcome-based implementation");
+  await expect(comparison.locator('thead th[scope="col"]')).toHaveCount(3);
+  await expect(comparison.locator('tbody th[scope="row"]')).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "Your engineering process stays in control." })).toBeVisible();
   await expect(page.getByRole("link", { name: "Review security" })).toHaveAttribute("href", "/security");
+  await expect(page.getByRole("contentinfo").locator("[data-footer-cta]")).toBeVisible();
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/\b\d+\s+(day|week|month)s?\b|GitHub|Jira/i);
 });
@@ -55,11 +88,14 @@ test("Pricing makes the commercial order and verification basis explicit", async
   const text = await sequence.innerText();
   expect(text.indexOf("£5,000")).toBeLessThan(text.indexOf("£15,000"));
   expect(text.indexOf("£5,000")).toBeLessThan(text.indexOf("25%"));
+  expect(text.indexOf("Then choose")).toBeLessThan(text.indexOf("£15,000"));
+  expect(text.indexOf("Then choose")).toBeLessThan(text.indexOf("25%"));
   await expect(sequence).toContainText("Then choose");
   await expect(sequence).toContainText("or");
   await expect(page.getByRole("heading", { name: "How verified savings affect pricing." })).toBeVisible();
   await expect(page.getByRole("link", { name: "See how verification works" })).toHaveAttribute("href", "/verification");
   await expect(page.getByRole("link", { name: "Start a Savings Sprint" }).first()).toHaveAttribute("href", "/start");
+  await expect(page.getByRole("contentinfo").locator("[data-footer-cta]")).toBeVisible();
 });
 
 test("revenue routes remain truthful, accessible, keyboard operable and static without JavaScript", async ({ browser, page }) => {
@@ -94,6 +130,13 @@ for (const viewport of responsiveMatrix) {
       await page.goto(path);
       const dimensions = await page.evaluate(() => ({ clientWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }));
       expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+      if (viewport.width >= 768) {
+        const headerWrapping = await page.locator("table thead th").evaluateAll((headers) => headers.map((header) => {
+          const styles = getComputedStyle(header);
+          return { overflowWrap: styles.overflowWrap, wordBreak: styles.wordBreak };
+        }));
+        expect(headerWrapping.every(({ overflowWrap, wordBreak }) => overflowWrap === "normal" && wordBreak === "normal")).toBe(true);
+      }
     }
   });
 }

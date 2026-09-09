@@ -14,9 +14,15 @@ type Stage = {
   description: string;
 };
 
-export function RevenuePage({ children }: { children: ReactNode }) {
+export function RevenuePage({ children, suppressFooterCta = false }: { children: ReactNode; suppressFooterCta?: boolean }) {
   return (
-    <main id="main-content" className={styles.page} data-route-stage="revenue" tabIndex={-1}>
+    <main
+      id="main-content"
+      className={styles.page}
+      data-route-stage="revenue"
+      data-suppress-footer-cta={suppressFooterCta ? "true" : undefined}
+      tabIndex={-1}
+    >
       {children}
     </main>
   );

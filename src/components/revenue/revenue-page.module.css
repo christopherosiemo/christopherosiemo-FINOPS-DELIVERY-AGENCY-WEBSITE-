@@ -243,12 +243,25 @@
   text-align: left;
 }
 
+.tableSemanticCaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .dataTable th,
 .dataTable td {
   padding: var(--space-4);
   border-bottom: var(--border-default);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   vertical-align: top;
+  word-break: normal;
 }
 
 .dataTable th {
@@ -260,6 +273,18 @@
 
 .dataTable td {
   font-size: var(--type-body-small-size);
+}
+
+.ledgerTable tbody th {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--weight-medium);
+}
+
+.financialValue {
+  font-variant-numeric: tabular-nums lining-nums;
+  white-space: nowrap;
 }
 
 .dataTable tbody tr:last-child > * {
@@ -456,7 +481,7 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 47.99rem) {
+@media (max-width: 79.99rem) {
   .actions > * {
     width: 100%;
   }
@@ -494,11 +519,13 @@
     border: 0;
   }
 
-  .dataTable td::before {
+  .dataTable td::before,
+  .dataTable tbody th[data-label]::before {
     color: var(--color-text-secondary);
     content: attr(data-label);
     font-family: var(--font-family-mono);
     font-size: var(--type-caption-size);
+    font-weight: var(--weight-medium);
   }
 
   .decisionTable th:first-child {

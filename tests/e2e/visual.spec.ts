@@ -49,9 +49,40 @@ for (const [name, path, selector] of [
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(path);
     await page.evaluate(() => document.fonts.ready);
+    if (name === "savings-sprint-ledger") {
+      await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+      await page.addStyleTag({ content: "body > header, .skip-link { visibility: hidden !important; }" });
+    }
     await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, { animations: "disabled", caret: "initial" });
   });
 }
+
+test("savings-sprint-ledger-mobile high-signal revenue baseline", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/savings-sprint");
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await page.addStyleTag({ content: "body > header, .skip-link { visibility: hidden !important; }" });
+  await expect(page.locator("section[aria-labelledby='ledger-deliverable']")).toHaveScreenshot(
+    "savings-sprint-ledger-mobile.png",
+    { animations: "disabled", caret: "initial" },
+  );
+});
+
+test("savings-sprint-engagement-footer-1440 focused transition baseline", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/savings-sprint");
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await page.addStyleTag({ content: "body > header, .skip-link { visibility: hidden !important; }" });
+  await page.getByRole("link", { name: "Start a Savings Sprint" }).last().evaluate((action) => {
+    window.scrollTo({ top: action.getBoundingClientRect().top + window.scrollY - 64 });
+  });
+  await expect(page).toHaveScreenshot("savings-sprint-engagement-footer-1440.png", {
+    animations: "disabled",
+    caret: "initial",
+  });
+});
 
 for (const [name, selector] of [
   ["homepage-hero-ledger", "section[aria-labelledby='page-title']"],

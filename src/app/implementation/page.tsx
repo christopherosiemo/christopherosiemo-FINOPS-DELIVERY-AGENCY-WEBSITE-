@@ -41,7 +41,7 @@ export default function ImplementationPage() {
           </div>
           <div className={`${styles.tableFrame} ${styles.decisionTable}`} data-testid="implementation-comparison">
             <div className={styles.tableCaption}><strong>Structured comparison</strong><span>Known distinctions only</span></div>
-            <table className={styles.dataTable}><thead><tr><th>Decision</th><th>Fixed implementation</th><th>Outcome-based implementation</th></tr></thead><tbody>
+            <table className={styles.dataTable}><caption className={styles.tableSemanticCaption}>Known distinctions between fixed and outcome-based implementation</caption><thead><tr><th scope="col">Decision</th><th scope="col">Fixed implementation</th><th scope="col">Outcome-based implementation</th></tr></thead><tbody>
               <tr><th scope="row">Commercial basis</th><td data-label="Fixed implementation">Fixed implementation fee</td><td data-label="Outcome-based implementation">Verified-savings-linked fee</td></tr>
               <tr><th scope="row">Engineering workflow</th><td data-label="Fixed implementation">Existing customer process</td><td data-label="Outcome-based implementation">Existing customer process</td></tr>
               <tr><th scope="row">Verification</th><td data-label="Fixed implementation">Measurement after deployment</td><td data-label="Outcome-based implementation">Measurement after deployment</td></tr>

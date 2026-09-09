@@ -19,7 +19,8 @@
   justify-self: start;
 }
 
-main[data-homepage="true"] + .footer [data-footer-cta] {
+main[data-homepage="true"] + .footer [data-footer-cta],
+main[data-suppress-footer-cta="true"] + .footer [data-footer-cta] {
   display: none;
 }
 

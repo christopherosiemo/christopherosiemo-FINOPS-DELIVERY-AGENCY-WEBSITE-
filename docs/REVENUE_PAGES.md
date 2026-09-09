@@ -33,7 +33,7 @@ Under the alternative outcome-based model, the fee is 25% of savings that meet t
 
 ### Savings Sprint
 
-The page moves from price and access boundary through six stages: Access, Find, Validate, Map, Remediate, and Prioritise. It then explains review scope, the illustrative Savings Ledger, customer inputs, the no-deployment boundary, and the two later implementation routes. The primary action is **Start a Savings Sprint** → `/start`; the secondary action is **See what happens next** → `/implementation`.
+The page moves from price and access boundary through six stages: Access, Find, Validate, Map, Remediate, and Prioritise. It then explains review scope, the illustrative Savings Ledger, customer inputs, the no-deployment boundary, and the two later implementation routes. Approved Ledger items become the implementation backlog. The primary action is **Start a Savings Sprint** → `/start`; the secondary action is **See what happens next** → `/implementation`. Because the route already closes with implementation comparison and a direct start action, it suppresses only the global footer CTA while retaining footer navigation and identity.
 
 ### Implementation
 
@@ -45,7 +45,7 @@ The page makes the order explicit: £5,000 Sprint first, followed by either £15
 
 ## Illustrative evidence policy
 
-The Savings Ledger specimen is visibly labelled **Illustrative** and demonstrates decision-quality fields only: Priority, Opportunity, Expected saving, Confidence, Engineering risk, Owner, and Remediation status. It is not a real report, customer result, live account, benchmark, or case study. The implementation evidence chain is likewise conceptual and must not imply a live GitHub, Jira, CI, or repository integration.
+The Savings Ledger specimen is visibly labelled **Illustrative** and demonstrates decision-quality fields only: Priority, Opportunity, Expected saving, Confidence, Engineering risk, Owner, and Remediation status. Its three synthetic decision records are RDS rightsizing, NAT architecture, and Idle EC2; their values and states explain the structure and are not evidence. Approved Ledger items—not every discovered item—become the implementation backlog. The specimen is not a real report, customer result, live account, benchmark, or case study. The implementation evidence chain is likewise conceptual and must not imply a live GitHub, Jira, CI, or repository integration.
 
 ## Known unknowns and deferred distinctions
 

@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 53%
+**Current value:** 57%
 
-**Target for this checkpoint:** 53%
+**Target for this checkpoint:** 57%
 
-**Current gate:** Revenue pages — static commercial decision experience implemented; independent refinement pending
+**Current gate:** Revenue pages — commercially calibrated decision-support refinement implemented; independent final approval pending
 
 ## Completed
 
@@ -54,10 +54,14 @@
 - Approved offer values are centralised in a small immutable server-safe module; the three route narratives remain route-specific Server Components with shared revenue composition styles.
 - Eleven focused revenue-page checks cover commercial truth, ordered stages, CTA routing, robots policy, Axe, keyboard access, JavaScript-disabled comprehension, and overflow from 320px through 1728px.
 - Five canonical Linux/Chromium visual baselines and eight ignored Gate 5A review captures cover the high-signal commercial compositions without replacing any approved regression baseline.
+- The Savings Sprint Ledger now contains exactly three visibly synthetic decision records with concrete values, confidence, engineering risk, ownership, and remediation state while preserving the no-customer-evidence boundary.
+- Approved Ledger items are explicitly distinguished from discovery output before becoming the implementation backlog.
+- The Savings Sprint suppresses its duplicate global footer CTA through a stable server-rendered route attribute while retaining footer navigation and identity; other routes retain the global CTA.
+- Revenue tables now expose captions and scoped headers, and reflow into complete labelled records below the desktop table threshold without character-level heading breaks.
 
 ## In progress
 
-- Independent commercial consistency, responsive refinement, and optical review for the revenue pages.
+- Independent final revenue-page approval.
 
 ## Blocked
 
@@ -109,7 +113,10 @@
 - Revenue-route checks cover exact commercial values and order, scope and exclusions, six-stage Sprint and implementation sequences, alternative implementation models, customer control, CTA destinations, noindex/nofollow metadata, JavaScript-disabled comprehension, keyboard operation, Axe, runtime errors, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
 - The production build statically prerenders `/savings-sprint`, `/implementation`, and `/pricing`. Gate 5A adds no client component or dependency.
 - Eight neutral-focus review captures are stored under `outputs/gate-5a-review/` for independent review; no independent revenue-page approval is claimed.
+- Gate 5B validation passed on 2026-09-09: frozen install, lint, strict typecheck, 7 unit/component tests, production build, 63 functional Chromium checks, and 28 canonical Linux/Chromium visual comparisons at the unchanged `0.002` tolerance.
+- Gate 5B revenue coverage protects the three synthetic Ledger rows, approved-backlog wording, visible evidence disclaimer, footer CTA suppression/retention, table captions and header scope, responsive labelled-record reflow, commercial sequence, Axe results, JavaScript-disabled meaning, keyboard access, runtime logs, and page overflow from 320px through 1728px.
+- Seven neutral-focus Gate 5B review captures are stored under `outputs/gate-5b-review/`; independent final revenue-page approval is not yet claimed.
 
 ## Next gate
 
-53% — Revenue-page narratives and static commercial decision experience implemented; independent commercial and optical refinement pending.
+57% — Revenue pages commercially calibrated and decision-support refined; independent final revenue-page approval pending.
