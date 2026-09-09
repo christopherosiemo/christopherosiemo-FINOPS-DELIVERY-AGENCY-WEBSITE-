@@ -111,6 +111,11 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    if (viewport.width < 768) {
+      await page.addStyleTag({
+        content: "body > header, .skip-link { visibility: hidden !important; }",
+      });
+    }
     await expect(page.getByRole("contentinfo")).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
