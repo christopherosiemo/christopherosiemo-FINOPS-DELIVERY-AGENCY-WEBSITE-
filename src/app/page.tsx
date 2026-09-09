@@ -5,7 +5,7 @@ import { MethodSequence, RecommendationGap } from "@/components/home/narrative-s
 
 export default function Home() {
   return (
-    <main id="main-content" tabIndex={-1}>
+    <main id="main-content" data-homepage="true" tabIndex={-1}>
       <HomeHero />
       <RecommendationGap />
       <MethodSequence />

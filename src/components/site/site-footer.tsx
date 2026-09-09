@@ -6,11 +6,11 @@ import styles from "./site-footer.module.css";
 export function SiteFooter() {
   return (
     <footer className={styles.footer} id="site-footer">
-      <div className={`container ${styles.cta}`}>
+      <div className={`container ${styles.cta}`} data-footer-cta>
         <h2>Find what is worth changing.</h2>
         <ActionLink href={primaryAction.href}>{primaryAction.label}</ActionLink>
       </div>
-      <nav className={`container ${styles.architecture}`} aria-label="Footer navigation">
+      <nav className={`container ${styles.architecture}`} aria-label="Footer navigation" data-footer-navigation>
         {footerNavigation.map((group) => (
           <div key={group.label}>
             <p className={styles.groupTitle}>{group.label}</p>

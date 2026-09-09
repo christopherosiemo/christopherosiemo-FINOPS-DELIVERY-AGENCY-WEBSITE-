@@ -87,7 +87,7 @@ The static Verification Line is the narrative climax. It communicates estimate �
 - Primary action: **Start a Savings Sprint** → `/start`.
 - Secondary action: **View pricing** → `/pricing`.
 
-The three amounts are a sequence with two implementation branches, not unrelated subscription plans. The Sprint remains the obvious first action and transitions quietly into the existing footer action.
+The three amounts are a sequence with two implementation branches, not unrelated subscription plans. The Sprint remains the obvious first action. On the homepage, the global footer enters directly into navigation after this conclusion; the footer CTA remains present on other routes.
 
 ## Evidence and illustrative-data policy
 
@@ -101,7 +101,7 @@ The Verification Line is visibly illustrative and retains expected annualised sa
 
 ## CTA hierarchy
 
-The primary commercial action throughout the page is **Start a Savings Sprint**. Hero verification and security links explain mechanism; **View pricing** supports commercial comparison. Repeated footer action is intentional, but the engagement section must not become a competing oversized CTA block.
+The primary commercial action throughout the page is **Start a Savings Sprint**. Hero verification and security links explain mechanism; **View pricing** supports commercial comparison. The Engagement section is the homepage's final conversion resolution, so the otherwise-global footer CTA is suppressed on `/` only.
 
 ## Responsive narrative
 

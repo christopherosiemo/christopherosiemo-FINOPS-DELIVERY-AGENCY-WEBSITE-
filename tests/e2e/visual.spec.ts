@@ -47,7 +47,41 @@ for (const [name, selector] of [
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  });
+}
+
+test("homepage-hero-ledger-1280 high-signal homepage baseline", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator("section[aria-labelledby='page-title']")).toHaveScreenshot(
+    "homepage-hero-ledger-1280.png",
+    { animations: "disabled", caret: "initial" },
+  );
+});
+
+for (const viewport of [
+  { name: "homepage-engagement-footer-390", width: 390, height: 844 },
+  { name: "homepage-engagement-footer-1440", width: 1440, height: 900 },
+]) {
+  test(`${viewport.name} focused transition baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await page.addStyleTag({
+      content: "body > header, .skip-link { visibility: hidden !important; }",
+    });
+    await page.evaluate(() => {
+      const actions = document.querySelector("[data-engagement-actions]")!;
+      window.scrollTo({ top: actions.getBoundingClientRect().top + window.scrollY - 64 });
+    });
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
     });

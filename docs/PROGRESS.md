@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 38%
 
-**Current gate:** Homepage — narrative and static production composition implemented; signature interaction and independent homepage review pending
+**Current gate:** Homepage — static composition calibrated; Gate 4B interaction pass pending independent confirmation
 
 ## Completed
 
@@ -33,12 +33,13 @@
 - The public homepage now presents the complete approved narrative from proposition and illustrative Savings Ledger through recommendation gap, six-stage operating method, remediation evidence, customer controls, verification, security boundary, and the commercial engagement path.
 - Homepage evidence remains visibly illustrative, the first engagement remains the £5,000 14-Day AWS Savings Sprint, and the two subsequent implementation routes remain £15,000 fixed or 25% of verified savings.
 - The homepage composition is server-rendered and static, introduces no homepage client boundary, and retains complete meaning without motion or JavaScript.
-- Five high-signal homepage visual baselines and six independent-review captures cover the new production composition without replacing Gate 2 or Gate 3 regression coverage.
+- Eight focused homepage visual baselines and eight Gate 4A.2 review captures cover the calibrated production composition without replacing Gate 2 or Gate 3 regression coverage.
+- Gate 4A.2 calibrates desktop Savings Ledger heading widths and removes the duplicate homepage footer CTA while preserving the approved global footer action on other routes; independent confirmation remains pending.
 
 ## In progress
 
-- Signature interaction, motion, responsive refinement, and homepage engineering polish (Gate 4B).
-- Independent final homepage review and calibration after Gate 4B.
+- Independent confirmation of the Gate 4A.2 static calibration.
+- Gate 4B interaction and motion remain pending and must not begin before that confirmation.
 
 ## Blocked
 
@@ -85,4 +86,4 @@
 
 ## Next gate
 
-Begin Gate 4B only after reviewing the Gate 4A static captures. Add signature interaction or motion only where it improves an already successful static composition; 43% still requires that later pass and 45% still requires independent final homepage approval.
+Begin Gate 4B only after independent confirmation of the Gate 4A.2 static captures. Add signature interaction or motion only where it improves an already successful static composition; 43% still requires that later pass and 45% still requires independent final homepage approval.

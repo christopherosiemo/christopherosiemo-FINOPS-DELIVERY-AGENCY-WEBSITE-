@@ -64,7 +64,8 @@
 
 .heroEvidence.heroEvidence th,
 .heroEvidence.heroEvidence td {
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
   padding: var(--space-3) var(--space-2);
 }
 
@@ -73,16 +74,20 @@
   letter-spacing: 0.02em;
 }
 
-.heroEvidence th:nth-child(1) { width: 17%; }
-.heroEvidence th:nth-child(2) { width: 20%; }
-.heroEvidence th:nth-child(3) { width: 11%; }
+.heroEvidence th:nth-child(1) { width: 16%; }
+.heroEvidence th:nth-child(2) { width: 21%; }
+.heroEvidence th:nth-child(3) { width: 10%; }
 .heroEvidence th:nth-child(4) { width: 15%; }
-.heroEvidence th:nth-child(5) { width: 10%; }
-.heroEvidence th:nth-child(6) { width: 8%; }
-.heroEvidence th:nth-child(7) { width: 19%; }
+.heroEvidence th:nth-child(5) { width: 13%; }
+.heroEvidence th:nth-child(6) { width: 7%; }
+.heroEvidence th:nth-child(7) { width: 18%; }
 
 .heroEvidence.heroEvidence td:nth-child(4) {
-  white-space: normal;
+  white-space: nowrap;
+}
+
+.heroEvidence.heroEvidence td:nth-child(2) {
+  overflow-wrap: anywhere;
 }
 
 .heroEvidence.heroEvidence td:nth-child(7) > span {

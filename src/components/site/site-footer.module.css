@@ -19,6 +19,10 @@
   justify-self: start;
 }
 
+main[data-homepage="true"] + .footer [data-footer-cta] {
+  display: none;
+}
+
 .architecture {
   display: grid;
   gap: var(--space-12);

@@ -48,7 +48,7 @@ export function EngagementPath() {
             <article><p className="technical-label">Outcome-based</p><h3>Verified-savings model</h3><strong>25%</strong><span>of verified savings</span></article>
           </div>
         </div>
-        <div className={styles.engagementActions}>
+        <div className={styles.engagementActions} data-engagement-actions>
           <ActionLink href="/start">Start a Savings Sprint</ActionLink>
           <ActionLink href="/pricing" variant="secondary">View pricing</ActionLink>
         </div>

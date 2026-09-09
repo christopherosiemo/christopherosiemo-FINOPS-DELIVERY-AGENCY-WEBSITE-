@@ -38,6 +38,16 @@ test("desktop shell exposes the approved navigation and footer architecture", as
   await expect(page.getByRole("link", { name: /design system/i })).toHaveCount(0);
 });
 
+for (const path of ["/method", "/pricing"]) {
+  test(`global footer CTA remains present on ${path}`, async ({ page }) => {
+    await page.goto(path);
+    const footerCta = page.getByRole("contentinfo").locator("[data-footer-cta]");
+    await expect(footerCta).toBeVisible();
+    await expect(footerCta.getByRole("heading", { name: "Find what is worth changing." })).toBeVisible();
+    await expect(footerCta.getByRole("link", { name: "Start a Savings Sprint" })).toHaveAttribute("href", "/start");
+  });
+}
+
 for (const [path, activeLabel] of [
   ["/", null],
   ["/method", "Method"],

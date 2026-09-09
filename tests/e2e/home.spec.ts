@@ -2,6 +2,24 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const methodStages = ["Find", "Validate", "Assign", "Change", "Approve", "Verify"];
+const ledgerHeaders = [
+  "Opportunity",
+  "Account / service",
+  "Owner",
+  "Expected saving",
+  "Confidence",
+  "Risk",
+  "State",
+];
+const footerLinks = [
+  ["Savings Sprint", "/savings-sprint"],
+  ["Implementation", "/implementation"],
+  ["Pricing", "/pricing"],
+  ["Method", "/method"],
+  ["Verification", "/verification"],
+  ["Security", "/security"],
+  ["Contact", "/contact"],
+] as const;
 const responsiveMatrix = [
   { width: 320, height: 700 },
   { width: 390, height: 844 },
@@ -52,16 +70,43 @@ test("homepage narrative preserves commercial truth and architecture", async ({ 
   await expect(engagement).toContainText("Implementation Sprint");
   await expect(engagement).toContainText("£15,000");
   await expect(engagement).toContainText("25%");
+  await expect(engagement.getByRole("link", { name: "Start a Savings Sprint" })).toHaveAttribute("href", "/start");
   await expect(engagement.getByRole("link", { name: "View pricing" })).toHaveAttribute("href", "/pricing");
 
-  await expect(page.getByRole("contentinfo")).toContainText("Find what is worth changing.");
-  await expect(page.getByRole("contentinfo").getByText("HKGpipi", { exact: true })).toBeVisible();
+  const footer = page.getByRole("contentinfo");
+  await expect(footer.locator("[data-footer-cta]")).toBeHidden();
+  await expect(footer.getByRole("navigation", { name: "Footer navigation" })).toBeVisible();
+  await expect(footer.getByText("HKGpipi", { exact: true })).toBeVisible();
+  for (const [name, href] of footerLinks) {
+    const link = footer.getByRole("link", { name, exact: true });
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute("href", href);
+  }
 
   const publicText = await page.locator("body").innerText();
   expect(publicText).not.toMatch(/customer result|live account|actual saving|case study|testimonial|AWS partner|30-Day Cloud Margin Recovery/i);
   expect(publicText).not.toContain("TBD");
   expect(runtimeErrors).toEqual([]);
 });
+
+for (const viewport of [
+  { width: 1280, height: 800 },
+  { width: 1440, height: 900 },
+  { width: 1728, height: 1117 },
+]) {
+  test(`desktop hero Ledger remains readable without overflow at ${viewport.width}`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+
+    const ledger = page.getByTestId("homepage-ledger");
+    await expect(ledger.getByRole("columnheader")).toHaveText(ledgerHeaders);
+    const dimensions = await ledger.locator("table").evaluate((table) => ({
+      clientWidth: table.parentElement!.clientWidth,
+      scrollWidth: table.parentElement!.scrollWidth,
+    }));
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+  });
+}
 
 test("homepage is keyboard accessible and has no obvious Axe violations", async ({ page }) => {
   await page.goto("/");
