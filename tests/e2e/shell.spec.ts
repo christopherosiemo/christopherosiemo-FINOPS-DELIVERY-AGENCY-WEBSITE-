@@ -4,14 +4,13 @@ import { settleHomepageMotion } from "./helpers/home-motion";
 
 const publicScaffolds = [
   "/method",
-  "/savings-sprint",
-  "/implementation",
   "/verification",
   "/security",
-  "/pricing",
   "/start",
   "/contact",
 ];
+
+const revenueRoutes = ["/savings-sprint", "/implementation", "/pricing"];
 
 test("desktop shell exposes the approved navigation and footer architecture", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -74,6 +73,18 @@ for (const path of publicScaffolds) {
     expect(response?.status()).toBe(200);
     await expect(page).toHaveTitle(/\| HKGpipi$/);
     await expect(page.locator('main[data-route-stage="scaffold"]')).toHaveCount(1);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /nofollow/);
+  });
+}
+
+for (const path of revenueRoutes) {
+  test(`${path} is a live, non-indexed revenue route`, async ({ page }) => {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveTitle(/\| HKGpipi$/);
+    await expect(page.locator('main[data-route-stage="revenue"]')).toHaveCount(1);
     await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /nofollow/);

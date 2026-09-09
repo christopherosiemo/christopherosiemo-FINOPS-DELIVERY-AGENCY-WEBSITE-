@@ -40,6 +40,8 @@ Subsequent offer: **£15,000**. Its purpose is to turn approved recommendations 
 
 Alternative commercial model: **25% of verified savings**. Contract mechanics and the formal definition of verified savings are TBD.
 
+The £15,000 Implementation Sprint and 25% verified-savings model are alternative routes for approved implementation, not standard cumulative charges and not subscriptions. The contractual verification basis is agreed before outcome-based implementation begins.
+
 Thirty days currently refers to the intended post-change verification period. “30-Day Cloud Margin Recovery” must not be presented as a guaranteed end-to-end delivery promise.
 
 ## Calls to action
@@ -48,6 +50,8 @@ Thirty days currently refers to the intended post-change verification period. �
 - Secondary: **See how verification works**
 
 Final form fields, routing, consent language, and lead-qualification logic are TBD.
+
+The production commercial narrative, route order, scope boundaries, and illustrative-evidence policy for `/savings-sprint`, `/implementation`, and `/pricing` are authoritative in `REVENUE_PAGES.md`.
 
 ## Homepage-approved positioning
 

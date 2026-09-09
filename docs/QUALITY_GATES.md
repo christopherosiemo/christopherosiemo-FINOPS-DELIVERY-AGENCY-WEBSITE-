@@ -70,6 +70,14 @@ These checkpoints do not alter the overall 28–45 gate or permit a higher value
 
 **Prohibited shortcuts:** Treating 30 days as an end-to-end guarantee, hiding exclusions, inventing outcomes, or creating pricing variants without authority.
 
+Internal evidence checkpoints within this published gate are:
+
+- **45–53:** Commercial-page narrative and production static composition.
+- **53–57:** Commercial consistency, responsive refinement, and decision-support polish.
+- **57–60:** Independent revenue-page approval.
+
+These checkpoints do not alter the overall 45–60 gate or permit a higher value before its corresponding evidence exists.
+
 ## 60–70 — Trust
 
 **Objective:** Provide verifiable evidence and transparent operating/security boundaries.

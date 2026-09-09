@@ -38,6 +38,21 @@ for (const viewport of [
   });
 }
 
+for (const [name, path, selector] of [
+  ["savings-sprint-hero-scope", "/savings-sprint", "section[aria-labelledby='page-title']"],
+  ["savings-sprint-ledger", "/savings-sprint", "section[aria-labelledby='ledger-deliverable']"],
+  ["implementation-flow", "/implementation", "section[aria-labelledby='implementation-flow']"],
+  ["implementation-comparison", "/implementation", "[data-testid='implementation-comparison']"],
+  ["pricing-sequence", "/pricing", "[data-testid='pricing-sequence']"],
+] as const) {
+  test(`${name} high-signal revenue baseline`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, { animations: "disabled", caret: "initial" });
+  });
+}
+
 for (const [name, selector] of [
   ["homepage-hero-ledger", "section[aria-labelledby='page-title']"],
   ["homepage-method", "section[aria-labelledby='method-sequence']"],

@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 45%
+**Current value:** 53%
 
-**Target for this checkpoint:** 45%
+**Target for this checkpoint:** 53%
 
-**Current gate:** Homepage — complete and independently approved
+**Current gate:** Revenue pages — static commercial decision experience implemented; independent refinement pending
 
 ## Completed
 
@@ -48,10 +48,16 @@
 - GitHub Actions run `34346346121` completed successfully against the exact motion commit `ff306841e98450862a120618dd0ede1558d9aa32`.
 - Desktop and mobile standard-motion and reduced-motion recordings were independently reviewed. The hero remains immediate, entrances are finite and once-only, and the Verification signature reconciliation is approved.
 - Reduced-motion and JavaScript-disabled homepage experiences are complete and preserve the full approved narrative.
+- `/savings-sprint`, `/implementation`, and `/pricing` now provide production static commercial narratives with explicit scope, sequence, inputs, outputs, prices, decision points, and boundaries.
+- The commercial path is explicit: a £5,000 upfront 14-Day AWS Savings Sprint first, then either a £15,000 Implementation Sprint or outcome-based implementation at 25% of verified savings.
+- Savings Sprint evidence is visibly illustrative, implementation stays within customer repositories and controls, and the contractual verification basis remains deferred for agreement before outcome-based work begins.
+- Approved offer values are centralised in a small immutable server-safe module; the three route narratives remain route-specific Server Components with shared revenue composition styles.
+- Eleven focused revenue-page checks cover commercial truth, ordered stages, CTA routing, robots policy, Axe, keyboard access, JavaScript-disabled comprehension, and overflow from 320px through 1728px.
+- Five canonical Linux/Chromium visual baselines and eight ignored Gate 5A review captures cover the high-signal commercial compositions without replacing any approved regression baseline.
 
 ## In progress
 
-- Revenue-page commercial narrative and static decision experience.
+- Independent commercial consistency, responsive refinement, and optical review for the revenue pages.
 
 ## Blocked
 
@@ -60,7 +66,7 @@
 ## Deferred
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
-- Deeper route content architecture, verification methodology, conversion fields and qualification logic.
+- Verification methodology, contractual mechanics, conversion fields and qualification logic.
 - Analytics, security integrations, production budgets, and production qualification.
 
 ## Evidence
@@ -99,7 +105,11 @@
 - Motion checks cover semantic completeness, controller opt-in, below-fold entry, once-only behavior, Recommendation and customer-control sequence completion, Verification values and final state, preference changes, reduced motion, JavaScript-disabled comprehension, geometry preservation, Axe, keyboard operation, runtime logs, and responsive overflow.
 - Responsive motion review at 390, 768, 1024, 1280, 1440, and 1728px confirms top-to-bottom mobile sequence treatment, left-to-right tablet/desktop treatment, no horizontal overflow, and no motion backlog or replay.
 - The production build keeps `/` statically prerendered. Gate 4B adds one client component and no dependencies; motion does not remove or defer initial HTML content.
+- Gate 5A validation passed on 2026-09-09: frozen install, lint, strict typecheck, 7 unit/component tests, 63 functional Chromium checks in development and production modes, production build, and 26 canonical Linux/Chromium visual comparisons at the unchanged `0.002` tolerance.
+- Revenue-route checks cover exact commercial values and order, scope and exclusions, six-stage Sprint and implementation sequences, alternative implementation models, customer control, CTA destinations, noindex/nofollow metadata, JavaScript-disabled comprehension, keyboard operation, Axe, runtime errors, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
+- The production build statically prerenders `/savings-sprint`, `/implementation`, and `/pricing`. Gate 5A adds no client component or dependency.
+- Eight neutral-focus review captures are stored under `outputs/gate-5a-review/` for independent review; no independent revenue-page approval is claimed.
 
 ## Next gate
 
-Implement the 45–53 revenue-page commercial narrative and static decision experience. The 53–57 range is reserved for consistency and responsive refinement; 57–60 requires independent approval.
+53% — Revenue-page narratives and static commercial decision experience implemented; independent commercial and optical refinement pending.

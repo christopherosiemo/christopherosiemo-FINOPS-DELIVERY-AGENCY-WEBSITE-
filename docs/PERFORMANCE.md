@@ -28,6 +28,10 @@ The header frame, footer, site configuration, metadata, and route scaffolds are 
 
 Gate 4A adds no homepage client boundary, runtime dependency, image, animation, chart, syntax highlighter, observer, carousel, or state library. The narrative, Ledger records, Terraform diff, flow semantics, Verification Line, and commercial path render in the initial static HTML. CSS media queries provide all responsive composition changes. The existing `SiteNavigation` remains the only shell client boundary; production build output is the authoritative check that `/` remains statically prerendered.
 
+## Revenue-page implications
+
+Gate 5A adds three static, server-rendered revenue routes with shared CSS-only composition and a compact immutable commercial-facts module. No route-specific client boundary, animation, image, external request, runtime dependency, or JavaScript breakpoint logic is added. Production build output must confirm `/savings-sprint`, `/implementation`, and `/pricing` remain statically prerendered.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.
