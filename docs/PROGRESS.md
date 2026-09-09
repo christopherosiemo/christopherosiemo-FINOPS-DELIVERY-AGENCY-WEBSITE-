@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 67%
+**Current value:** 70%
 
-**Target for this checkpoint:** 67%
+**Target for this checkpoint:** 70%
 
-**Current gate:** Trust — Trust pages calibrated; independent final Trust approval pending
+**Current gate:** Conversion — Trust complete; conversion foundation not yet implemented
 
 ## Completed
 
@@ -71,10 +71,12 @@
 - Independent review approved the Trust architecture, page narratives, Verification model, Method responsibility split, Security access boundary, change-control composition, and mobile structure, identifying only two bounded calibration defects.
 - Method, Verification, and Security now suppress the duplicate global footer CTA through the existing server-rendered suppression contract while retaining their page-specific actions, footer navigation, and HKGpipi identity.
 - Security now states that the engagement-specific access model is reviewed before AWS access is granted, avoiding language that could imply independent production authority.
+- The Trust gate has received independent final approval. The approved result includes the Method responsibility split, Verification measurement model, Security discovery/implementation boundaries, and Security mobile composition.
+- Trust routes resolve conversion once before the structural footer, and the ambiguous “production access” wording has been removed.
 
 ## In progress
 
-- Independent final Trust approval of the Gate 6B conversion and access-language calibration.
+- Gate 7A conversion interface, server submission boundary, validation, and anti-abuse foundation.
 
 ## Blocked
 
@@ -83,7 +85,7 @@
 ## Deferred
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
-- Engagement-specific verification contractual mechanics, conversion fields and qualification logic.
+- Engagement-specific verification contractual mechanics.
 - Analytics, security integrations, production budgets, and production qualification.
 
 ## Evidence
@@ -140,8 +142,10 @@
 - Gate 6B calibration validation passed on 2026-09-09: frozen install, lint, strict typecheck, 9 unit/component tests, production build, 78 functional Chromium checks, and 34 unchanged canonical Linux/Chromium visual comparisons at the retained `0.002` tolerance.
 - Conversion-boundary coverage confirms all three Trust routes retain their page-specific primary and secondary actions while suppressing only the global footer CTA; footer navigation and HKGpipi identity remain visible, and Implementation and Pricing retain their approved global CTA.
 - Security-language coverage protects the engagement-specific AWS access review wording, absence of the ambiguous “production access” phrase, read-only discovery boundary, customer-controlled production/deployment language, focused prohibited-claim scan, noindex/nofollow metadata, Axe, keyboard, JavaScript-disabled meaning, runtime logs, and responsive overflow.
-- Five neutral-focus Gate 6B review captures are stored under `outputs/gate-6b-review/`; no independent final Trust approval is claimed.
+- Five neutral-focus Gate 6B review captures are stored under `outputs/gate-6b-review/` and supported the subsequent independent final Trust approval.
+- Gate 6A Trust implementation is recorded at `e1b5aa80466628f130ef3e01b9016e704583a1c7`; the independently approved final calibrated Trust state is `b780cb9e22a689284c14915f4a853c3587015856`.
+- GitHub Actions run `34409622107` passed against exact Trust SHA `b780cb9e22a689284c14915f4a853c3587015856`.
 
 ## Next gate
 
-67–70% — Independent Trust/security consistency, claim, and optical review, followed by final approval.
+70–75% — Production conversion interface, server boundary, validation, and anti-abuse foundation.
