@@ -34,12 +34,15 @@
 - Homepage evidence remains visibly illustrative, the first engagement remains the £5,000 14-Day AWS Savings Sprint, and the two subsequent implementation routes remain £15,000 fixed or 25% of verified savings.
 - The homepage composition is server-rendered and static, introduces no homepage client boundary, and retains complete meaning without motion or JavaScript.
 - Eight focused homepage visual baselines and eight Gate 4A.2 review captures cover the calibrated production composition without replacing Gate 2 or Gate 3 regression coverage.
-- Gate 4A.2 calibrates desktop Savings Ledger heading widths and removes the duplicate homepage footer CTA while preserving the approved global footer action on other routes; independent confirmation remains pending.
+- The calibrated static homepage is independently approved at commit `9505c75616eb909f1471f94a2254b48476062fa0`.
+- GitHub Actions run `34320920394` passed against that exact Gate 4A.2 commit.
+- The hero and Savings Ledger header calibration is approved.
+- The Engagement-to-footer transition is approved.
+- The static homepage communicates successfully without motion.
 
 ## In progress
 
-- Independent confirmation of the Gate 4A.2 static calibration.
-- Gate 4B interaction and motion remain pending and must not begin before that confirmation.
+- Gate 4B signature interaction and motion.
 
 ## Blocked
 
@@ -86,4 +89,4 @@
 
 ## Next gate
 
-Begin Gate 4B only after independent confirmation of the Gate 4A.2 static captures. Add signature interaction or motion only where it improves an already successful static composition; 43% still requires that later pass and 45% still requires independent final homepage approval.
+Complete Gate 4B only with measured enhancement of the already successful static composition; 43% requires the interaction pass and 45% still requires independent final homepage approval.
