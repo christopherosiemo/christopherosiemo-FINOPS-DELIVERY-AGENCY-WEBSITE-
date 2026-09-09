@@ -8,6 +8,7 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 
 - `src/app/`: routes, layouts, and route metadata.
 - `src/components/site/`: site-wide composition such as header and footer.
+- `src/components/home/`: bespoke server-rendered homepage narrative units and their shared static composition styles.
 - `src/config/`: compact site identity, navigation, action, footer, and metadata configuration.
 - `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
 - `src/lib/`: reserved for framework-independent utilities when required.
@@ -23,6 +24,8 @@ CSS custom properties remain the source of truth. `src/styles/tokens.css` separa
 The global header and footer remain server components. `SiteNavigation` is the only shell client boundary because it owns pathname-aware `aria-current` state and the native `<dialog>` lifecycle required for the mobile/tablet menu. The native modal supplies background inertness and contained focus; local code handles opening, explicit/Escape close state, and focus return. No state, menu, icon, or animation dependency is used.
 
 Public navigation values and the operator-provided `HKGpipi` identity live in `src/config/site.ts`; the retired `CMR` mark was a working placeholder. Repeated incomplete-route structure is isolated in the server-rendered `RouteScaffold`; it is intentionally not a universal page-template abstraction. Each scaffold exports route metadata with `noindex, nofollow`. Root metadata uses `HKGpipi — Cloud Margin Recovery` with the route template `%s | HKGpipi` and the approved description. Canonical protocol/www policy, social assets, production logo, and organisation metadata remain deferred.
+
+The homepage is composed from narrative-specific Server Components rather than a config-driven marketing renderer. Its Ledger reuses the existing semantic table/labelled-record primitive through narrowly scoped content props, while the Verification Line accepts only contextual labelling. Gate 4A adds no homepage client boundary; all meaning is present in initial HTML and responsive changes are CSS-only.
 
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
 

@@ -52,6 +52,14 @@ Progress is evidence-based and cumulative. A percentage marks the highest fully 
 
 **Prohibited shortcuts:** Fake dashboards, fabricated proof, pricing-card templates, unapproved promises, stock imagery, or animation used to conceal weak hierarchy.
 
+Internal evidence checkpoints within this published gate are:
+
+- **28–38:** Homepage narrative and static production composition. The complete page must succeed without JavaScript-dependent presentation or motion.
+- **38–43:** Signature interaction, motion, responsive refinement, and homepage engineering polish.
+- **43–45:** Independent final homepage review and calibration.
+
+These checkpoints do not alter the overall 28–45 gate or permit a higher value before its corresponding evidence exists.
+
 ## 45–60 — Revenue pages
 
 **Objective:** Present each commercial offer and its boundaries clearly enough to support an informed buying decision.

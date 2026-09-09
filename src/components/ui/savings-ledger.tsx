@@ -1,7 +1,7 @@
 import { StatusBadge, type Status } from "./status-badge";
 import styles from "./savings-ledger.module.css";
 
-type LedgerRow = {
+export type LedgerRow = {
   account: string;
   confidence: string;
   expected: string;
@@ -11,22 +11,39 @@ type LedgerRow = {
   state: Status;
 };
 
-const rows: LedgerRow[] = [
+export const illustrativeLedgerRows: LedgerRow[] = [
   { opportunity: "RDS rightsizing", account: "0987…3210 / payments-api", owner: "Platform", expected: "£4,820 / mo", confidence: "High", risk: "Low", state: "Validated" },
   { opportunity: "NAT architecture", account: "2345…6789 / shared-network", owner: "Core infra", expected: "£2,140 / mo", confidence: "Medium", risk: "Medium", state: "Remediation ready" },
   { opportunity: "Idle EC2", account: "7654…1098 / analytics-sandbox", owner: "Data", expected: "£980 / mo", confidence: "High", risk: "Low", state: "Awaiting approval" },
   { opportunity: "Unused EBS", account: "4567…0123 / ci-builders", owner: "Developer exp.", expected: "£360 / mo", confidence: "High", risk: "Low", state: "Verified" },
 ];
 
-export function SavingsLedger() {
+type SavingsLedgerProps = {
+  headingLevel?: 2 | 3;
+  label?: string;
+  note?: string;
+  rows?: LedgerRow[];
+  title?: string;
+};
+
+export function SavingsLedger({
+  headingLevel = 3,
+  label = "Illustrative dataset",
+  note = "Static design specimen · not customer evidence",
+  rows = illustrativeLedgerRows,
+  title = "Savings Ledger concept",
+}: SavingsLedgerProps = {}) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
+  const RecordHeading = headingLevel === 2 ? "h3" : "h4";
+
   return (
     <div className={styles.ledger} aria-label="Illustrative Savings Ledger" data-testid="savings-ledger-specimen">
       <div className={styles.heading}>
         <div>
-          <p className="technical-label">Illustrative dataset</p>
-          <h3>Savings Ledger concept</h3>
+          <p className="technical-label">{label}</p>
+          <Heading>{title}</Heading>
         </div>
-        <p className={styles.note}>Static design specimen · not customer evidence</p>
+        <p className={styles.note}>{note}</p>
       </div>
 
       <div className={styles.desktop}>
@@ -63,7 +80,7 @@ export function SavingsLedger() {
         {rows.map((row) => (
           <article className={styles.record} key={row.account}>
             <div className={styles.recordTop}>
-              <h4>{row.opportunity}</h4>
+              <RecordHeading>{row.opportunity}</RecordHeading>
               <StatusBadge status={row.state} />
             </div>
             <p className={styles.identifier}>{row.account}</p>

@@ -24,6 +24,10 @@ CI builds before browser testing and runs Playwright against `next start`, so E2
 
 The header frame, footer, site configuration, metadata, and route scaffolds are server-rendered. Client JavaScript is limited to one local `SiteNavigation` boundary for current-path matching and native-dialog control. The shell adds no third-party dependency, icon package, animation runtime, global state, scroll listener, or route-transition code. The production build confirms every current route is statically prerendered; Next.js 16.3.4 does not emit route-level client-byte totals in its standard build table, so no unmeasured bundle-size claim is recorded.
 
+## Homepage implications
+
+Gate 4A adds no homepage client boundary, runtime dependency, image, animation, chart, syntax highlighter, observer, carousel, or state library. The narrative, Ledger records, Terraform diff, flow semantics, Verification Line, and commercial path render in the initial static HTML. CSS media queries provide all responsive composition changes. The existing `SiteNavigation` remains the only shell client boundary; production build output is the authoritative check that `/` remains statically prerendered.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.

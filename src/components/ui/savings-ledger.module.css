@@ -13,11 +13,11 @@
 }
 
 .heading p,
-.heading h3 {
+.heading :is(h2, h3) {
   margin-bottom: 0;
 }
 
-.heading h3 {
+.heading :is(h2, h3) {
   margin-top: var(--space-2);
 }
 
@@ -110,7 +110,7 @@
   gap: var(--space-4);
 }
 
-.record h4,
+.record :is(h3, h4),
 .record p {
   margin-bottom: 0;
 }

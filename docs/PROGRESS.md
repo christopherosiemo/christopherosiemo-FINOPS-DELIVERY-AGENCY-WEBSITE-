@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 28%
+**Current value:** 38%
 
-**Target for this checkpoint:** 28%
+**Target for this checkpoint:** 38%
 
-**Current gate:** Global Shell — complete
+**Current gate:** Homepage — narrative and static production composition implemented; signature interaction and independent homepage review pending
 
 ## Completed
 
@@ -30,10 +30,15 @@
 - Gate 3A shell architecture and Gate 3B HKGpipi identity calibration have been independently reviewed and approved.
 - Desktop and mobile header and footer treatments are approved, together with the 390px and 768px modal navigation.
 - The current typography-based HKGpipi identity treatment is approved for the Global Shell.
+- The public homepage now presents the complete approved narrative from proposition and illustrative Savings Ledger through recommendation gap, six-stage operating method, remediation evidence, customer controls, verification, security boundary, and the commercial engagement path.
+- Homepage evidence remains visibly illustrative, the first engagement remains the £5,000 14-Day AWS Savings Sprint, and the two subsequent implementation routes remain £15,000 fixed or 25% of verified savings.
+- The homepage composition is server-rendered and static, introduces no homepage client boundary, and retains complete meaning without motion or JavaScript.
+- Five high-signal homepage visual baselines and six independent-review captures cover the new production composition without replacing Gate 2 or Gate 3 regression coverage.
 
 ## In progress
 
-- Homepage narrative and static production composition.
+- Signature interaction, motion, responsive refinement, and homepage engineering polish (Gate 4B).
+- Independent final homepage review and calibration after Gate 4B.
 
 ## Blocked
 
@@ -41,7 +46,7 @@
 
 ## Deferred
 
-- Production Savings Ledger and Verification Line components and product behavior.
+- Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
 - Deeper route content architecture, verification methodology, conversion fields and qualification logic.
 - Analytics, security integrations, production budgets, and production qualification.
 
@@ -73,7 +78,11 @@
 - Responsive inspection at 320, 390, 768, 1024, 1280, 1440, and 1728px found no horizontal overflow or identity/header/footer collisions; six Gate 3B review PNGs were produced for independent assessment.
 - The independently approved Global Shell is recorded at commit `da66ccb622eb97de69f5017bf9ed020638016464`.
 - GitHub Actions run `34281844179` completed successfully on that exact commit.
+- Gate 4A adds no homepage-specific client JavaScript; `/` remains statically prerendered in the production build.
+- Homepage functional coverage now protects the proposition, CTA destinations, prices, illustrative labels, ordered method, remediation diff, verification values, security path, footer, prohibited proof language, JavaScript-disabled comprehension, Axe results, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
+- Five focused homepage visual snapshots cover hero/Ledger, method, remediation, verification, and engagement while the two full-page and two homepage-top baselines are intentionally refreshed.
+- Six Gate 4A review PNGs are stored under `outputs/gate-4a-review/` for independent review; no independent homepage approval is claimed.
 
 ## Next gate
 
-Build the homepage narrative and static production composition. Record 38% only after Gate 4A mechanical criteria pass; signature interaction and independent final homepage review remain later sub-gates.
+Begin Gate 4B only after reviewing the Gate 4A static captures. Add signature interaction or motion only where it improves an already successful static composition; 43% still requires that later pass and 45% still requires independent final homepage approval.

@@ -36,6 +36,24 @@ for (const viewport of [
   });
 }
 
+for (const [name, selector] of [
+  ["homepage-hero-ledger", "section[aria-labelledby='page-title']"],
+  ["homepage-method", "section[aria-labelledby='method-sequence']"],
+  ["homepage-remediation", "section[aria-labelledby='remediation-evidence']"],
+  ["homepage-verification", "section[aria-labelledby='verification-evidence']"],
+  ["homepage-engagement", "section[aria-labelledby='engagement-path']"],
+] as const) {
+  test(`${name} high-signal homepage baseline`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, {
+      animations: "disabled",
+      caret: "initial",
+    });
+  });
+}
+
 test("high-signal design primitives", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/design-system");

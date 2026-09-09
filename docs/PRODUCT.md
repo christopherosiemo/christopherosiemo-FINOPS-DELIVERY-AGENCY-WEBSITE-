@@ -16,7 +16,7 @@ Recommendations are estimated opportunities. Savings become verified only after 
 
 ### Savings Ledger
 
-A future product-like visual object that records opportunities, confidence, engineering risk, ownership, remediation, approval state, and the path from estimated to verified savings. Its final schema and interface are TBD; do not build it before the relevant design/product gate.
+The homepage uses a static, visibly illustrative Savings Ledger to explain how opportunities retain confidence, engineering risk, ownership, remediation, approval state, and the path from estimated to verified savings. It ranks four representative opportunities by value, confidence, and engineering risk and is not customer evidence. Final product schema, interactivity, sorting, provenance presentation, and integration remain TBD.
 
 ### 14-Day AWS Savings Sprint
 
@@ -48,3 +48,7 @@ Thirty days currently refers to the intended post-change verification period. �
 - Secondary: **See how verification works**
 
 Final form fields, routing, consent language, and lead-qualification logic are TBD.
+
+## Homepage-approved positioning
+
+The approved homepage proposition is **“Turn AWS waste into verified savings.”** Its support is: **“We find the savings, produce the engineering changes, work through your existing approval process and verify the reduction on your AWS bill.”** The complete approved narrative and illustrative-data boundaries are authoritative in `HOMEPAGE.md`.

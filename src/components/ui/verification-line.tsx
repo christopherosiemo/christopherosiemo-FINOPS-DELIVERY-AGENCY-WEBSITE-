@@ -21,7 +21,17 @@ function withMathematicalMinus(value: string) {
   return value.replace("-", "−");
 }
 
-export function VerificationLine({ animated = false }: { animated?: boolean }) {
+type VerificationLineProps = {
+  animated?: boolean;
+  context?: string;
+  label?: string;
+};
+
+export function VerificationLine({
+  animated = false,
+  context,
+  label = "Illustrative values",
+}: VerificationLineProps = {}) {
   const expected = currency.format(expectedSaving);
   const verified = currency.format(verifiedSaving);
   const varianceAmount = withMathematicalMinus(currency.format(variance));
@@ -30,8 +40,8 @@ export function VerificationLine({ animated = false }: { animated?: boolean }) {
   return (
     <figure className={styles.figure} data-motion={animated ? "animated" : "static"} data-testid="verification-line-specimen">
       <figcaption className={styles.caption}>
-        <span className="technical-label">Illustrative values</span>
-        <span>{animated ? "Motion-enabled demonstration" : "Static demonstration"}</span>
+        <span className="technical-label">{label}</span>
+        <span>{context ?? (animated ? "Motion-enabled demonstration" : "Static demonstration")}</span>
       </figcaption>
       <div className={styles.values}>
         <div className={styles.value}>

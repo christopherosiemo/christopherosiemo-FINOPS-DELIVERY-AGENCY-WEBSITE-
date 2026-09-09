@@ -38,3 +38,12 @@ Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/re
 - The full-viewport menu respects top and bottom safe-area insets. Reduced-motion preferences collapse its transition without delaying visibility or interaction.
 - The sticky-header height is a semantic token and contributes to document scroll padding, preserving skip-link, focus, and hash-target visibility.
 - Direct Playwright coverage verifies dialog state, focus entry/containment/return, Escape, explicit close, active routes, landmarks, CTA/footer semantics, reduced motion, and overflow across 320–1728px. Axe runs on the homepage, a scaffold, and the open modal state.
+
+## Homepage decisions
+
+- The homepage has exactly one H1 and each narrative unit is a labelled semantic section with a logical H2 hierarchy.
+- The Savings Ledger retains its semantic table and caption at 1280px and above, then uses complete labelled records below that threshold. Every operational example has a visible illustrative label.
+- State and approval paths are ordered lists; connector marks are supplemental. The remediation diff uses semantic `pre` and `code` with an accessible label and contained overflow.
+- The Verification Line exposes expected, verified, absolute variance, and percentage variance as text. Its conceptual equation has an equivalent accessible label.
+- All homepage content and meaning render in initial HTML and remain complete without motion, hover, colour, or homepage-specific client JavaScript.
+- Automated coverage checks Axe, landmark and heading structure, keyboard access, target destinations, content truth, JavaScript-disabled comprehension, and page overflow across the required responsive matrix. Manual keyboard, focus, reflow, and visual content review remain required alongside Axe.
