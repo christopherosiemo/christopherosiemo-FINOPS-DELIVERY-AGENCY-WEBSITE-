@@ -13,6 +13,14 @@ async function fillVisualEnquiry(page: import("@playwright/test").Page) {
   });
 }
 
+async function settleConversionCapture(page: import("@playwright/test").Page) {
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => {
+    (document.activeElement as HTMLElement | null)?.blur();
+    window.scrollTo(0, 0);
+  });
+}
+
 const designSystemViewports = [
   { name: "design-system-390x844", width: 390, height: 844 },
   { name: "design-system-768x1024", width: 768, height: 1024 },
@@ -76,7 +84,7 @@ for (const viewport of [
   test(`${viewport.name} conversion baseline`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto("/start");
-    await page.evaluate(() => document.fonts.ready);
+    await settleConversionCapture(page);
     await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
@@ -93,8 +101,8 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/start");
     await page.getByRole("button", { name: "Send enquiry" }).click();
-    await page.evaluate(() => document.fonts.ready);
-    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await expect(page.getByRole("heading", { name: "Check the following fields." })).toBeVisible();
+    await settleConversionCapture(page);
     await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
@@ -108,8 +116,8 @@ test("start-success-1440 conversion baseline", async ({ page }) => {
   await page.goto("/start?scenario=success");
   await fillVisualEnquiry(page);
   await page.getByRole("button", { name: "Send enquiry" }).click();
-  await page.evaluate(() => document.fonts.ready);
-  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await expect(page.locator('[data-submission-result="success"]')).toBeVisible();
+  await settleConversionCapture(page);
   await expect(page).toHaveScreenshot("start-success-1440.png", {
     animations: "disabled",
     caret: "initial",
@@ -122,8 +130,8 @@ test("start-failure-390 conversion baseline", async ({ page }) => {
   await page.goto("/start?scenario=retryable-failure");
   await fillVisualEnquiry(page);
   await page.getByRole("button", { name: "Send enquiry" }).click();
-  await page.evaluate(() => document.fonts.ready);
-  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await expect(page.locator('[data-submission-result="failure"]')).toBeVisible();
+  await settleConversionCapture(page);
   await expect(page).toHaveScreenshot("start-failure-390.png", {
     animations: "disabled",
     caret: "initial",
