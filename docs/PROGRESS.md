@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 43%
+**Current value:** 45%
 
-**Target for this checkpoint:** 43%
+**Target for this checkpoint:** 45%
 
-**Current gate:** Homepage — signature interaction and motion implemented; independent final homepage approval pending
+**Current gate:** Homepage — complete and independently approved
 
 ## Completed
 
@@ -43,10 +43,15 @@
 - Finite measured entrances, two ordered structural sequences, and one Verification reconciliation are triggered once by Intersection Observer and then unobserved.
 - Reduced-motion sessions settle immediately without choreography, while JavaScript-disabled sessions retain the independently approved static page.
 - Review stills and natural-scroll recordings cover desktop, mobile, standard-motion, and reduced-motion outcomes under `outputs/gate-4b-review/`.
+- The complete homepage, including its calibrated static composition and measured motion layer, is independently approved.
+- The static homepage approval remains anchored at commit `9505c75616eb909f1471f94a2254b48476062fa0`; the approved motion implementation is commit `ff306841e98450862a120618dd0ede1558d9aa32`.
+- GitHub Actions run `34346346121` completed successfully against the exact motion commit `ff306841e98450862a120618dd0ede1558d9aa32`.
+- Desktop and mobile standard-motion and reduced-motion recordings were independently reviewed. The hero remains immediate, entrances are finite and once-only, and the Verification signature reconciliation is approved.
+- Reduced-motion and JavaScript-disabled homepage experiences are complete and preserve the full approved narrative.
 
 ## In progress
 
-- Independent final homepage approval.
+- Revenue-page commercial narrative and static decision experience.
 
 ## Blocked
 
@@ -97,4 +102,4 @@
 
 ## Next gate
 
-Obtain independent final homepage approval before recording 45% or beginning Gate 4C.
+Implement the 45–53 revenue-page commercial narrative and static decision experience. The 53–57 range is reserved for consistency and responsive refinement; 57–60 requires independent approval.
