@@ -38,7 +38,7 @@ export function VerificationLine({
   const variancePercent = withMathematicalMinus(percentage.format(varianceRatio));
 
   return (
-    <figure className={styles.figure} data-motion={animated ? "animated" : "static"} data-testid="verification-line-specimen">
+    <figure className={styles.figure} data-motion={animated ? "animated" : "static"} data-verification-line data-testid="verification-line-specimen">
       <figcaption className={styles.caption}>
         <span className="technical-label">{label}</span>
         <span>{context ?? (animated ? "Motion-enabled demonstration" : "Static demonstration")}</span>
@@ -54,13 +54,13 @@ export function VerificationLine({
         </div>
       </div>
       <div className={styles.reconciliation} aria-hidden="true">
-        <span className={styles.line} />
+        <span className={styles.line} data-verification-track />
         <span className={styles.expectedMarker} />
-        <span className={styles.variance} data-testid="verification-line-animation">
+        <span className={styles.variance} data-verification-variance data-testid="verification-line-animation">
           <span>Variance to expected</span>
           <strong>{varianceAmount} · {variancePercent}</strong>
         </span>
-        <span className={styles.verifiedMarker} />
+        <span className={styles.verifiedMarker} data-verification-endpoint />
       </div>
       <p className={styles.description}>
         Illustrative reconciliation: expected annualised saving {expected}; verified annualised saving {verified}; variance to expected {varianceAmount} ({variancePercent}).

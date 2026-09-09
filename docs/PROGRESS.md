@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 38%
+**Current value:** 43%
 
-**Target for this checkpoint:** 38%
+**Target for this checkpoint:** 43%
 
-**Current gate:** Homepage — static composition calibrated; Gate 4B interaction pass pending independent confirmation
+**Current gate:** Homepage — signature interaction and motion implemented; independent final homepage approval pending
 
 ## Completed
 
@@ -39,10 +39,14 @@
 - The hero and Savings Ledger header calibration is approved.
 - The Engagement-to-footer transition is approved.
 - The static homepage communicates successfully without motion.
+- Gate 4B adds one null-rendering homepage client controller; all narrative sections remain Server Components and the initial HTML retains the complete approved meaning.
+- Finite measured entrances, two ordered structural sequences, and one Verification reconciliation are triggered once by Intersection Observer and then unobserved.
+- Reduced-motion sessions settle immediately without choreography, while JavaScript-disabled sessions retain the independently approved static page.
+- Review stills and natural-scroll recordings cover desktop, mobile, standard-motion, and reduced-motion outcomes under `outputs/gate-4b-review/`.
 
 ## In progress
 
-- Gate 4B signature interaction and motion.
+- Independent final homepage approval.
 
 ## Blocked
 
@@ -86,7 +90,11 @@
 - Homepage functional coverage now protects the proposition, CTA destinations, prices, illustrative labels, ordered method, remediation diff, verification values, security path, footer, prohibited proof language, JavaScript-disabled comprehension, Axe results, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
 - Five focused homepage visual snapshots cover hero/Ledger, method, remediation, verification, and engagement while the two full-page and two homepage-top baselines are intentionally refreshed.
 - Six Gate 4A review PNGs are stored under `outputs/gate-4a-review/` for independent review; no independent homepage approval is claimed.
+- Gate 4B validation passed on 2026-09-09: frozen install, lint, strict typecheck, 6 component tests, 52 functional Chromium checks, production build, and 21 canonical Linux/Chromium visual comparisons at the unchanged `0.002` tolerance.
+- Motion checks cover semantic completeness, controller opt-in, below-fold entry, once-only behavior, Recommendation and customer-control sequence completion, Verification values and final state, preference changes, reduced motion, JavaScript-disabled comprehension, geometry preservation, Axe, keyboard operation, runtime logs, and responsive overflow.
+- Responsive motion review at 390, 768, 1024, 1280, 1440, and 1728px confirms top-to-bottom mobile sequence treatment, left-to-right tablet/desktop treatment, no horizontal overflow, and no motion backlog or replay.
+- The production build keeps `/` statically prerendered. Gate 4B adds one client component and no dependencies; motion does not remove or defer initial HTML content.
 
 ## Next gate
 
-Complete Gate 4B only with measured enhancement of the already successful static composition; 43% requires the interaction pass and 45% still requires independent final homepage approval.
+Obtain independent final homepage approval before recording 45% or beginning Gate 4C.

@@ -1,6 +1,14 @@
 # Homepage
 
-This document is the authoritative specification for the public homepage. Gate 4A establishes the complete narrative and static production composition; motion and signature interaction are not part of this gate.
+This document is the authoritative specification for the public homepage. Gate 4A establishes the complete narrative and static production composition; Gate 4B adds a static-first, progressively enhanced motion layer without changing that narrative.
+
+## Motion enhancement contract
+
+The homepage keeps its narrative in Server Components and mounts one null-rendering client controller. JavaScript adds `data-motion-controller="active"` to the homepage `main`; standard-motion sessions also receive `data-motion-ready="true"`. Only that ready state permits CSS to attenuate pending targets. Reduced-motion sessions never receive the ready attribute and are settled immediately.
+
+Stable enhancement and test hooks are `data-motion-reveal`, `data-motion-sequence`, `data-motion-verification`, and `data-motion-state="pending|entered"`. The Verification Line exposes `data-verification-line`, `data-verification-track`, `data-verification-variance`, and `data-verification-endpoint`. These attributes describe presentation state only and never encode commercial states such as Validated, Approved, or Verified.
+
+Targets enter once through an Intersection Observer at a `0.18` threshold with `0px 0px -10% 0px` root margin, then are unobserved. There are no scroll listeners, animation-frame loops, replay, count-ups, or changes to initial HTML meaning. With JavaScript disabled, all content remains fully visible in its approved static composition.
 
 ## Visitor narrative and section order
 

@@ -14,7 +14,7 @@
 
 .heroGrid {
   align-items: start;
-  row-gap: var(--space-16);
+  row-gap: var(--grid-gap);
 }
 
 .heroCopy,
@@ -481,6 +481,125 @@
   font-family: var(--font-family-mono);
   font-size: var(--type-caption-size);
   text-transform: uppercase;
+}
+
+/* Static-first enhancement: pending content only attenuates after the client controller opts in. */
+:global(main[data-homepage="true"][data-motion-ready="true"]) .sectionIntro[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .methodList[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .remediationFacts[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .diffSpecimen[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .boundaries[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .sprintOffer[data-motion-reveal],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .implementationRoutes[data-motion-reveal] {
+  transition:
+    opacity 520ms var(--ease-standard),
+    transform 520ms var(--ease-standard);
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) [data-motion-reveal="follow"] {
+  transition-delay: 72ms;
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .sectionIntro[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .methodList[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .remediationFacts[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .diffSpecimen[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .boundaries[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .sprintOffer[data-motion-state="pending"],
+:global(main[data-homepage="true"][data-motion-ready="true"]) .implementationRoutes[data-motion-state="pending"] {
+  opacity: 0.86;
+  transform: translateY(8px);
+}
+
+.statePath[data-motion-sequence] li > span,
+.statePath[data-motion-sequence] li > strong,
+.approvalFlow[data-motion-sequence] li::before {
+  transition:
+    opacity 200ms var(--ease-standard),
+    transform 200ms var(--ease-standard);
+  transition-delay: calc((var(--motion-order, 0) * 45ms));
+}
+
+.statePath[data-motion-sequence] li:nth-child(1),
+.approvalFlow[data-motion-sequence] li:nth-child(1) { --motion-order: 0; }
+.statePath[data-motion-sequence] li:nth-child(2),
+.approvalFlow[data-motion-sequence] li:nth-child(2) { --motion-order: 1; }
+.statePath[data-motion-sequence] li:nth-child(3),
+.approvalFlow[data-motion-sequence] li:nth-child(3) { --motion-order: 2; }
+.statePath[data-motion-sequence] li:nth-child(4),
+.approvalFlow[data-motion-sequence] li:nth-child(4) { --motion-order: 3; }
+.statePath[data-motion-sequence] li:nth-child(5),
+.approvalFlow[data-motion-sequence] li:nth-child(5) { --motion-order: 4; }
+.statePath[data-motion-sequence] li:nth-child(6),
+.approvalFlow[data-motion-sequence] li:nth-child(6) { --motion-order: 5; }
+.statePath[data-motion-sequence] li:nth-child(7) { --motion-order: 6; }
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .statePath[data-motion-state="pending"] li > span,
+:global(main[data-homepage="true"][data-motion-ready="true"]) .statePath[data-motion-state="pending"] li > strong {
+  opacity: 0.72;
+  transform: translateX(-4px);
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .approvalFlow[data-motion-state="pending"] li::before {
+  opacity: 0.35;
+  transform: translateX(-4px);
+}
+
+.statePath[data-motion-sequence] li:last-child::after {
+  transition:
+    opacity 200ms var(--ease-standard) 300ms,
+    transform 200ms var(--ease-standard) 300ms;
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .statePath[data-motion-state="pending"] li:last-child::after {
+  opacity: 0.4;
+  transform: rotate(45deg) scale(0.78);
+}
+
+.verificationSection :global([data-motion-verification] [data-verification-track]),
+.verificationSection :global([data-motion-verification] [data-verification-variance]),
+.verificationSection :global([data-motion-verification] [data-verification-endpoint]) {
+  transition-duration: var(--duration-narrative);
+  transition-property: opacity, transform;
+  transition-timing-function: var(--ease-standard);
+}
+
+.verificationSection :global([data-motion-verification] [data-verification-track]) {
+  transform-origin: left center;
+}
+
+.verificationSection :global([data-motion-verification] [data-verification-variance]) {
+  transition-delay: 60ms;
+}
+
+.verificationSection :global([data-motion-verification] [data-verification-endpoint]) {
+  transition-delay: 100ms;
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .verificationSection :global([data-motion-verification][data-motion-state="pending"] [data-verification-track]) {
+  opacity: 0.56;
+  transform: scaleX(0.92);
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .verificationSection :global([data-motion-verification][data-motion-state="pending"] [data-verification-variance]) {
+  opacity: 0.72;
+  transform: translateY(4px);
+}
+
+:global(main[data-homepage="true"][data-motion-ready="true"]) .verificationSection :global([data-motion-verification][data-motion-state="pending"] [data-verification-endpoint]) {
+  opacity: 0.5;
+  transform: translateY(-50%) rotate(45deg) scale(0.78);
+}
+
+@media (max-width: 47.999rem) {
+  :global(main[data-homepage="true"][data-motion-ready="true"]) .statePath[data-motion-state="pending"] li > span,
+  :global(main[data-homepage="true"][data-motion-ready="true"]) .statePath[data-motion-state="pending"] li > strong {
+    transform: translateY(-3px);
+  }
+
+  :global(main[data-homepage="true"][data-motion-ready="true"]) .approvalFlow[data-motion-state="pending"] li::before {
+    transform: translateY(-3px);
+  }
 }
 
 @media (min-width: 48rem) {

@@ -15,12 +15,12 @@ export function RecommendationGap() {
   return (
     <section className={styles.majorSection} aria-labelledby="recommendation-gap">
       <div className="container">
-        <div className={styles.sectionIntro}>
+        <div className={styles.sectionIntro} data-motion-reveal data-motion-state="pending">
           <p className="technical-label">01 · From estimate to outcome</p>
           <h2 id="recommendation-gap">Recommendations aren&apos;t savings.<br />Shipped changes are.</h2>
           <p>The value is lost between identifying an opportunity and getting a safe change into production. HKGpipi owns the path from discovery to measurement.</p>
         </div>
-        <div className={styles.statePath} data-testid="recommendation-gap-path">
+        <div className={styles.statePath} data-motion-sequence data-motion-state="pending" data-testid="recommendation-gap-path">
           <p className="technical-label">Illustrative</p>
           <ol>
             {gapStates.map((state, index) => (
@@ -41,11 +41,11 @@ export function MethodSequence() {
   return (
     <section className={styles.methodSection} aria-labelledby="method-sequence">
       <div className="container">
-        <div className={styles.sectionIntro}>
+        <div className={styles.sectionIntro} data-motion-reveal data-motion-state="pending">
           <p className="technical-label">02 · Operating method</p>
           <h2 id="method-sequence">One accountable path from opportunity to bill.</h2>
         </div>
-        <ol className={styles.methodList} data-testid="method-sequence-list">
+        <ol className={styles.methodList} data-motion-reveal data-motion-state="pending" data-testid="method-sequence-list">
           {methodStages.map(([number, title, description]) => (
             <li key={number}>
               <span className={styles.stageNumber}>{number}</span>

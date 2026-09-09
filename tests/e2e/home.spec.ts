@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { settleHomepageMotion } from "./helpers/home-motion";
 
 const methodStages = ["Find", "Validate", "Assign", "Change", "Approve", "Verify"];
 const ledgerHeaders = [
@@ -117,6 +118,7 @@ test("homepage is keyboard accessible and has no obvious Axe violations", async 
   await expect(skipLink).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("#main-content")).toBeFocused();
+  await settleHomepageMotion(page);
 
   const accessibility = await new AxeBuilder({ page }).analyze();
   expect(accessibility.violations).toEqual([]);
@@ -133,8 +135,78 @@ test("homepage remains comprehensible with JavaScript disabled", async ({ browse
   await expect(page.getByTestId("remediation-evidence")).toContainText("db.r6g.2xlarge");
   await expect(page.getByTestId("homepage-verification-line")).toContainText("£176,420");
   await expect(page.locator("section[aria-labelledby='engagement-path']")).toContainText("£5,000");
+  expect(await page.locator('main[data-homepage="true"]').getAttribute("data-motion-controller")).toBeNull();
 
   await context.close();
+});
+
+test("homepage motion enters once without changing geometry or financial evidence", async ({ page }) => {
+  const runtimeErrors: string[] = [];
+  page.on("pageerror", (error) => runtimeErrors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") runtimeErrors.push(message.text());
+  });
+
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const homepage = page.locator('main[data-homepage="true"]');
+  await expect(homepage).toHaveAttribute("data-motion-controller", "active");
+  await expect(homepage).toHaveAttribute("data-motion-ready", "true");
+
+  const recommendation = page.getByTestId("recommendation-gap-path");
+  await expect(recommendation).toContainText("Opportunity");
+  await expect(recommendation).toContainText("Verified");
+  await expect(recommendation).toHaveAttribute("data-motion-state", "pending");
+  const before = await recommendation.boundingBox();
+  await recommendation.scrollIntoViewIfNeeded();
+  await expect(recommendation).toHaveAttribute("data-motion-state", "entered");
+  const after = await recommendation.boundingBox();
+  expect(before).not.toBeNull();
+  expect(after).not.toBeNull();
+  expect(after!.width).toBe(before!.width);
+  expect(after!.height).toBe(before!.height);
+
+  await page.locator("#page-title").scrollIntoViewIfNeeded();
+  await recommendation.scrollIntoViewIfNeeded();
+  await expect(recommendation).toHaveAttribute("data-motion-state", "entered");
+
+  const controls = page.locator("[data-motion-sequence]").nth(1);
+  await controls.scrollIntoViewIfNeeded();
+  await expect(controls).toHaveAttribute("data-motion-state", "entered");
+
+  const verification = page.locator("[data-motion-verification]");
+  await expect(verification).toContainText("£184,000");
+  await expect(verification).toContainText("−£7,580 · −4.1%");
+  await expect(verification).toContainText("£176,420");
+  await verification.scrollIntoViewIfNeeded();
+  await expect(verification).toHaveAttribute("data-motion-state", "entered");
+  await expect(verification).toContainText("£184,000");
+  await expect(verification).toContainText("−£7,580 · −4.1%");
+  await expect(verification).toContainText("£176,420");
+
+  expect(runtimeErrors).toEqual([]);
+});
+
+test("reduced motion resolves every homepage target without choreography", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  const homepage = page.locator('main[data-homepage="true"]');
+  await expect(homepage).toHaveAttribute("data-motion-controller", "active");
+  await expect(homepage).toHaveAttribute("data-motion-preference", "reduced");
+  expect(await homepage.getAttribute("data-motion-ready")).toBeNull();
+
+  const targets = homepage.locator("[data-motion-reveal], [data-motion-sequence], [data-motion-verification]");
+  expect(await targets.count()).toBeGreaterThan(0);
+  expect(await targets.evaluateAll((elements) => elements.every((element) => (element as HTMLElement).dataset.motionState === "entered"))).toBe(true);
+  expect(await homepage.evaluate((element) => element.getAnimations({ subtree: true }).length)).toBe(0);
+  await expect(page.getByTestId("homepage-verification-line")).toContainText("£176,420");
+
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(homepage).toHaveAttribute("data-motion-preference", "standard");
+  await expect(page.getByTestId("recommendation-gap-path")).toHaveAttribute("data-motion-state", "entered");
 });
 
 for (const viewport of responsiveMatrix) {

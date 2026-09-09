@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { settleHomepageMotion } from "./helpers/home-motion";
 
 const designSystemViewports = [
   { name: "design-system-390x844", width: 390, height: 844 },
@@ -28,6 +29,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await settleHomepageMotion(page);
     await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
@@ -47,6 +49,7 @@ for (const [name, selector] of [
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await settleHomepageMotion(page);
     await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, {
       animations: "disabled",
@@ -59,6 +62,7 @@ test("homepage-hero-ledger-1280 high-signal homepage baseline", async ({ page })
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
+  await settleHomepageMotion(page);
   await expect(page.locator("section[aria-labelledby='page-title']")).toHaveScreenshot(
     "homepage-hero-ledger-1280.png",
     { animations: "disabled", caret: "initial" },
@@ -73,6 +77,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await settleHomepageMotion(page);
     await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await page.addStyleTag({
       content: "body > header, .skip-link { visibility: hidden !important; }",
@@ -114,6 +119,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await settleHomepageMotion(page);
     await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
       caret: "initial",
@@ -128,6 +134,7 @@ for (const viewport of [
   test(`${viewport.name} shell review baseline`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto("/");
+    await settleHomepageMotion(page);
     await page.getByRole("button", { name: "Open primary navigation" }).click();
     await page.evaluate(() => document.fonts.ready);
     await expect(page).toHaveScreenshot(`${viewport.name}.png`, {
@@ -145,6 +152,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await settleHomepageMotion(page);
     if (viewport.width < 768) {
       await page.addStyleTag({
         content: "body > header, .skip-link { visibility: hidden !important; }",

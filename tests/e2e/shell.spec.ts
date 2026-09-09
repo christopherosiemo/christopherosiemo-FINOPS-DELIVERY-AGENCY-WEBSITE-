@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { settleHomepageMotion } from "./helpers/home-motion";
 
 const publicScaffolds = [
   "/method",
@@ -177,6 +178,7 @@ test("homepage, scaffold, and open dialog have no detectable Axe violations", as
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ["/", "/method"]) {
     await page.goto(path);
+    if (path === "/") await settleHomepageMotion(page);
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   }
   await page.getByRole("button", { name: "Open primary navigation" }).click();
