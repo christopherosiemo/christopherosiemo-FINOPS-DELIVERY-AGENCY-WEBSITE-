@@ -109,7 +109,7 @@ for (const viewport of [
 ]) {
   test(`${viewport.name} shell review baseline`, async ({ page }) => {
     await page.setViewportSize(viewport);
-    await page.goto("/method");
+    await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     await expect(page.getByRole("contentinfo")).toHaveScreenshot(`${viewport.name}.png`, {
       animations: "disabled",
