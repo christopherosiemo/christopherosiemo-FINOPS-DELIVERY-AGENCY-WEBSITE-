@@ -2,6 +2,8 @@
 
 This document is the authoritative narrative and claim boundary for the production `/method`, `/verification`, and `/security` pages. It does not establish contractual terms, customer evidence, certifications, or a production AWS access policy.
 
+Each Trust route resolves its next action inside the page. The shared global footer CTA is suppressed on these routes while footer navigation and identity remain present.
+
 ## Method
 
 HKGpipi uses one operating chain: **Find → Validate → Assign → Change → Approve → Verify**.
@@ -33,7 +35,7 @@ Discovery is intended to use tightly constrained read-only AWS access. The exact
 
 Implementation remains within the customer's engineering path: HKGpipi remediation → customer repository or ticketing process → customer review → CI/checks → customer approval → customer-controlled deployment.
 
-Before access is granted, the requested AWS permission scope, intended data categories, engineering-workflow boundary, and verification-access requirements must be available for review. An explicit access model is required before production access is used.
+Before AWS access is granted, the requested AWS permission scope, intended data categories, engineering-workflow boundary, and verification-access requirements must be available for review. The engagement-specific access model is reviewed before that access is granted.
 
 Security certifications, retention commitments, data-residency terms, subprocessors, and formal assurance documents may be published only when established and approved. Their absence must not be converted into an implied claim.
 

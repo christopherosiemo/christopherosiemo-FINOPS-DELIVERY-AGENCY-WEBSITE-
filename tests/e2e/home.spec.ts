@@ -110,6 +110,7 @@ for (const viewport of [
 }
 
 test("homepage is keyboard accessible and has no obvious Axe violations", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
 

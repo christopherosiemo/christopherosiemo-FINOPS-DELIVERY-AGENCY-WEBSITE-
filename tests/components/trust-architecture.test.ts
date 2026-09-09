@@ -12,6 +12,7 @@ const trustSources = [
 describe("Trust architecture", () => {
   it("keeps every Trust narrative server-rendered", () => {
     for (const source of trustSources) expect(source).not.toMatch(/["']use client["']/);
+    expect(trustSources.at(-1)).toContain('data-suppress-footer-cta="true"');
   });
 
   it("centralises the approved operating sequence and boundaries", () => {

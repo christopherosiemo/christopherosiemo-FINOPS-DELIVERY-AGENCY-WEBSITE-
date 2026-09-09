@@ -11,7 +11,13 @@ type TrustHeroProps = {
 
 export function TrustPage({ children }: { children: ReactNode }) {
   return (
-    <main id="main-content" className={styles.page} data-route-stage="trust" tabIndex={-1}>
+    <main
+      id="main-content"
+      className={styles.page}
+      data-route-stage="trust"
+      data-suppress-footer-cta="true"
+      tabIndex={-1}
+    >
       {children}
     </main>
   );

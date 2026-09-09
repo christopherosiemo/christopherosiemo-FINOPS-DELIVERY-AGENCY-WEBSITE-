@@ -2,6 +2,11 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const trustRoutes = ["/method", "/verification", "/security"] as const;
+const trustSecondaryActions = {
+  "/method": { label: "See verification methodology", href: "/verification" },
+  "/verification": { label: "Review the operating method", href: "/method" },
+  "/security": { label: "Review the method", href: "/method" },
+} as const;
 const allPublicNarrativeRoutes = ["/", "/savings-sprint", "/implementation", "/pricing", ...trustRoutes] as const;
 const responsiveMatrix = [
   { width: 320, height: 700 }, { width: 390, height: 844 }, { width: 768, height: 1024 },
@@ -50,9 +55,28 @@ test("Security states constrained discovery and customer-controlled production",
   await expect(page.getByTestId("security-change-control").locator("li")).toHaveText(["HKGpipi remediation", "Customer repository / ticketing process", "Customer review", "CI / checks", "Customer approval", "Customer-controlled deployment"]);
   await expect(page.getByText(/published only when they are established and approved/)).toBeVisible();
   await expect(page.getByText(/requested AWS permission scope, intended data categories/)).toBeVisible();
+  await expect(page.getByText(/The engagement-specific access model is reviewed before AWS access is granted/)).toBeVisible();
   await expect(page.getByRole("link", { name: "Review the method" })).toHaveAttribute("href", "/method");
-  expect(await page.locator("body").innerText()).not.toMatch(/retention (?:period|term|window|of|for)?\s*\d/i);
+  const publicText = await page.locator("body").innerText();
+  expect(publicText).not.toMatch(/production access/i);
+  expect(publicText).toMatch(/read-only AWS access/i);
+  expect(publicText).toMatch(/customer-controlled (?:production|deployment)/i);
+  expect(publicText).not.toMatch(/retention (?:period|term|window|of|for)?\s*\d/i);
 });
+
+for (const path of trustRoutes) {
+  test(`${path} resolves conversion once before the structural footer`, async ({ page }) => {
+    await page.goto(path);
+    const main = page.locator('main[data-suppress-footer-cta="true"]');
+    const footer = page.getByRole("contentinfo");
+    const secondary = trustSecondaryActions[path];
+    await expect(main.getByRole("link", { name: "Start a Savings Sprint" })).toBeVisible();
+    await expect(main.getByRole("link", { name: secondary.label })).toHaveAttribute("href", secondary.href);
+    await expect(footer.locator("[data-footer-cta]")).toBeHidden();
+    await expect(footer.getByRole("navigation", { name: "Footer navigation" })).toBeVisible();
+    await expect(footer.getByText("HKGpipi", { exact: true })).toBeVisible();
+  });
+}
 
 test("public narratives contain no prohibited proof or guarantee claims", async ({ page }) => {
   for (const path of allPublicNarrativeRoutes) {

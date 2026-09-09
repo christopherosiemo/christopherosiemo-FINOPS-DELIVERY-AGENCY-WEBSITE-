@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 67%
 
-**Current gate:** Trust — Method, Verification, and Security narratives implemented; independent trust and claim review pending
+**Current gate:** Trust — Trust pages calibrated; independent final Trust approval pending
 
 ## Completed
 
@@ -68,10 +68,13 @@
 - Security separates read-only discovery from implementation, states that the engagement-specific access policy is reviewed before access, and makes customer review, approval, and deployment control visible without inventing assurance claims.
 - Trust vocabulary and claim boundaries are authoritative in `docs/TRUST.md`; shared factual constants remain in a compact immutable server-safe module while detailed narrative stays route-local.
 - The three Trust routes remain statically prerendered and add no client component, runtime dependency, imagery, or motion.
+- Independent review approved the Trust architecture, page narratives, Verification model, Method responsibility split, Security access boundary, change-control composition, and mobile structure, identifying only two bounded calibration defects.
+- Method, Verification, and Security now suppress the duplicate global footer CTA through the existing server-rendered suppression contract while retaining their page-specific actions, footer navigation, and HKGpipi identity.
+- Security now states that the engagement-specific access model is reviewed before AWS access is granted, avoiding language that could imply independent production authority.
 
 ## In progress
 
-- Independent Trust/security consistency, claim, and optical review.
+- Independent final Trust approval of the Gate 6B conversion and access-language calibration.
 
 ## Blocked
 
@@ -134,6 +137,10 @@
 - Trust-route coverage protects the canonical six-stage order, responsibility and access matrices, traceability disclaimer, verification definitions and illustrative values, 30-day boundary, customer-controlled deployment path, CTA destinations, noindex/nofollow metadata, focused prohibited-claim scanning, JavaScript-disabled meaning, keyboard access, Axe results, runtime logs, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
 - Six new high-signal canonical visual baselines cover Method operating detail and responsibility, Verification definitions and reconciliation, and Security access and change-control boundaries without replacing approved baselines.
 - Nine neutral-focus Gate 6A review captures are stored under `outputs/gate-6a-review/` for independent review; no independent Trust-page approval is claimed.
+- Gate 6B calibration validation passed on 2026-09-09: frozen install, lint, strict typecheck, 9 unit/component tests, production build, 78 functional Chromium checks, and 34 unchanged canonical Linux/Chromium visual comparisons at the retained `0.002` tolerance.
+- Conversion-boundary coverage confirms all three Trust routes retain their page-specific primary and secondary actions while suppressing only the global footer CTA; footer navigation and HKGpipi identity remain visible, and Implementation and Pricing retain their approved global CTA.
+- Security-language coverage protects the engagement-specific AWS access review wording, absence of the ambiguous “production access” phrase, read-only discovery boundary, customer-controlled production/deployment language, focused prohibited-claim scan, noindex/nofollow metadata, Axe, keyboard, JavaScript-disabled meaning, runtime logs, and responsive overflow.
+- Five neutral-focus Gate 6B review captures are stored under `outputs/gate-6b-review/`; no independent final Trust approval is claimed.
 
 ## Next gate
 

@@ -36,7 +36,7 @@ test("desktop shell exposes the approved navigation and footer architecture", as
   await expect(page.getByRole("link", { name: /design system/i })).toHaveCount(0);
 });
 
-for (const path of ["/method", "/pricing"]) {
+for (const path of ["/implementation", "/pricing"]) {
   test(`global footer CTA remains present on ${path}`, async ({ page }) => {
     await page.goto(path);
     const footerCta = page.getByRole("contentinfo").locator("[data-footer-cta]");
