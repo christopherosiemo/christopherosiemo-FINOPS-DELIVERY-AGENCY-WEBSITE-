@@ -196,6 +196,7 @@ for (const viewport of [
 }
 
 test("homepage, Trust page, and open dialog have no detectable Axe violations", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ["/", "/method"]) {
     await page.goto(path);
