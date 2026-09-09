@@ -18,12 +18,13 @@ The `HKGpipi` wordmark is the home control and links to `/`; there is no textual
 ## Route maturity
 
 - `/`: live foundation page; final homepage narrative begins after Global Shell approval.
-- `/savings-sprint`, `/implementation`, `/pricing`: complete Gate 5A commercial narratives and static decision experiences; retained as `noindex, nofollow` pending commercial refinement, legal review, conversion readiness, and independent approval.
-- `/method`, `/verification`, `/security`, `/start`: structural scaffolds with minimal approved copy; `noindex, nofollow` until their content gates pass.
+- `/savings-sprint`, `/implementation`, `/pricing`: independently approved Revenue Pages; retained as `noindex, nofollow` pending legal review, conversion readiness, and release approval.
+- `/method`, `/verification`, `/security`: production Gate 6A Trust narratives; retained as `noindex, nofollow` pending independent trust/security consistency and optical approval.
+- `/start`: structural scaffold with minimal approved copy; `noindex, nofollow` until conversion requirements pass.
 - `/contact`: live structural scaffold without a form; `noindex, nofollow` until qualification, privacy, anti-spam, delivery, and telemetry requirements are approved.
 - `/design-system`: internal calibration specimen; `noindex, nofollow`, absent from public navigation, and subject to removal or access control before production launch.
 
-This is the approved shell IA. The deeper content and composition of the three revenue routes are specified in `REVENUE_PAGES.md`; it does not approve the remaining scaffold routes.
+This is the approved shell IA. Deeper content and composition are specified in `REVENUE_PAGES.md` and `TRUST.md`; neither approves remaining scaffold routes.
 
 ## Deferred architecture
 

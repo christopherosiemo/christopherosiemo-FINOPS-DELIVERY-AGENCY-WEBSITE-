@@ -39,6 +39,14 @@ Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/re
 - Commercial routes, verification context, security context, and the first action use keyboard-accessible links with the existing visible focus treatment.
 - Automated coverage checks Axe, keyboard access, heading structure, robots metadata, content truth, and horizontal overflow across 320–1728px. Manual review still remains required.
 
+## Trust-page decisions
+
+- Method, Verification, and Security each have one H1, labelled semantic sections, logical heading order, and complete server-rendered meaning without JavaScript.
+- Operating, decision, measurement, and change-control sequences use ordered lists; connectors and equation symbols are supplemental to readable text.
+- Responsibility and access matrices use captions, scoped headers, and meaningful row headers, then reflow into complete labelled records below 1280px.
+- The conceptual verification equation has an equivalent accessible label. Illustrative values and evidence boundaries remain explicit in text.
+- Automated coverage checks Axe, keyboard and JavaScript-disabled access, semantic tables, runtime logs, truthful claims, metadata, and overflow across 320–1728px. Manual review remains required.
+
 ## Global-shell decisions
 
 - Desktop and modal navigation use distinct labelled landmarks, and active primary routes expose `aria-current="page"` with a structural visual marker.

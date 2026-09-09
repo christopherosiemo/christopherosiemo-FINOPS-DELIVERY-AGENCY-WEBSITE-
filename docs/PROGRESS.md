@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 60%
+**Current value:** 67%
 
-**Target for this checkpoint:** 60%
+**Target for this checkpoint:** 67%
 
-**Current gate:** Revenue pages — complete following independent commercial, engineering, and optical approval
+**Current gate:** Trust — Method, Verification, and Security narratives implemented; independent trust and claim review pending
 
 ## Completed
 
@@ -62,10 +62,16 @@
 - The Savings Sprint Ledger is approved on desktop and mobile, including its synthetic-data boundary and ranked decision treatment.
 - The Savings Sprint commercial ending, Implementation alternatives, and Pricing sequence are approved.
 - The commercial order is approved as £5,000 upfront first, followed by £15,000 fixed implementation or 25% of verified savings as alternatives.
+- `/method`, `/verification`, and `/security` now provide production static Trust narratives with explicit operating stages, evidence, decision gates, responsibility, measurement vocabulary, access limits, and customer-controlled change authority.
+- Method goes beyond the homepage summary with stage-level purpose/evidence/output, a primary-role matrix, decision gates, and one visibly synthetic trace from opportunity to pending verification.
+- Verification distinguishes expected saving, the 30-day measurement view, and verified annualised saving; presents the baseline-minus-normalised-post-change conceptual model; and keeps the outcome-based contractual basis explicit.
+- Security separates read-only discovery from implementation, states that the engagement-specific access policy is reviewed before access, and makes customer review, approval, and deployment control visible without inventing assurance claims.
+- Trust vocabulary and claim boundaries are authoritative in `docs/TRUST.md`; shared factual constants remain in a compact immutable server-safe module while detailed narrative stays route-local.
+- The three Trust routes remain statically prerendered and add no client component, runtime dependency, imagery, or motion.
 
 ## In progress
 
-- Method, Verification, and Security Trust-page implementation.
+- Independent Trust/security consistency, claim, and optical review.
 
 ## Blocked
 
@@ -74,7 +80,7 @@
 ## Deferred
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
-- Verification methodology, contractual mechanics, conversion fields and qualification logic.
+- Engagement-specific verification contractual mechanics, conversion fields and qualification logic.
 - Analytics, security integrations, production budgets, and production qualification.
 
 ## Evidence
@@ -124,7 +130,11 @@
 - Gate 5B refinement was completed at `d7b60b0861f86b39f27daf8ce5dd8353bfd9fcfe`.
 - GitHub Actions run `34400832643` completed successfully against the exact Gate 5B SHA.
 - Independent review subsequently approved the Savings Sprint Ledger and commercial ending, the Implementation alternatives, the Pricing sequence, and the £5,000 first → £15,000 or 25% commercial relationship.
+- Gate 6A validation passed on 2026-09-09: frozen install, lint, strict typecheck, 9 unit/component tests, production build, 75 functional Chromium checks, and 34 canonical Linux/Chromium visual comparisons at the unchanged `0.002` tolerance.
+- Trust-route coverage protects the canonical six-stage order, responsibility and access matrices, traceability disclaimer, verification definitions and illustrative values, 30-day boundary, customer-controlled deployment path, CTA destinations, noindex/nofollow metadata, focused prohibited-claim scanning, JavaScript-disabled meaning, keyboard access, Axe results, runtime logs, and overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
+- Six new high-signal canonical visual baselines cover Method operating detail and responsibility, Verification definitions and reconciliation, and Security access and change-control boundaries without replacing approved baselines.
+- Nine neutral-focus Gate 6A review captures are stored under `outputs/gate-6a-review/` for independent review; no independent Trust-page approval is claimed.
 
 ## Next gate
 
-60% — Revenue Pages complete.
+67–70% — Independent Trust/security consistency, claim, and optical review, followed by final approval.

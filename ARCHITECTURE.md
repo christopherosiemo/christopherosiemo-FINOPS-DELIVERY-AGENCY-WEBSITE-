@@ -10,7 +10,8 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 - `src/components/site/`: site-wide composition such as header and footer.
 - `src/components/home/`: bespoke server-rendered homepage narrative units and their shared static composition styles.
 - `src/components/revenue/`: shared server-rendered revenue-page structure and CSS-only commercial decision patterns.
-- `src/config/`: compact site identity, navigation, action, footer, and metadata configuration.
+- `src/components/trust/`: shared server-rendered Trust-page composition and CSS-only evidence structures.
+- `src/config/`: compact site identity, navigation, action, footer, metadata, commercial, and Trust-fact configuration.
 - `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
 - `src/lib/`: reserved for framework-independent utilities when required.
 - `src/styles/`: global foundations and design tokens.
@@ -29,6 +30,8 @@ Public navigation values and the operator-provided `HKGpipi` identity live in `s
 The homepage is composed from narrative-specific Server Components rather than a config-driven marketing renderer. Its Ledger reuses the existing semantic table/labelled-record primitive through narrowly scoped content props, while the Verification Line accepts only contextual labelling. Gate 4B adds one null-rendering `HomeMotionController` client boundary that progressively enhances stable server-rendered targets through Intersection Observer state; all meaning remains present in initial HTML, and responsive composition remains CSS-only.
 
 The Savings Sprint, Implementation, and Pricing routes use a small set of revenue-specific Server Components for shared hero, section introduction, ordered sequence, and action structure. Immutable offer names and approved prices live in `src/config/commercial.ts`; narrative content remains route-local so material distinctions stay explicit. The three routes share one CSS Module, add no client boundary, and retain `noindex, nofollow` metadata.
+
+The Method, Verification, and Security routes use a small set of Trust-specific Server Components for shared hero, section introduction, and action structure. Immutable operating stages and approved boundary phrases live in `src/config/trust.ts`; detailed narratives remain route-local. Their semantic matrices reflow into labelled records below 1280px. The three routes share one CSS Module, add no client boundary or dependency, and retain `noindex, nofollow` metadata.
 
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
 

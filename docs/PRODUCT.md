@@ -10,7 +10,7 @@ The operating chain is:
 
 The service identifies economically meaningful AWS savings opportunities, validates engineering risk and commitments, maps work to teams, services, and infrastructure, creates actionable remediation, works through existing engineering approval processes, and verifies realised savings against AWS billing data.
 
-Recommendations are estimated opportunities. Savings become verified only after an approved change is deployed and its impact is evidenced against billing data. The formal verification methodology—including baselines, attribution, exclusions, timing, and dispute handling—requires commercial and product definition and is **TBD**. Unsubstantiated guarantees are prohibited.
+Recommendations are estimated opportunities. Savings become verified only after an approved change is deployed and its impact is evidenced against billing data. Expected saving, 30-day measurement view, and verified annualised saving have distinct definitions in `TRUST.md`; engagement-specific contractual mechanics still require agreement before outcome-based implementation. Unsubstantiated guarantees are prohibited.
 
 ## Product concepts and offers
 
@@ -38,7 +38,7 @@ Subsequent offer: **£15,000**. Its purpose is to turn approved recommendations 
 
 ### Verified-savings model
 
-Alternative commercial model: **25% of verified savings**. Contract mechanics and the formal definition of verified savings are TBD.
+Alternative commercial model: **25% of verified savings** under a verification basis agreed before outcome-based implementation begins. The public verification definitions and unresolved contractual boundary are authoritative in `TRUST.md`.
 
 The £15,000 Implementation Sprint and 25% verified-savings model are alternative routes for approved implementation, not standard cumulative charges and not subscriptions. The contractual verification basis is agreed before outcome-based implementation begins.
 
@@ -52,6 +52,8 @@ Thirty days currently refers to the intended post-change verification period. �
 Final form fields, routing, consent language, and lead-qualification logic are TBD.
 
 The production commercial narrative, route order, scope boundaries, and illustrative-evidence policy for `/savings-sprint`, `/implementation`, and `/pricing` are authoritative in `REVENUE_PAGES.md`.
+
+The production operating method, verification vocabulary, AWS access boundary, customer-controlled change path, and prohibited Trust claims are authoritative in `TRUST.md`.
 
 ## Homepage-approved positioning
 

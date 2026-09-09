@@ -32,6 +32,10 @@ Gate 4A adds no homepage client boundary, runtime dependency, image, animation, 
 
 Gate 5A adds three static, server-rendered revenue routes with shared CSS-only composition and a compact immutable commercial-facts module. No route-specific client boundary, animation, image, external request, runtime dependency, or JavaScript breakpoint logic is added. Production build output must confirm `/savings-sprint`, `/implementation`, and `/pricing` remain statically prerendered.
 
+## Trust-page implications
+
+Gate 6A adds three static, server-rendered Trust routes with shared CSS-only composition and a compact immutable facts module. It adds no route-specific client boundary, animation, image, external request, runtime dependency, or JavaScript breakpoint logic. Production build output must confirm `/method`, `/verification`, and `/security` remain statically prerendered.
+
 ## Budgets to lock
 
 Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.

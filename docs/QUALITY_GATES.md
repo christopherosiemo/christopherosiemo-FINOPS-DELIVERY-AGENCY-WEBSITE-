@@ -88,6 +88,13 @@ These checkpoints do not alter the overall 45–60 gate or permit a higher value
 
 **Prohibited shortcuts:** Fabricated logos, customers, testimonials, certifications, metrics, case studies, or implied AWS endorsement.
 
+Internal evidence checkpoints within this published gate are:
+
+- **60–67:** Production Method, Verification, and Security narratives, including operating decisions, measurement definitions, access boundaries, and customer-controlled change authority.
+- **67–70:** Independent trust/security consistency review, responsive optical review, and final approval.
+
+These checkpoints do not alter the overall 60–70 gate or permit a higher value before its corresponding evidence exists.
+
 ## 70–78 — Conversion system
 
 **Objective:** Create an accessible, secure, measurable route from intent to the agreed commercial next step.

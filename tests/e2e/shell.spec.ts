@@ -3,14 +3,12 @@ import { expect, test } from "@playwright/test";
 import { settleHomepageMotion } from "./helpers/home-motion";
 
 const publicScaffolds = [
-  "/method",
-  "/verification",
-  "/security",
   "/start",
   "/contact",
 ];
 
 const revenueRoutes = ["/savings-sprint", "/implementation", "/pricing"];
+const trustRoutes = ["/method", "/verification", "/security"];
 
 test("desktop shell exposes the approved navigation and footer architecture", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -85,6 +83,18 @@ for (const path of revenueRoutes) {
     expect(response?.status()).toBe(200);
     await expect(page).toHaveTitle(/\| HKGpipi$/);
     await expect(page.locator('main[data-route-stage="revenue"]')).toHaveCount(1);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /nofollow/);
+  });
+}
+
+for (const path of trustRoutes) {
+  test(`${path} is a live, non-indexed Trust route`, async ({ page }) => {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveTitle(/\| HKGpipi$/);
+    await expect(page.locator('main[data-route-stage="trust"]')).toHaveCount(1);
     await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /nofollow/);
@@ -185,7 +195,7 @@ for (const viewport of [
   });
 }
 
-test("homepage, scaffold, and open dialog have no detectable Axe violations", async ({ page }) => {
+test("homepage, Trust page, and open dialog have no detectable Axe violations", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ["/", "/method"]) {
     await page.goto(path);

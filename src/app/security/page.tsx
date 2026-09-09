@@ -1,18 +1,17 @@
-import { RouteScaffold } from "@/components/site/route-scaffold";
+import { TrustActions, TrustHero, TrustPage, TrustSectionIntro, trustStyles as styles } from "@/components/trust/trust-page";
 import { scaffoldMetadata } from "@/config/metadata";
+import { trustFacts } from "@/config/trust";
 
-export const metadata = scaffoldMetadata(
-  "Security",
-  "Constrained AWS discovery and customer-controlled engineering changes.",
-);
+export const metadata = scaffoldMetadata("Security", "The access, approval and change-control boundaries for HKGpipi AWS cost-reduction work.");
 
 export default function SecurityPage() {
-  return (
-    <RouteScaffold eyebrow="Security" title="Read what we need. Change nothing without you.">
-      <p>
-        Discovery begins with tightly constrained read-only AWS access. Engineering changes move through the
-        customer&apos;s existing controls.
-      </p>
-    </RouteScaffold>
-  );
+  return <TrustPage>
+    <TrustHero eyebrow="SECURITY" title={<>Read what we need.<br />Change nothing without you.</>} summary={`Discovery begins with ${trustFacts.accessBoundary}. Production changes remain inside your existing engineering, review and deployment controls.`}><p className="technical-label">Known boundary</p><p className={styles.principle}><span>Read-only discovery access.</span><span>Customer-controlled production.</span></p></TrustHero>
+    <section className={styles.section} aria-labelledby="security-planes"><div className="container"><TrustSectionIntro label="01 · Two control planes" title="Separate evidence access from change authority." titleId="security-planes" /><div className={styles.planeGrid} data-testid="security-planes"><article className={styles.plane}><h3>Discovery plane</h3><p>HKGpipi reads the AWS evidence explicitly permitted by a constrained role to understand cost and infrastructure evidence. Discovery write permissions are not needed for Savings Sprint analysis.</p></article><article className={styles.plane}><h3>Implementation plane</h3><p>Approved remediation enters the customer&apos;s repository or ticketing process and follows customer review, checks, approval and deployment control.</p></article></div></div></section>
+    <section className={styles.sectionSurface} aria-labelledby="security-access"><div className="container"><TrustSectionIntro label="02 · Access boundary" title="Constrained access for bounded discovery." titleId="security-access" /><div className={styles.tableFrame} data-testid="security-access-boundary"><div className={styles.tableCaption}><strong>Can / cannot matrix</strong><span>Discovery boundary</span></div><table className={styles.dataTable}><caption className={styles.semanticCaption}>Discovery access capabilities and boundaries</caption><thead><tr><th scope="col">Area</th><th scope="col">Can</th><th scope="col">Cannot / does not require</th></tr></thead><tbody><tr><th scope="row">AWS evidence</th><td data-label="Can">Read information explicitly permitted by the constrained role</td><td data-label="Cannot / does not require">Unrestricted administrative access is not required for discovery</td></tr><tr><th scope="row">Opportunity work</th><td data-label="Can">Use permitted evidence to identify and validate opportunities</td><td data-label="Cannot / does not require">Independently deploy AWS changes</td></tr><tr><th scope="row">Approval</th><td data-label="Can">Prepare findings for customer decision</td><td data-label="Cannot / does not require">Bypass customer change approval</td></tr></tbody></table></div><div className={styles.boundaryNote}><strong>Engagement-specific review</strong><p>The discovery role is intended to be constrained to read-only permissions. The exact engagement-specific policy is reviewed before access is granted.</p></div></div></section>
+    <section className={styles.sectionInverse} aria-labelledby="security-change-control"><div className="container"><TrustSectionIntro label="03 · Change control" title="No parallel deployment process." titleId="security-change-control"><p>Remediation work moves through the customer&apos;s established controls before it reaches production.</p></TrustSectionIntro><ol className={styles.controlSequence} data-testid="security-change-control">{["HKGpipi remediation", "Customer repository / ticketing process", "Customer review", "CI / checks", "Customer approval", "Customer-controlled deployment"].map((step) => <li key={step}>{step}</li>)}</ol></div></section>
+    <section className={styles.section} aria-labelledby="security-narrow"><div className="container"><TrustSectionIntro label="04 · Least access" title="Keep access narrow." titleId="security-narrow"><p>Access should be constrained to the accounts, services, data categories and duration needed for the agreed work. An explicit access model is required before production access is used.</p></TrustSectionIntro></div></section>
+    <section className={styles.sectionSurface} aria-labelledby="security-assurance"><div className="container"><TrustSectionIntro label="05 · Assurance boundary" title="Formal assurance and data-handling documentation." titleId="security-assurance"><p>Security certifications, retention commitments, data-residency terms, subprocessors and formal assurance documents are published only when they are established and approved.</p></TrustSectionIntro><div className={styles.assuranceNote}><strong>No implied assurance</strong><p>Absence of a published document or claim should not be interpreted as evidence that it exists.</p></div></div></section>
+    <section className={styles.closingSection} aria-labelledby="security-review"><div className="container"><TrustSectionIntro label="06 · Before access" title="Give security teams a concrete review surface." titleId="security-review"><p>Before access is granted, security teams can review the requested AWS permission scope, intended data categories, engineering workflow boundary and verification access requirements.</p></TrustSectionIntro><TrustActions secondary={{ href: "/method", label: "Review the method" }} /></div></section>
+  </TrustPage>;
 }

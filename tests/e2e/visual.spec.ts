@@ -69,6 +69,23 @@ test("savings-sprint-ledger-mobile high-signal revenue baseline", async ({ page 
   );
 });
 
+for (const [name, path, selector] of [
+  ["method-operating-detail", "/method", "section[aria-labelledby='method-detail']"],
+  ["method-responsibility", "/method", "section[aria-labelledby='method-responsibility']"],
+  ["verification-definitions", "/verification", "section[aria-labelledby='verification-definitions']"],
+  ["verification-reconciliation", "/verification", "section[aria-labelledby='verification-reconciliation']"],
+  ["security-access-boundary", "/security", "section[aria-labelledby='security-access']"],
+  ["security-change-control", "/security", "section[aria-labelledby='security-change-control']"],
+] as const) {
+  test(`${name} high-signal Trust baseline`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`, { animations: "disabled", caret: "initial" });
+  });
+}
+
 test("savings-sprint-engagement-footer-1440 focused transition baseline", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/savings-sprint");
