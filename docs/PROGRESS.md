@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 57%
+**Current value:** 60%
 
-**Target for this checkpoint:** 57%
+**Target for this checkpoint:** 60%
 
-**Current gate:** Revenue pages — commercially calibrated decision-support refinement implemented; independent final approval pending
+**Current gate:** Revenue pages — complete following independent commercial, engineering, and optical approval
 
 ## Completed
 
@@ -58,10 +58,14 @@
 - Approved Ledger items are explicitly distinguished from discovery output before becoming the implementation backlog.
 - The Savings Sprint suppresses its duplicate global footer CTA through a stable server-rendered route attribute while retaining footer navigation and identity; other routes retain the global CTA.
 - Revenue tables now expose captions and scoped headers, and reflow into complete labelled records below the desktop table threshold without character-level heading breaks.
+- The complete Revenue Pages gate has received independent commercial, engineering, and optical approval.
+- The Savings Sprint Ledger is approved on desktop and mobile, including its synthetic-data boundary and ranked decision treatment.
+- The Savings Sprint commercial ending, Implementation alternatives, and Pricing sequence are approved.
+- The commercial order is approved as £5,000 upfront first, followed by £15,000 fixed implementation or 25% of verified savings as alternatives.
 
 ## In progress
 
-- Independent final revenue-page approval.
+- Method, Verification, and Security Trust-page implementation.
 
 ## Blocked
 
@@ -115,8 +119,12 @@
 - Eight neutral-focus review captures are stored under `outputs/gate-5a-review/` for independent review; no independent revenue-page approval is claimed.
 - Gate 5B validation passed on 2026-09-09: frozen install, lint, strict typecheck, 7 unit/component tests, production build, 63 functional Chromium checks, and 28 canonical Linux/Chromium visual comparisons at the unchanged `0.002` tolerance.
 - Gate 5B revenue coverage protects the three synthetic Ledger rows, approved-backlog wording, visible evidence disclaimer, footer CTA suppression/retention, table captions and header scope, responsive labelled-record reflow, commercial sequence, Axe results, JavaScript-disabled meaning, keyboard access, runtime logs, and page overflow from 320px through 1728px.
-- Seven neutral-focus Gate 5B review captures are stored under `outputs/gate-5b-review/`; independent final revenue-page approval is not yet claimed.
+- Seven neutral-focus Gate 5B review captures were stored under `outputs/gate-5b-review/` for the subsequent independent review.
+- Gate 5A commercial pages were implemented at `738c2e93940e04b4be95d5f769f1631a9e9096d8`.
+- Gate 5B refinement was completed at `d7b60b0861f86b39f27daf8ce5dd8353bfd9fcfe`.
+- GitHub Actions run `34400832643` completed successfully against the exact Gate 5B SHA.
+- Independent review subsequently approved the Savings Sprint Ledger and commercial ending, the Implementation alternatives, the Pricing sequence, and the £5,000 first → £15,000 or 25% commercial relationship.
 
 ## Next gate
 
-57% — Revenue pages commercially calibrated and decision-support refined; independent final revenue-page approval pending.
+60% — Revenue Pages complete.
