@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 76%
+**Current value:** 78%
 
-**Target for this checkpoint:** 77% pending one controlled submission; 78% requires human inbox confirmation
+**Target for this checkpoint:** 84% after Gate 8A engineering hardening; 88% requires independent final engineering review
 
-**Current gate:** Conversion — Cloudflare Email destination repair in progress; external delivery remains unverified
+**Current gate:** Engineering Polish — Conversion is externally verified; Gate 8A runtime and cross-browser hardening is next
 
 ## Completed
 
@@ -81,19 +81,24 @@
 - Gate 7B adds vinext without replacing the ordinary Next path, Cloudflare-generated binding types, a Managed Turnstile widget with mandatory Siteverify action/hostname checks, a SQLite-backed Durable Object rate limiter, and a Cloudflare Email Service adapter.
 - The under-one-second hard rejection is retired. The honeypot remains; the Durable Object allows five valid-shaped attempts per HMAC-pseudonymised network key per 15 minutes and stores only attempt timestamps. Missing IP uses a shared protected bucket.
 - The approved `HKGpipi Privacy Policy.docx` dated 13 September 2026 is faithfully rendered at public `/privacy`, linked from the form and footer, and retained as `noindex, nofollow`. No analytics, advertising/tracking cookies, consent banner, CRM, or Redis is added.
-- Cloudflare staging is live at `https://hkgpipi-enquiry-staging.charltonyalazima.workers.dev` with real Turnstile, Durable Object, HMAC secret, and Email Service. Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and Turnstile, but both returned `delivery-failure` and neither arrived. External delivery is not verified.
+- Before the destination repair, controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and Turnstile on Cloudflare staging, but both returned `delivery-failure` and neither arrived. That pre-repair evidence did not verify external delivery.
 - The operator confirms Email Sending for `hkgpipi.com` is enabled, sending DNS is configured, Email preview is enabled, the public enquiry routing rule is active, and one verified destination exists. The private destination is never recorded.
 - Gate 7B.1 corrects the public-alias destination defect: the Email binding restricts only the sender, while a server-only `ENQUIRY_DESTINATION_ADDRESS` secret supplies the verified private recipient. Missing binding or destination fails closed, and provider exceptions are reduced to safe allowlisted diagnostic codes without messages or private data.
+- The Cloudflare delivery repair is recorded at `7ee1a9e9207975a040e3837b2181841b7336a556`.
+- The independently approved controlled verification used synthetic reference `enq-e2cb2d73bb`. The browser displayed “Enquiry received.” and the human destination confirmation was **YES**.
+- Human verification confirmed that the subject and body references matched, the approved synthetic fields matched, the sender was `HKGpipi <enquiries@hkgpipi.com>`, Reply-To matched the controlled test address, mailed-by was `cf-bounce.hkgpipi.com`, signed-by was `hkgpipi.com`, and TLS was observed.
+- Neither the browser nor the enquiry body exposed a Turnstile token, secret, raw IP, IP/HMAC key, or private destination. The private destination mailbox is not recorded. No additional controlled submission occurred.
+- Conversion is complete and externally verified at 78%. Reaching 100% still requires a genuine external prospect/customer conversion; the controlled synthetic verification is not a prospect or customer conversion.
 
 ## In progress
 
-- Gate 7B authorised delivery integration, external destination verification, privacy approval, and independent conversion review.
+- Gate 8A covers runtime resilience, deterministic performance controls, cross-browser support, failure surfaces, and production-oriented engineering hardening within 78–84%.
 
 ## Blocked
 
-- 77% requires a newly authorised controlled staging submission through real Turnstile, Durable Object rate limiting, and Email Service to reach application send success. No further submission is authorised during Gate 7B.1 repair.
-- 78% requires the operator to confirm physical inbox receipt, matching subject/reference, correct body and Reply-To, and no IP/token/secret leakage. Cloudflare acceptance is not sufficient.
+- 88% requires independent whole-site engineering, responsive, accessibility, performance, and optical qualification after Gate 8A reaches 84%.
 - Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
+- 100% requires a genuine external prospect/customer conversion.
 
 ## Deferred
 
@@ -167,4 +172,4 @@
 
 ## Next gate
 
-75–77% — Cloudflare delivery implementation and controlled staging submission. 78% only after human destination confirmation. Engineering Polish does not begin in this gate.
+78–84% — Runtime resilience, deterministic performance controls, cross-browser support, failure surfaces, and production-oriented engineering hardening. The published 78–88% Engineering Polish range is unchanged; 84–88% is reserved for independent final engineering qualification.
