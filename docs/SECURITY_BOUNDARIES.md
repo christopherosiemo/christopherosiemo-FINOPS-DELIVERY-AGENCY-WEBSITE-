@@ -20,6 +20,8 @@ All routes set `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origi
 
 A Content Security Policy is deferred rather than shipping an ineffective `unsafe-inline` policy. A strict nonce policy would force dynamic rendering and must be designed with Next hydration, vinext/Workers output, and the route-scoped Turnstile script. HSTS is also deferred: the current host is a shared `workers.dev` staging hostname, while production preload/subdomain policy belongs to the explicitly approved custom domain. Neither deferral weakens the requirement for HTTPS staging or the production security review.
 
+Gate 8B revalidated the actual staging header matrix on the root, conversion, privacy, pricing, verification, security, and hard-404 responses. The approved nosniff, referrer, framing, and Permissions Policy fields are present; disclosure, CSP, and HSTS fields are absent as intended. The current vinext Worker emits `no-store, must-revalidate` for these HTML responses, while `/start` remains non-cacheable and hashed assets retain immutable caching. CSP and HSTS remain explicit production-domain requirements, not completed staging controls.
+
 Unexpected failures and hard 404s render generic recovery surfaces. Exception messages, stacks, digests, provider detail, customer values, the destination secret, and other server secrets are not exposed to visitors.
 
 ## Engagement boundary

@@ -48,6 +48,8 @@ The application response-header baseline applies on the Worker as well as `next 
 
 vinext 1.0.0-beta.9 does not apply its compiled `/:path*` header matcher to the root route, unlike Next. The Cloudflare build therefore emits an additional explicit `/` header rule while retaining the normal catch-all; the ordinary Next configuration retains only the catch-all and does not duplicate response fields.
 
+Gate 8B read-only qualification confirmed staging version `e021e7a2-37f0-40eb-a39f-97515b4fad72`, deployed after source commit `f9bfa3f18923f380e2e08137cd7129033170b126`. The required routes and hard 404 return their expected statuses and headers. `/start` loads the Cloudflare Turnstile script with stable reserved geometry and no horizontal overflow; the isolated review browser did not instantiate a challenge iframe, which is not required by this gate and does not supersede the successful Gate 7B external-delivery proof. No form POST or email occurred.
+
 ## Staging and deployment
 
 1. Authenticate interactively with `pnpm exec wrangler login`; never paste a token into chat or source.

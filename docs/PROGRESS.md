@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 84% after Gate 8A engineering hardening; 88% requires independent final engineering review
 
-**Current gate:** Engineering Polish — Gate 8A implementation complete; independent final engineering qualification is next
+**Current gate:** Engineering Polish — Gate 8B final engineering qualification evidence prepared; independent approval pending
 
 ## Completed
 
@@ -95,7 +95,7 @@
 
 ## In progress
 
-- Independent Gate 8B whole-site engineering, responsive, accessibility, performance, and optical qualification covers 84–88%.
+- Independent review of the prepared Gate 8B whole-site engineering, responsive, accessibility, performance, and optical evidence is pending. Progress remains 84%.
 
 ## Blocked
 
@@ -175,6 +175,10 @@
 - Gate 8A local validation on 2026-09-13 passed frozen install, lint, strict typecheck, 40 unit/component tests, 5 Workers tests, production build, 97 established Chromium checks, 5 production engineering checks, and 9 bounded smoke checks across Chromium, Firefox, and WebKit with zero retries.
 - The production resource audit ran three fresh contexts per route/width and stayed within committed budgets: maxima were 9 JavaScript requests / 145,010 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 30 total requests; no external host, console error, or overflow was observed. Lab median LCP ranged 112–148ms and CLS 0.00020–0.03198 without field-performance claims.
 - The production dependency audit found no known vulnerabilities. Next build retained static rendering except request-rendered `/start`; vinext completed with the known CSS filename-conflict warning and unknown route classifications, while compatibility reached 94% with 14 supported checks, two known partials, and zero unsupported issues.
+- Gate 8B adds a focused whole-site qualification harness without changing application code or dependencies. It validates all ten primary routes plus the hard 404 as one system: internal links, CTA destinations, commercial/operating/claim/privacy facts, indexing, landmarks/headings, dual-width Axe, keyboard/dialog behavior, text spacing, 200% reflow equivalent, forced colours, seven-width geometry, mobile table records, deterministic conversion states, no-JavaScript meaning, third-party hosts, console/page errors, and secret leakage.
+- The expanded cross-browser smoke passed 18 checks across Chromium, Firefox, and WebKit at both 390×844 and 1440×900. Gate 8B browser evidence contains 66 route observations with no unexpected status, overflow, console error, or page error; 22 Axe route/width observations found no serious or critical violation.
+- Gate 8B performance resource maxima exactly match Gate 8A: 9 JavaScript requests / 145,010 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 30 total requests. Median lab LCP ranged 104–164ms and CLS 0.00020–0.03198 without field-performance claims.
+- Nineteen neutral-focus captures and eight machine-readable reports are generated under `outputs/gate-8b-review/`. Read-only staging checks confirmed version `e021e7a2-37f0-40eb-a39f-97515b4fad72`, expected route/404 statuses, approved response headers, Turnstile script availability and reserved geometry, and no horizontal overflow. No live POST, email, production-domain routing, indexing, analytics, or acquisition change occurred.
 
 ## Next gate
 

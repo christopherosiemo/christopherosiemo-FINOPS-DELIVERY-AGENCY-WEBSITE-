@@ -13,6 +13,8 @@
     "test:e2e": "playwright test",
     "test:engineering": "playwright test --config=playwright.engineering.config.ts",
     "test:performance": "node scripts/performance-audit.mjs --check",
+    "test:qualification": "playwright test --config=playwright.qualification.config.ts",
+    "evidence:qualification": "node scripts/gate-8b-evidence.mjs",
     "test:smoke:cross-browser": "playwright test --config=playwright.smoke.config.ts",
     "test:visual": "playwright test --config=playwright.visual.config.ts",
     "test:visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots=all",

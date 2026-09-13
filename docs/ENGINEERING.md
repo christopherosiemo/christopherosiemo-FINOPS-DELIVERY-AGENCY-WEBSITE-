@@ -20,6 +20,7 @@ pnpm test
 pnpm build
 pnpm test:e2e
 pnpm test:engineering
+pnpm test:qualification
 pnpm test:smoke:cross-browser
 pnpm test:performance
 ```
@@ -54,4 +55,4 @@ The public client boundaries are intentionally limited to `SiteNavigation` (path
 
 Dependencies are exact-pinned and accepted only for a demonstrated requirement. `pnpm audit --prod --audit-level high` is the release audit; Gate 8A recorded no known production vulnerabilities. Next and vinext builds are both required because the latter remains a beta compatibility layer. Its current 94% report comprises 14 supported, two known partial classifications, and zero unsupported issues. No dependency was added for Gate 8A.
 
-Gate 8A reaches 84% only when the full local matrix, canonical visuals, Cloudflare build, staging GET smoke, and CI are green on the synchronized commit. Reaching 88% requires an independent whole-site engineering, responsive, accessibility, performance, and optical review; implementation authors do not self-approve it.
+Gate 8A reaches 84% only when the full local matrix, canonical visuals, Cloudflare build, staging GET smoke, and CI are green on the synchronized commit. Gate 8B adds a repeatable whole-site qualification covering route/link/CTA integrity, semantics, commercial and privacy facts, dual-width Axe, keyboard and forced-colour behavior, 200% reflow equivalent, seven responsive widths, deterministic conversion states, no-JavaScript behavior, and secret/runtime checks. The bounded Chromium/Firefox/WebKit smoke now runs at both 390px and 1440px. Gate 8B evidence is prepared at 84%; only independent review may award 88%.

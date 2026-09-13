@@ -117,6 +117,8 @@ These checkpoints do not alter the overall 60–70 gate or permit a higher value
 
 Gate 8A may reach 84% only after hard 404 and recoverable error surfaces; response-header, cache, secret-leak, dependency, accessibility-stress, and deterministic performance audits; a green Chromium/Firefox/WebKit critical-path matrix; staging deployment and read-only smoke; and green CI on the exact commit. The 84–88% remainder requires independent whole-site engineering, responsive, accessibility, performance, and optical qualification. Gate 8A cannot self-approve 88%.
 
+Gate 8B qualification evidence exercises the complete primary route set as one system, including internal links and CTAs, commercial/privacy/claim consistency, semantics, accessibility states, keyboard and high-contrast behavior, responsive records and geometry, dual-width Chromium/Firefox/WebKit behavior, deterministic conversion failures/success, no-JavaScript meaning, headers, secrets, performance, and canonical visuals. Preparing and passing this evidence remains 84%; an independent reviewer alone may approve 88%.
+
 ## 88–94 — Acquisition
 
 **Objective:** Make approved public content discoverable, shareable, attributable, and maintainable.

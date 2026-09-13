@@ -30,6 +30,7 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium firefox webkit
       - run: pnpm test:e2e
       - run: pnpm test:engineering
+      - run: pnpm test:qualification
       - run: pnpm test:smoke:cross-browser
       - run: pnpm test:performance
       - run: pnpm test:visual

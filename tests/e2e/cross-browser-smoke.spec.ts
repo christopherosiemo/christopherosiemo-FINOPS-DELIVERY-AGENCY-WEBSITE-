@@ -14,13 +14,17 @@ test("core pages, mobile navigation and responsive structure remain resilient", 
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   const trigger = page.getByRole("button", { name: "Open primary navigation" });
-  await trigger.click();
-  await expect(page.getByRole("dialog", { name: "Primary navigation" })).toBeVisible();
-  await page.getByRole("button", { name: "Close" }).click();
-  await expect(trigger).toBeFocused();
+  if (await trigger.isVisible()) {
+    await trigger.click();
+    await expect(page.getByRole("dialog", { name: "Primary navigation" })).toBeVisible();
+    await page.getByRole("button", { name: "Close" }).click();
+    await expect(trigger).toBeFocused();
+  } else {
+    await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
+  }
   await page.waitForLoadState("networkidle");
 
-  for (const route of ["/savings-sprint", "/verification", "/security", "/privacy"]) {
+  for (const route of ["/savings-sprint", "/implementation", "/pricing", "/method", "/verification", "/security", "/start", "/privacy"]) {
     await page.goto(route);
     await page.waitForLoadState("networkidle");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();

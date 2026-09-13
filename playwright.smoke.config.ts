@@ -16,9 +16,12 @@ export default defineConfig({
     viewport: { width: 390, height: 844 },
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 } } },
-    { name: "firefox", use: { ...devices["Desktop Firefox"], viewport: { width: 390, height: 844 } } },
-    { name: "webkit", use: { ...devices["Desktop Safari"], viewport: { width: 390, height: 844 } } },
+    { name: "chromium-390", use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 } } },
+    { name: "chromium-1440", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
+    { name: "firefox-390", use: { ...devices["Desktop Firefox"], viewport: { width: 390, height: 844 } } },
+    { name: "firefox-1440", use: { ...devices["Desktop Firefox"], viewport: { width: 1440, height: 900 } } },
+    { name: "webkit-390", use: { ...devices["Desktop Safari"], viewport: { width: 390, height: 844 } } },
+    { name: "webkit-1440", use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } } },
   ],
   webServer: {
     command: "pnpm start --hostname 127.0.0.1 --port 3112",
