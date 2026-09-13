@@ -1,0 +1,17 @@
+{
+  "runtime": "next start",
+  "routes": [
+    { "path": "/", "status": 200, "cacheControl": "s-maxage=31536000", "robots": null },
+    { "path": "/start", "status": 200, "cacheControl": "no-store, must-revalidate, no-cache, max-age=0, private", "robots": "noindex, nofollow" },
+    { "path": "/privacy", "status": 200, "cacheControl": "s-maxage=31536000", "robots": "noindex, nofollow" },
+    { "path": "/savings-sprint", "status": 200, "cacheControl": "s-maxage=31536000", "robots": "noindex, nofollow" },
+    { "path": "/gate-8a-missing", "status": 404, "cacheControl": "no-store, must-revalidate, no-cache, max-age=0, private", "robots": "noindex" }
+  ],
+  "commonHeaders": {
+    "x-content-type-options": "nosniff",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "x-frame-options": "DENY",
+    "x-powered-by": null
+  }
+}

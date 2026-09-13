@@ -19,6 +19,9 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm test:e2e
+pnpm test:engineering
+pnpm test:smoke:cross-browser
+pnpm test:performance
 ```
 
 Functional E2E uses `next dev` locally for iteration. CI builds first and switches Playwright to `next start`, then runs functional E2E and visual comparison. This keeps production-build evidence independent from browser-test outcomes.
@@ -36,3 +39,19 @@ The manual `Generate visual baselines` GitHub Actions workflow provides the same
 ## Change discipline
 
 Keep route-specific work close to routes, site-wide compositions in `src/components/site`, and add shared UI primitives only after reuse is real. Do not introduce secrets, unavailable CI services, or speculative integrations. Passing checks are necessary but do not substitute for product, accessibility, design, security, and content review.
+
+## Production resilience
+
+The supported browser floor follows Next.js 16: Chrome, Edge, and Firefox 111+, and Safari 16.4+. CI runs a bounded critical-path smoke matrix in current Playwright Chromium, Firefox, and WebKit at 390px; broader responsive behavior remains covered by Chromium from 320px through 1728px. The matrix covers the public narrative, modal navigation, enquiry validation, native-select value retention, hard 404 behavior, keyboard activation, overflow, and runtime errors.
+
+`not-found.tsx` returns a calm hard-404 surface with framework-generated `noindex`; `error.tsx` is the nearest recoverable client error boundary and exposes retry/home actions without rendering exception messages, digests, or stacks. A root `global-error.tsx` is intentionally absent: the root layout has no request-time failure source, and duplicating the document shell would add an unproved client boundary.
+
+Server secrets and customer input must never enter HTML, browser JavaScript, URLs, or diagnostic messages. Browser checks inspect public documents, loaded scripts, console errors, third-party hosts, forced-colour behavior, WCAG text spacing, focus, and overflow. Production failures remain generic to visitors; safe request references and allowlisted provider outcomes remain the server-side diagnostic boundary.
+
+The public client boundaries are intentionally limited to `SiteNavigation` (path state and native dialog), `HomeMotionController` (finite progressive enhancement), `EnquiryForm` (action state and accessible feedback), `TurnstileWidget` (the route-scoped provider lifecycle), and `error.tsx` (recoverable retry). Content, revenue, Trust, Privacy, 404, and layout components remain server-rendered. Cloudflare staging must preserve these response, cache, diagnostic, and test-mode boundaries under the vinext Worker runtime; Workers-specific unit tests and read-only staging smoke are release requirements.
+
+## Dependency and runtime policy
+
+Dependencies are exact-pinned and accepted only for a demonstrated requirement. `pnpm audit --prod --audit-level high` is the release audit; Gate 8A recorded no known production vulnerabilities. Next and vinext builds are both required because the latter remains a beta compatibility layer. Its current 94% report comprises 14 supported, two known partial classifications, and zero unsupported issues. No dependency was added for Gate 8A.
+
+Gate 8A reaches 84% only when the full local matrix, canonical visuals, Cloudflare build, staging GET smoke, and CI are green on the synchronized commit. Reaching 88% requires an independent whole-site engineering, responsive, accessibility, performance, and optical review; implementation authors do not self-approve it.

@@ -40,6 +40,10 @@ Gate 6A adds three static, server-rendered Trust routes with shared CSS-only com
 
 Gate 7B adds the minimum Cloudflare/vinext build and test dependencies. `/start` retains one form client boundary and adds the required Turnstile script only on that route. Privacy and all other content remain server-rendered; `/privacy` is static. No analytics, tag manager, cookie banner, image optimiser, or client state dependency is added. CSS constrains the flexible Turnstile frame against horizontal overflow.
 
-## Budgets to lock
+## Gate 8A production baseline and budgets
 
-Final numeric budgets for JavaScript, CSS, media, fonts, LCP, INP, and CLS are **TBD** and must be approved during a later performance gate. Do not silently turn aspirational values into contractual targets.
+`pnpm test:performance` audits `/`, `/savings-sprint`, `/verification`, `/start`, and `/privacy` from clean Chromium contexts at 390px and 1440px, three times each against `next start`. It fails on non-200 responses, console errors, horizontal overflow, any unexpected third-party host, or these deterministic maximums: 9 JavaScript requests / 150,000 encoded bytes; 3 CSS requests / 14,500 bytes; 3 font requests / 52,000 bytes; and 31 total document-plus-resource requests.
+
+The final Gate 8A baseline measured maxima of 9 JavaScript requests / 145,010 bytes, 3 CSS requests / 13,909 bytes, 3 fonts / 50,016 bytes, and 30 total requests. No audited page contacted a third-party host, emitted a console error, or overflowed. Self-hosted Instrument Sans and IBM Plex Mono use WOFF2 with `font-display: swap`; no duplicate or remote font request was found. Current pages use no content imagery or video, so there is no media-byte budget to disguise as a measured requirement.
+
+The report also records median lab LCP and CLS as diagnostic signals. Across the final runs, route/width median LCP ranged from 112–148ms and median CLS from 0.00020–0.03198. They are deliberately not pass/fail budgets: a local unthrottled synthetic run does not establish field Core Web Vitals, and INP cannot be responsibly inferred without representative user interaction. Production field measurement remains deferred with the consent and analytics decision.

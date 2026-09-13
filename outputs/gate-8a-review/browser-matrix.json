@@ -1,0 +1,17 @@
+{
+  "configuration": "playwright.smoke.config.ts",
+  "viewport": { "width": 390, "height": 844 },
+  "retries": 0,
+  "projects": {
+    "chromium": { "passed": 3, "failed": 0 },
+    "firefox": { "passed": 3, "failed": 0 },
+    "webkit": { "passed": 3, "failed": 0 }
+  },
+  "coverage": [
+    "core routes and mobile navigation",
+    "native select and deterministic validation",
+    "hard 404 and keyboard recovery",
+    "horizontal overflow",
+    "uncaught and console errors"
+  ]
+}

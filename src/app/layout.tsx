@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteIdentity.brandName}`,
   },
   description: siteIdentity.defaultDescription,
-  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

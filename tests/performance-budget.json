@@ -1,0 +1,9 @@
+{
+  "maxJavaScriptRequests": 9,
+  "maxJavaScriptEncodedBytes": 150000,
+  "maxCssRequests": 3,
+  "maxCssEncodedBytes": 14500,
+  "maxFontRequests": 3,
+  "maxFontEncodedBytes": 52000,
+  "maxTotalRequests": 31
+}

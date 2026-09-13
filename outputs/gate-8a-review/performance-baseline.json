@@ -1,0 +1,267 @@
+{
+  "baseUrl": "http://127.0.0.1:3108",
+  "measuredAt": "2026-09-13T14:45:28.339Z",
+  "runCount": 3,
+  "results": [
+    {
+      "clsMedian": 0.02822221355925956,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 148,
+      "overflowPixels": 0,
+      "requestCount": 20,
+      "route": "/",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 390
+    },
+    {
+      "clsMedian": 0.031974402569638696,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 112,
+      "overflowPixels": 0,
+      "requestCount": 20,
+      "route": "/savings-sprint",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 390
+    },
+    {
+      "clsMedian": 0.0003410987554706249,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 116,
+      "overflowPixels": 0,
+      "requestCount": 16,
+      "route": "/verification",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 390
+    },
+    {
+      "clsMedian": 0.0011014821666194404,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 2,
+        "encodedBytes": 39964,
+        "transferBytes": 40564
+      },
+      "js": {
+        "count": 9,
+        "encodedBytes": 145010,
+        "transferBytes": 147710
+      },
+      "lcpMedianMilliseconds": 124,
+      "overflowPixels": 0,
+      "requestCount": 18,
+      "route": "/start",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 390
+    },
+    {
+      "clsMedian": 0.0001965364659374228,
+      "consoleErrors": [],
+      "css": {
+        "count": 3,
+        "encodedBytes": 13909,
+        "transferBytes": 14809
+      },
+      "fonts": {
+        "count": 2,
+        "encodedBytes": 39964,
+        "transferBytes": 40564
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 112,
+      "overflowPixels": 0,
+      "requestCount": 16,
+      "route": "/privacy",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 390
+    },
+    {
+      "clsMedian": 0.011081087967986432,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 144,
+      "overflowPixels": 0,
+      "requestCount": 30,
+      "route": "/",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 1440
+    },
+    {
+      "clsMedian": 0.01219141657323013,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 148,
+      "overflowPixels": 0,
+      "requestCount": 30,
+      "route": "/savings-sprint",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 1440
+    },
+    {
+      "clsMedian": 0.0019322208357445986,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 3,
+        "encodedBytes": 50016,
+        "transferBytes": 50916
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 136,
+      "overflowPixels": 0,
+      "requestCount": 30,
+      "route": "/verification",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 1440
+    },
+    {
+      "clsMedian": 0.006955092592592593,
+      "consoleErrors": [],
+      "css": {
+        "count": 2,
+        "encodedBytes": 13485,
+        "transferBytes": 14085
+      },
+      "fonts": {
+        "count": 2,
+        "encodedBytes": 39964,
+        "transferBytes": 40564
+      },
+      "js": {
+        "count": 9,
+        "encodedBytes": 145010,
+        "transferBytes": 147710
+      },
+      "lcpMedianMilliseconds": 124,
+      "overflowPixels": 0,
+      "requestCount": 29,
+      "route": "/start",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 1440
+    },
+    {
+      "clsMedian": 0.0009152557414909121,
+      "consoleErrors": [],
+      "css": {
+        "count": 3,
+        "encodedBytes": 13909,
+        "transferBytes": 14809
+      },
+      "fonts": {
+        "count": 2,
+        "encodedBytes": 39964,
+        "transferBytes": 40564
+      },
+      "js": {
+        "count": 8,
+        "encodedBytes": 139771,
+        "transferBytes": 142171
+      },
+      "lcpMedianMilliseconds": 124,
+      "overflowPixels": 0,
+      "requestCount": 30,
+      "route": "/privacy",
+      "status": 200,
+      "thirdPartyHosts": [],
+      "width": 1440
+    }
+  ]
+}

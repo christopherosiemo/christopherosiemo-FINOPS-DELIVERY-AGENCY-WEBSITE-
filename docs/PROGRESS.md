@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 78%
+**Current value:** 84%
 
 **Target for this checkpoint:** 84% after Gate 8A engineering hardening; 88% requires independent final engineering review
 
-**Current gate:** Engineering Polish — Conversion is externally verified; Gate 8A runtime and cross-browser hardening is next
+**Current gate:** Engineering Polish — Gate 8A implementation complete; independent final engineering qualification is next
 
 ## Completed
 
@@ -89,10 +89,13 @@
 - Human verification confirmed that the subject and body references matched, the approved synthetic fields matched, the sender was `HKGpipi <enquiries@hkgpipi.com>`, Reply-To matched the controlled test address, mailed-by was `cf-bounce.hkgpipi.com`, signed-by was `hkgpipi.com`, and TLS was observed.
 - Neither the browser nor the enquiry body exposed a Turnstile token, secret, raw IP, IP/HMAC key, or private destination. The private destination mailbox is not recorded. No additional controlled submission occurred.
 - Conversion is complete and externally verified at 78%. Reaching 100% still requires a genuine external prospect/customer conversion; the controlled synthetic verification is not a prospect or customer conversion.
+- Gate 8A adds safe recoverable error and hard-404 surfaces, a global response-header baseline, explicit cache/CSP/HSTS decisions, production resource budgets, and dedicated engineering-quality checks without changing approved product, brand, conversion, indexing, analytics, or production routing.
+- Critical-path smoke passes in Chromium, Firefox, and WebKit. The enquiry native select now retains its value after server validation in all three engines; mobile navigation, keyboard recovery, runtime-error, and overflow checks pass.
+- Forced-colours and WCAG text-spacing checks protect core routes and recovery surfaces. Secret-leak, allowed-host, cache, header, 404, dependency, console, and production performance audits are automated.
 
 ## In progress
 
-- Gate 8A covers runtime resilience, deterministic performance controls, cross-browser support, failure surfaces, and production-oriented engineering hardening within 78–84%.
+- Independent Gate 8B whole-site engineering, responsive, accessibility, performance, and optical qualification covers 84–88%.
 
 ## Blocked
 
@@ -104,7 +107,7 @@
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
 - Engagement-specific verification contractual mechanics.
-- Analytics implementation, broader security integrations, production budgets, and production qualification.
+- Analytics implementation, broader security integrations, field-performance instrumentation, production-domain CSP/HSTS, and production qualification.
 
 ## Evidence
 
@@ -169,7 +172,10 @@
 - Six canonical conversion snapshots cover normal, validation, success, and failure states at desktop/mobile widths. Eight neutral-focus review captures are stored under `outputs/gate-7a-review/`; no independent conversion approval is claimed.
 - The production build adds no dependency and reports `/start` as request-rendered, while all previously static routes retain their rendering classification. Next.js does not report route client-byte totals in the standard build table.
 - GitHub Actions run `34416209987` passed against exact final Gate 7A SHA `cb5df950d1fe15b5c93c255e7da1938cf86b12f7`; its 2026-09-13 baseline rerun again passed frozen install, lint, typecheck, 22 unit/component tests, build, 96 functional Chromium checks, and 40 canonical Linux/Chromium visual comparisons.
+- Gate 8A local validation on 2026-09-13 passed frozen install, lint, strict typecheck, 40 unit/component tests, 5 Workers tests, production build, 97 established Chromium checks, 5 production engineering checks, and 9 bounded smoke checks across Chromium, Firefox, and WebKit with zero retries.
+- The production resource audit ran three fresh contexts per route/width and stayed within committed budgets: maxima were 9 JavaScript requests / 145,010 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 30 total requests; no external host, console error, or overflow was observed. Lab median LCP ranged 112–148ms and CLS 0.00020–0.03198 without field-performance claims.
+- The production dependency audit found no known vulnerabilities. Next build retained static rendering except request-rendered `/start`; vinext completed with the known CSS filename-conflict warning and unknown route classifications, while compatibility reached 94% with 14 supported checks, two known partials, and zero unsupported issues.
 
 ## Next gate
 
-78–84% — Runtime resilience, deterministic performance controls, cross-browser support, failure surfaces, and production-oriented engineering hardening. The published 78–88% Engineering Polish range is unchanged; 84–88% is reserved for independent final engineering qualification.
+84–88% — Independent whole-site engineering, responsive, accessibility, performance, and optical qualification. Acquisition does not begin until that review is complete.

@@ -30,6 +30,14 @@ Automated Axe checks cover `/` and `/design-system`. Direct browser tests cover 
 
 Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/reflow, contrast, and content review. Supported assistive-technology/browser test combinations are TBD before production qualification.
 
+## Engineering-hardening checks
+
+- Chromium, Firefox, and WebKit smoke the mobile critical path, including native controls, modal navigation, validation retention, hard 404, keyboard activation, runtime errors, and overflow.
+- Chromium forced-colours checks preserve navigation, controls, status boundaries, and visible focus; reduced-motion remains covered independently.
+- WCAG text-spacing overrides (1.5 line height, 2× paragraph spacing, 0.12em letter spacing, and 0.16em word spacing) retain headings, controls, content, and no page-level overflow on core routes and the 404.
+- Error and not-found surfaces provide a single H1, clear recovery links/actions, safe focus treatment, and no dependence on colour or exception internals.
+- JavaScript-disabled comprehension remains part of the established route suites. Manual screen-reader and platform zoom qualification remains required before production launch.
+
 ## Revenue-page decisions
 
 - Each revenue route has one H1, labelled semantic sections, logical H2/H3 hierarchy, and server-rendered content that remains complete with JavaScript disabled.

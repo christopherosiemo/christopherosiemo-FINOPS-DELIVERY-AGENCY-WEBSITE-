@@ -14,6 +14,14 @@ Cloudflare's SQLite Durable Object stores attempt timestamps only. Raw addresses
 
 Test adapters require the explicit test environment and cannot be activated in staging or production. The staging Worker is configured, but human destination verification, production secrets/widget, custom-domain approval, secret rotation ownership, and operational response remain required before production qualification.
 
+## Browser response boundary
+
+All routes set `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY`, and a Permissions Policy disabling camera, microphone, geolocation, payment, and USB. The framework disclosure header is disabled. Dynamic `/start` responses retain private/no-store behavior; static pages retain framework-managed shared caching; hashed Next assets retain immutable caching.
+
+A Content Security Policy is deferred rather than shipping an ineffective `unsafe-inline` policy. A strict nonce policy would force dynamic rendering and must be designed with Next hydration, vinext/Workers output, and the route-scoped Turnstile script. HSTS is also deferred: the current host is a shared `workers.dev` staging hostname, while production preload/subdomain policy belongs to the explicitly approved custom domain. Neither deferral weakens the requirement for HTTPS staging or the production security review.
+
+Unexpected failures and hard 404s render generic recovery surfaces. Exception messages, stacks, digests, provider detail, customer values, the destination secret, and other server secrets are not exposed to visitors.
+
 ## Engagement boundary
 
 Discovery is intended to use tightly constrained read-only AWS access. The exact engagement-specific policy is reviewed before access is granted. It does not require unrestricted administrative access and does not give HKGpipi independent authority to deploy AWS changes.
@@ -35,4 +43,4 @@ Before any form, AWS access, billing data, customer evidence, analytics, or exte
 - vendor and regional data-processing boundaries;
 - incident response and disclosure requirements.
 
-Threat model, privacy policy, legal terms, security contact, production headers, detailed data-handling commitments, and the production access-policy artifact remain required before production qualification.
+Threat model, legal terms, security contact, final production-domain CSP/HSTS decisions, detailed data-handling commitments, and the production access-policy artifact remain required before production qualification. The public privacy policy and staging response-header baseline now exist.

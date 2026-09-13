@@ -115,6 +115,8 @@ These checkpoints do not alter the overall 60–70 gate or permit a higher value
 
 **Prohibited shortcuts:** Optimising only synthetic scores, suppressing errors, broad hydration, brittle animation, or deferring known critical defects.
 
+Gate 8A may reach 84% only after hard 404 and recoverable error surfaces; response-header, cache, secret-leak, dependency, accessibility-stress, and deterministic performance audits; a green Chromium/Firefox/WebKit critical-path matrix; staging deployment and read-only smoke; and green CI on the exact commit. The 84–88% remainder requires independent whole-site engineering, responsive, accessibility, performance, and optical qualification. Gate 8A cannot self-approve 88%.
+
 ## 88–94 — Acquisition
 
 **Objective:** Make approved public content discoverable, shareable, attributable, and maintainable.

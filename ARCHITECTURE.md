@@ -19,6 +19,7 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 - `src/styles/`: global foundations and design tokens.
 - `tests/components/`: lightweight component tests.
 - `tests/e2e/`: browser-level critical-path tests.
+- `scripts/performance-audit.mjs`: deterministic production asset/network lab audit.
 - `docs/`: authoritative product, brand, engineering, and quality-gate context.
 
 CSS custom properties remain the source of truth. `src/styles/tokens.css` separates primitive values from semantic roles; `src/styles/globals.css` consumes them for reset, typography, layout, focus, and shared shell behavior. Component values are colocated in CSS Modules only where the component has a genuine local need. Borders and spacing establish hierarchy before shadows or decoration.
@@ -37,7 +38,11 @@ The Method, Verification, and Security routes use a small set of Trust-specific 
 
 `/start` is request-rendered. Static commercial context remains in a Server Component; `EnquiryForm` is the conversion client boundary and owns React action state, the Managed Turnstile widget, pending feedback, repeat-submit prevention, and focus movement. The Server Action treats input as untrusted and orders origin, honeypot, allow-list/validation, SQLite Durable Object rate limiting, Siteverify, and Email Service delivery. `/privacy` is a static faithful rendering of the approved policy. `/contact` points to the form and the authorised manual email channel.
 
+App Router `not-found.tsx` supplies the hard-404 recovery surface and inherits the normal server-rendered shell; Next supplies its `noindex`. The nearest `error.tsx` boundary is a deliberately small client component with retry and home recovery but no exception detail. No root global-error boundary is added because the root layout has no request-time failure source that justifies a duplicate client-rendered document shell.
+
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
+
+Engineering Playwright checks use a separate production-server configuration for response headers, caching, secret leakage, forced colours, WCAG text spacing, and hard-404 behavior. A second bounded production configuration runs mobile critical-path smoke in Chromium, Firefox, and WebKit. The performance script audits fresh production contexts against committed deterministic resource ceilings; its LCP/CLS values are lab diagnostics, not field claims.
 
 ## Rendering and data
 

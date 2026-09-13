@@ -128,7 +128,13 @@ export function EnquiryForm({ deliveryScenario, siteKey, testMode }: EnquiryForm
         </div>
       ) : null}
 
-      <form action={formAction} aria-labelledby="enquiry-form-title" className={styles.form} noValidate>
+      <form
+        action={formAction}
+        aria-labelledby="enquiry-form-title"
+        className={styles.form}
+        key={`${state.status}-${state.requestId ?? "none"}`}
+        noValidate
+      >
         {deliveryScenario ? <input type="hidden" name="__deliveryScenario" value={deliveryScenario} /> : null}
         <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor="website">Leave this field empty</label>

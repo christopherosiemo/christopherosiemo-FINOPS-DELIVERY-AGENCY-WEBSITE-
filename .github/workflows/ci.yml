@@ -27,8 +27,11 @@ jobs:
       - run: pnpm test
       - run: pnpm test:cf
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
       - run: pnpm test:e2e
+      - run: pnpm test:engineering
+      - run: pnpm test:smoke:cross-browser
+      - run: pnpm test:performance
       - run: pnpm test:visual
       - run: pnpm build:cf
       - name: Upload Playwright failure evidence

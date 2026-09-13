@@ -4,7 +4,7 @@
 
 The existing Next.js 16 application retains `pnpm dev` and `pnpm build`. Cloudflare Workers builds use vinext through `pnpm dev:cf`, `pnpm build:cf`, and `pnpm deploy:cf`; `worker.ts` delegates HTTP handling to vinext and exports the rate-limit Durable Object. The staging Worker is `hkgpipi-enquiry-staging` at `https://hkgpipi-enquiry-staging.charltonyalazima.workers.dev`. No production custom-domain route is configured by this gate.
 
-The vinext 1.0.0-beta.9 compatibility check reports 92% compatibility: 10 supported checks, two partials, and zero unsupported issues. Its Google-font partial comes from the ignored historical `work/foundation` copy; the application runtime uses committed WOFF2 assets and makes no Google request. The App Router strict-mode partial reflects vinext's documented classification, while Next enables App Router strict mode by default.
+The vinext 1.0.0-beta.9 compatibility check reports 94% compatibility: 14 supported checks, two partials, and zero unsupported issues. Its Google-font partial comes from the ignored historical `work/foundation` copy; the application runtime uses committed WOFF2 assets and makes no Google request. The App Router strict-mode partial reflects vinext's documented classification, while Next enables App Router strict mode by default.
 
 ## Binding contract
 
@@ -40,7 +40,11 @@ Provider exceptions are reduced to a narrow code allowlist. Delivery, rate-limit
 
 The operator confirms that Email Sending for `hkgpipi.com` is enabled, sending DNS is configured, Email preview is enabled, the `enquiries@hkgpipi.com` routing rule is active, and a verified destination is present. The destination value remains private.
 
-Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and displayed successful Turnstile verification, but the application returned `delivery-failure` and no message arrived. Historical Email Activity was not accessible in the authenticated tooling, so no provider code is inferred. Gate 7B external delivery remains unverified and progress remains 76%.
+Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and displayed successful Turnstile verification, but the application returned `delivery-failure` and no message arrived. After the destination repair, controlled synthetic reference `enq-e2cb2d73bb` displayed “Enquiry received.” and the operator confirmed matching inbox delivery. That closed Gate 7B at 78%; it was not a genuine prospect/customer conversion.
+
+## Staging response behavior
+
+The application response-header baseline applies on the Worker as well as `next start`: nosniff, strict-origin referrer handling, denied framing, and a narrow Permissions Policy. `/start` must remain private/no-store; static pages and hashed assets retain runtime-managed caching. Do not add `Strict-Transport-Security` to the shared `workers.dev` hostname. CSP and HSTS are production custom-domain decisions described in `SECURITY_BOUNDARIES.md`, not staging theatre.
 
 ## Staging and deployment
 
