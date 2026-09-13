@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 75%
 
-**Current gate:** Conversion — interface and server submission boundary implemented; authorised production delivery and external verification pending
+**Current gate:** Conversion — foundation complete; authorised Cloudflare delivery integration and external verification pending
 
 ## Completed
 
@@ -77,6 +77,7 @@
 - A typed Next.js Server Action validates and normalises an explicit field allow-list, applies origin, body-size, honeypot, issued-time, and rate-limit boundaries, generates a non-sensitive request reference, and invokes a provider-neutral delivery interface.
 - Gate 7A has no external destination: production delivery is disabled and fails closed, while explicitly enabled in-process test adapters provide deterministic success, retryable failure, and permanent failure without internet calls.
 - `/contact` points AWS savings and implementation enquiries to `/start` and does not create a competing form or delivery pipeline.
+- The Conversion foundation is independently approved at final Gate 7A SHA `cb5df950d1fe15b5c93c255e7da1938cf86b12f7`: normal, validation, delivery-failure, and controlled test-success states; fail-closed production delivery; accessible error/result focus; and the no-silent-lead-loss boundary are approved.
 
 ## In progress
 
@@ -157,6 +158,7 @@
 - Browser coverage verifies labels, required state, linked error summary, `aria-invalid`, `aria-describedby`, focus movement, pending state, repeat-submit prevention, keyboard submission, native select sizing, Axe, JavaScript-disabled success, no PII in URLs, no external delivery request, no runtime/hydration warning, and responsive overflow at 320, 390, 768, 1024, 1280, 1440, and 1728px.
 - Six canonical conversion snapshots cover normal, validation, success, and failure states at desktop/mobile widths. Eight neutral-focus review captures are stored under `outputs/gate-7a-review/`; no independent conversion approval is claimed.
 - The production build adds no dependency and reports `/start` as request-rendered, while all previously static routes retain their rendering classification. Next.js does not report route client-byte totals in the standard build table.
+- GitHub Actions run `34416209987` passed against exact final Gate 7A SHA `cb5df950d1fe15b5c93c255e7da1938cf86b12f7`; its 2026-09-13 baseline rerun again passed frozen install, lint, typecheck, 22 unit/component tests, build, 96 functional Chromium checks, and 40 canonical Linux/Chromium visual comparisons.
 
 ## Next gate
 
