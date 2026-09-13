@@ -46,6 +46,8 @@ Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client valida
 
 The application response-header baseline applies on the Worker as well as `next start`: nosniff, strict-origin referrer handling, denied framing, and a narrow Permissions Policy. `/start` must remain private/no-store; static pages and hashed assets retain runtime-managed caching. Do not add `Strict-Transport-Security` to the shared `workers.dev` hostname. CSP and HSTS are production custom-domain decisions described in `SECURITY_BOUNDARIES.md`, not staging theatre.
 
+vinext 1.0.0-beta.9 does not apply its compiled `/:path*` header matcher to the root route, unlike Next. The Cloudflare build therefore emits an additional explicit `/` header rule while retaining the normal catch-all; the ordinary Next configuration retains only the catch-all and does not duplicate response fields.
+
 ## Staging and deployment
 
 1. Authenticate interactively with `pnpm exec wrangler login`; never paste a token into chat or source.

@@ -25,7 +25,10 @@ const nextConfig: NextConfig = {
     },
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    const catchAll = { source: "/:path*", headers: securityHeaders };
+    return vinextRuntime
+      ? [{ source: "/", headers: securityHeaders }, catchAll]
+      : [catchAll];
   },
 };
 
