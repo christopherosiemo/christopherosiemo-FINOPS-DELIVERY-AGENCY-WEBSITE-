@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 84%
+**Current value:** 88%
 
-**Target for this checkpoint:** 84% after Gate 8A engineering hardening; 88% requires independent final engineering review
+**Target for this checkpoint:** 88% after independent Gate 8B engineering qualification; Gate 9A may reach 92%
 
-**Current gate:** Engineering Polish — Gate 8B final engineering qualification evidence prepared; independent approval pending
+**Current gate:** Acquisition — Gate 9A technical acquisition foundation
 
 ## Completed
 
@@ -92,14 +92,16 @@
 - Gate 8A adds safe recoverable error and hard-404 surfaces, a global response-header baseline, explicit cache/CSP/HSTS decisions, production resource budgets, and dedicated engineering-quality checks without changing approved product, brand, conversion, indexing, analytics, or production routing.
 - Critical-path smoke passes in Chromium, Firefox, and WebKit. The enquiry native select now retains its value after server validation in all three engines; mobile navigation, keyboard recovery, runtime-error, and overflow checks pass.
 - Forced-colours and WCAG text-spacing checks protect core routes and recovery surfaces. Secret-leak, allowed-host, cache, header, 404, dependency, console, and production performance audits are automated.
+- Engineering Polish is independently approved at final Gate 8B SHA `30fc19f74e2c580c9ff73ff24a1454d466154dc7`; GitHub Actions run `34768317020` passed on that exact commit.
+- The Gate 8B review approved whole-site optical coherence, commercial and privacy consistency, hard-404 and recoverable-error behavior, Chromium/Firefox/WebKit qualification, the accessibility matrix, deterministic performance budgets, the security/header baseline, conversion-state integrity, and the absence of secret/PII leakage. No live POST or email occurred during qualification.
 
 ## In progress
 
-- Independent review of the prepared Gate 8B whole-site engineering, responsive, accessibility, performance, and optical evidence is pending. Progress remains 84%.
+- Gate 9A technical acquisition architecture is in progress. Production routing, external search/discovery configuration, and independent acquisition approval remain outside this gate.
 
 ## Blocked
 
-- 88% requires independent whole-site engineering, responsive, accessibility, performance, and optical qualification after Gate 8A reaches 84%.
+- 94% requires external search/discovery configuration, production-ready verification surfaces, and independent acquisition approval after Gate 9A.
 - Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
 - 100% requires a genuine external prospect/customer conversion.
 
