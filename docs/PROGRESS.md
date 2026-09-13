@@ -179,6 +179,7 @@
 - The expanded cross-browser smoke passed 18 checks across Chromium, Firefox, and WebKit at both 390×844 and 1440×900. Gate 8B browser evidence contains 66 route observations with no unexpected status, overflow, console error, or page error; 22 Axe route/width observations found no serious or critical violation.
 - Gate 8B performance resource maxima exactly match Gate 8A: 9 JavaScript requests / 145,010 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 30 total requests. Median lab LCP ranged 104–164ms and CLS 0.00020–0.03198 without field-performance claims.
 - Nineteen neutral-focus captures and eight machine-readable reports are generated under `outputs/gate-8b-review/`. Read-only staging checks confirmed version `e021e7a2-37f0-40eb-a39f-97515b4fad72`, expected route/404 statuses, approved response headers, Turnstile script availability and reserved geometry, and no horizontal overflow. No live POST, email, production-domain routing, indexing, analytics, or acquisition change occurred.
+- The first Gate 8B CI run exposed nondeterministic React work surviving the error-surface component tests into jsdom teardown. Explicitly unmounting both rendered recovery surfaces closes their test roots before environment disposal; five consecutive full unit runs pass after the focused test-only correction.
 
 ## Next gate
 
