@@ -14,7 +14,7 @@ The site is designed for excellent Core Web Vitals and minimal client-side JavaS
 
 ## Design-system implications
 
-Instrument Sans is loaded as a variable font and IBM Plex Mono as only the required 400 and 500 weights through `next/font/google`. Next.js self-hosts the generated assets, eliminating browser requests to Google and reducing avoidable layout instability. Both use `display: swap`.
+Instrument Sans is loaded as a committed variable WOFF2 and IBM Plex Mono as committed 400 and 500 WOFF2 assets. This preserves self-hosting in both Next.js and vinext builds, eliminates browser requests to Google, and uses `font-display: swap`.
 
 The token system and specimen use static server components and CSS. No client boundary or runtime breakpoint logic was added. The motion specimen is CSS-only and resolves immediately for reduced-motion users. The single accessibility testing dependency is development-only and cannot enter the production client bundle.
 
@@ -38,7 +38,7 @@ Gate 6A adds three static, server-rendered Trust routes with shared CSS-only com
 
 ## Conversion implications
 
-Gate 7A adds no dependency, form library, analytics script, external request, image, or custom control. `/start` renders static commercial context on the server and hydrates one local form boundary for action state, pending feedback, repeat-submit prevention, and focus management. Request-time rendering issues the anti-abuse timestamp; CSS handles responsive composition. The standard Next.js build table does not report route client-byte totals, so no bundle-size claim is made.
+Gate 7B adds the minimum Cloudflare/vinext build and test dependencies. `/start` retains one form client boundary and adds the required Turnstile script only on that route. Privacy and all other content remain server-rendered; `/privacy` is static. No analytics, tag manager, cookie banner, image optimiser, or client state dependency is added. CSS constrains the flexible Turnstile frame against horizontal overflow.
 
 ## Budgets to lock
 

@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hkgpipi-enquiry-runtime-test",
+  "main": "tests/cloudflare/worker.ts",
+  "compatibility_date": "2026-09-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [
+      { "name": "ENQUIRY_RATE_LIMITER", "class_name": "EnquiryRateLimiter" }
+    ]
+  },
+  "exports": {
+    "EnquiryRateLimiter": { "type": "durable-object", "storage": "sqlite" }
+  }
+}

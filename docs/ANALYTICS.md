@@ -4,7 +4,7 @@ Measurement must be explicit, minimal, consent-aware, and tied to genuine produc
 
 ## Current state
 
-No analytics vendor or tracking script is installed. Event taxonomy, consent model, retention period, data controller details, regional requirements, internal traffic policy, and ownership are **TBD**.
+No analytics vendor or tracking script is installed. Gate 7B adds Turnstile solely as an enquiry security control, not analytics. The approved Privacy Policy states that non-essential analytics, advertising, and tracking cookies are not currently used; this gate preserves that state and adds no cookie banner.
 
 The eventual primary conversion event must reflect the agreed commercial flow, not a vanity interaction. At programme completion, a genuine external commercial conversion must be verifiably recorded.
 

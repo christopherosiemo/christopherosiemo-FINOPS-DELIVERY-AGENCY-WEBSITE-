@@ -51,10 +51,11 @@ Automated checks reduce risk but do not replace keyboard, screen-reader, zoom/re
 
 - `/start` has one H1; every visible control has a persistent label, required controls use native `required`, and the optional native select is explicitly identified.
 - Validation renders a linked summary, per-control text, `aria-invalid`, and `aria-describedby`; colour is supplemental. Enhanced submissions move focus to validation, failure, or success output.
-- The submit control exposes “Sending…” and disables repeat activation while pending. The form remains usable through native submission without JavaScript.
+- The submit control exposes “Sending…” and disables repeat activation while pending. Without JavaScript the protected submit stays disabled and a visible mailto fallback names the authorised channel.
 - The honeypot is visually off-screen, `aria-hidden`, excluded from the tab order, and does not disable useful autocomplete on legitimate fields.
 - Inputs retain a minimum 16px font, controls meet the existing 44px target, textareas are comfortably tall, and the native select retains platform keyboard behavior.
-- Automated coverage includes labels, required state, summaries, focus, pending state, keyboard submit, Axe, no-JavaScript results, and overflow across 320–1728px. Manual keyboard, zoom/reflow, and screen-reader review still remain required.
+- Managed Turnstile is introduced as a compact labelled security check near submission. Its flexible frame is width-constrained; expiration and verification failures reset the widget without clearing legitimate fields.
+- Automated coverage includes labels, required state, distinct validation/verification/rate/delivery states, focus, pending state, keyboard submit, Axe, no-JavaScript fallback, Privacy access, and overflow across 320–1728px. Manual keyboard, zoom/reflow, Turnstile challenge, and screen-reader review still remain required.
 
 ## Global-shell decisions
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { submitEnquiry } from "@/app/start/actions";
 import { ActionLink, Button, DirectionalLink } from "@/components/ui/actions";
 import {
@@ -10,6 +11,7 @@ import {
   type EnquirySubmissionState,
 } from "@/lib/enquiry/types";
 import styles from "./start-page.module.css";
+import { TurnstileWidget } from "./turnstile-widget";
 
 const fieldOrder: { name: EnquiryField; label: string }[] = [
   { name: "email", label: "Work email" },
@@ -21,8 +23,9 @@ const fieldOrder: { name: EnquiryField; label: string }[] = [
 ];
 
 type EnquiryFormProps = {
-  issuedAt: number;
   deliveryScenario?: string;
+  siteKey?: string;
+  testMode: boolean;
 };
 
 function describedBy(name: EnquiryField, hint: boolean, state: EnquirySubmissionState) {
@@ -40,9 +43,15 @@ function FieldError({ name, state }: { name: EnquiryField; state: EnquirySubmiss
   ) : null;
 }
 
-export function EnquiryForm({ issuedAt, deliveryScenario }: EnquiryFormProps) {
+export function EnquiryForm({ deliveryScenario, siteKey, testMode }: EnquiryFormProps) {
   const [state, formAction, pending] = useActionState(submitEnquiry, initialEnquiryState, "/start");
+  const [javascriptReady, setJavascriptReady] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setJavascriptReady(true), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (state.status !== "idle") resultRef.current?.focus();
@@ -94,6 +103,16 @@ export function EnquiryForm({ issuedAt, deliveryScenario }: EnquiryFormProps) {
             ))}
           </ul>
         </div>
+      ) : state.status === "verification-failure" ? (
+        <div aria-labelledby="verification-error-title" className={styles.errorSummary} data-submission-result="verification-failure" ref={resultRef} role="alert" tabIndex={-1}>
+          <h3 id="verification-error-title">We could not verify this submission.</h3>
+          <p>Please complete the verification and try again.</p>
+        </div>
+      ) : state.status === "rate-limited" ? (
+        <div aria-labelledby="rate-limit-title" className={styles.errorSummary} data-submission-result="rate-limited" ref={resultRef} role="alert" tabIndex={-1}>
+          <h3 id="rate-limit-title">Too many attempts.</h3>
+          <p>Please wait before trying again.</p>
+        </div>
       ) : state.status === "delivery-failure" ? (
         <div
           aria-labelledby="delivery-error-title"
@@ -110,7 +129,6 @@ export function EnquiryForm({ issuedAt, deliveryScenario }: EnquiryFormProps) {
       ) : null}
 
       <form action={formAction} aria-labelledby="enquiry-form-title" className={styles.form} noValidate>
-        <input type="hidden" name="__issuedAt" value={issuedAt} />
         {deliveryScenario ? <input type="hidden" name="__deliveryScenario" value={deliveryScenario} /> : null}
         <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor="website">Leave this field empty</label>
@@ -218,10 +236,19 @@ export function EnquiryForm({ issuedAt, deliveryScenario }: EnquiryFormProps) {
 
         <div className={styles.boundary}>
           <p>Submitting this form is an enquiry. It does not create an engagement or authorise AWS access.</p>
-          <p>We will use the information you submit to respond to this enquiry and assess whether a HKGpipi engagement is appropriate.</p>
+          <p>We will use the information you submit to respond to this enquiry and assess whether a HKGpipi engagement is appropriate. <Link href="/privacy">Privacy Policy →</Link></p>
         </div>
 
-        <Button aria-disabled={pending} className={styles.submit} disabled={pending} type="submit">
+        <TurnstileWidget
+          resetKey={state.status}
+          siteKey={siteKey}
+          testMode={testMode}
+          testToken={deliveryScenario === "verification-error" ? "test-expired" : "test-success"}
+        />
+
+        <p className={styles.noScript} hidden={javascriptReady}>JavaScript is required to use the protected enquiry form. Email <a href="mailto:enquiries@hkgpipi.com">enquiries@hkgpipi.com</a> instead.</p>
+
+        <Button aria-disabled={pending || !javascriptReady} className={styles.submit} disabled={pending || !javascriptReady} type="submit">
           {pending ? "Sending…" : "Send enquiry"}
         </Button>
       </form>

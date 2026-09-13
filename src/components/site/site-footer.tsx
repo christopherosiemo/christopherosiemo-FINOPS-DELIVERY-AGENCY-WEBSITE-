@@ -26,7 +26,10 @@ export function SiteFooter() {
       </nav>
       <div className={`container ${styles.bottom}`}>
         <span className={styles.mark}>{siteIdentity.displayMark}</span>
-        <p>{siteIdentity.defaultDescription}</p>
+        <div className={styles.metadata}>
+          <p>{siteIdentity.defaultDescription}</p>
+          <Link href="/privacy">Privacy</Link>
+        </div>
       </div>
     </footer>
   );

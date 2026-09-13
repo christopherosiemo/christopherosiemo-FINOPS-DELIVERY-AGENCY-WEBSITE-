@@ -3,11 +3,12 @@ import { EnquiryForm } from "./enquiry-form";
 import styles from "./start-page.module.css";
 
 type StartPageProps = {
-  issuedAt: number;
   deliveryScenario?: string;
+  siteKey?: string;
+  testMode: boolean;
 };
 
-export function StartPage({ issuedAt, deliveryScenario }: StartPageProps) {
+export function StartPage({ deliveryScenario, siteKey, testMode }: StartPageProps) {
   return (
     <main
       className={styles.page}
@@ -40,7 +41,7 @@ export function StartPage({ issuedAt, deliveryScenario }: StartPageProps) {
           </div>
 
           <div className={styles.formColumn}>
-            <EnquiryForm issuedAt={issuedAt} deliveryScenario={deliveryScenario} />
+            <EnquiryForm deliveryScenario={deliveryScenario} siteKey={siteKey} testMode={testMode} />
           </div>
         </div>
       </section>

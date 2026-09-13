@@ -26,7 +26,7 @@ export type EnquiryField = keyof EnquiryValues;
 export type EnquiryFieldErrors = Partial<Record<EnquiryField, string>>;
 
 export type EnquirySubmissionState = {
-  status: "idle" | "validation-error" | "delivery-failure" | "success";
+  status: "idle" | "validation-error" | "verification-failure" | "rate-limited" | "delivery-failure" | "success";
   values: EnquiryValues;
   errors: EnquiryFieldErrors;
   requestId?: string;

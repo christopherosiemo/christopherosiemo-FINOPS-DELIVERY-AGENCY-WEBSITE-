@@ -1,4 +1,5 @@
 import type { EnquiryPayload } from "./types";
+import type { EnquiryEmailBinding } from "./bindings";
 
 export type EnquiryDeliveryResult =
   | { ok: true; externalId?: string }
@@ -28,8 +29,56 @@ export class TestEnquiryDelivery implements EnquiryDelivery {
   }
 }
 
-export function createConfiguredDelivery(scenario?: string): EnquiryDelivery {
-  const testMode = process.env.ENQUIRY_TEST_MODE === "1";
+export class CloudflareEmailDelivery implements EnquiryDelivery {
+  readonly type = "cloudflare-email";
+
+  constructor(
+    private readonly binding: EnquiryEmailBinding | undefined,
+  ) {}
+
+  async deliver(payload: EnquiryPayload): Promise<EnquiryDeliveryResult> {
+    if (!this.binding) return { ok: false, retryable: true, reason: "disabled" };
+    const subject = `HKGpipi Savings Sprint enquiry — ${payload.requestId}`;
+    const text = [
+      "HKGpipi Savings Sprint enquiry",
+      "",
+      `Reference ID: ${payload.requestId}`,
+      `Received timestamp: ${payload.receivedAt}`,
+      "",
+      `Name: ${payload.name}`,
+      `Work email: ${payload.email}`,
+      `Company: ${payload.company}`,
+      `Spend range: ${payload.spendRange}`,
+      "",
+      "AWS context:",
+      payload.awsContext,
+      "",
+      "Engineering priority:",
+      payload.priority,
+    ].join("\n");
+
+    try {
+      const result = await this.binding.send({
+        to: undefined,
+        from: { name: "HKGpipi", email: "enquiries@hkgpipi.com" },
+        replyTo: payload.email,
+        subject,
+        text,
+      });
+      return { ok: true, externalId: result.messageId };
+    } catch {
+      return { ok: false, retryable: true, reason: "temporary" };
+    }
+  }
+}
+
+type DeliveryConfiguration = {
+  binding?: EnquiryEmailBinding;
+  scenario?: string;
+  testMode: boolean;
+};
+
+export function createConfiguredDelivery({ binding, scenario, testMode }: DeliveryConfiguration): EnquiryDelivery {
   if (testMode) {
     if (scenario === "success") return new TestEnquiryDelivery();
     if (scenario === "retryable-failure") {
@@ -40,5 +89,7 @@ export function createConfiguredDelivery(scenario?: string): EnquiryDelivery {
     }
   }
 
-  return new DisabledEnquiryDelivery();
+  return binding
+    ? new CloudflareEmailDelivery(binding)
+    : new DisabledEnquiryDelivery();
 }

@@ -35,13 +35,13 @@ The Savings Sprint, Implementation, and Pricing routes use a small set of revenu
 
 The Method, Verification, and Security routes use a small set of Trust-specific Server Components for shared hero, section introduction, and action structure. Immutable operating stages and approved boundary phrases live in `src/config/trust.ts`; detailed narratives remain route-local. Their semantic matrices reflow into labelled records below 1280px. Because every current Trust route ends with route-specific actions, `TrustPage` emits the existing stable footer-CTA suppression attribute by default; footer navigation and identity remain unchanged. The three routes share one CSS Module, add no client boundary or dependency, and retain `noindex, nofollow` metadata.
 
-`/start` is request-rendered so each form receives a fresh anti-abuse timestamp. Static commercial context remains in a Server Component; `EnquiryForm` is the only conversion client boundary and owns React action state, pending feedback, repeat-submit prevention, and focus movement. The form progressively posts to a Server Action, which treats all input as untrusted, validates an allow-list, invokes an explicit delivery interface, and returns bounded state. The Gate 7A production adapter is disabled and fails closed; deterministic in-process adapters require the explicit test-harness switch and make no external request. `/contact` remains a small server-rendered pointer to the canonical enquiry flow.
+`/start` is request-rendered. Static commercial context remains in a Server Component; `EnquiryForm` is the conversion client boundary and owns React action state, the Managed Turnstile widget, pending feedback, repeat-submit prevention, and focus movement. The Server Action treats input as untrusted and orders origin, honeypot, allow-list/validation, SQLite Durable Object rate limiting, Siteverify, and Email Service delivery. `/privacy` is a static faithful rendering of the approved policy. `/contact` points to the form and the authorised manual email channel.
 
 Functional Playwright checks and visual comparisons use separate configurations. Functional E2E remains portable and uses the development server locally; CI verifies the built application through `next start`. Ubuntu with the pinned Playwright Chromium version is the canonical visual-baseline environment. Baseline refreshes are deliberate and human-reviewed, never committed automatically.
 
 ## Rendering and data
 
-Content is server-rendered by default. Client components must be small and justified by actual interactivity. There is no persistence, authentication, authorised external delivery, analytics provider, or CMS at this gate; each is TBD pending product requirements and security review.
+Content is server-rendered by default. Client components must be small and justified by actual interactivity. Cloudflare Workers is the staging runtime through vinext. Durable Object persistence is limited to rate-limit timestamps; enquiries are delivered through the restricted Email Service binding and are not stored in an application database. There is no authentication, analytics provider, CRM, Redis, or CMS.
 
 ## Decisions
 

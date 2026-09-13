@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 75%
+**Current value:** 76%
 
-**Target for this checkpoint:** 75%
+**Target for this checkpoint:** 77% pending one controlled submission; 78% requires human inbox confirmation
 
-**Current gate:** Conversion — foundation complete; authorised Cloudflare delivery integration and external verification pending
+**Current gate:** Conversion — authorised Cloudflare staging integration deployed; controlled submission and human inbox confirmation pending
 
 ## Completed
 
@@ -78,6 +78,10 @@
 - Gate 7A has no external destination: production delivery is disabled and fails closed, while explicitly enabled in-process test adapters provide deterministic success, retryable failure, and permanent failure without internet calls.
 - `/contact` points AWS savings and implementation enquiries to `/start` and does not create a competing form or delivery pipeline.
 - The Conversion foundation is independently approved at final Gate 7A SHA `cb5df950d1fe15b5c93c255e7da1938cf86b12f7`: normal, validation, delivery-failure, and controlled test-success states; fail-closed production delivery; accessible error/result focus; and the no-silent-lead-loss boundary are approved.
+- Gate 7B adds vinext without replacing the ordinary Next path, Cloudflare-generated binding types, a Managed Turnstile widget with mandatory Siteverify action/hostname checks, a SQLite-backed Durable Object rate limiter, and a Cloudflare Email Service adapter.
+- The under-one-second hard rejection is retired. The honeypot remains; the Durable Object allows five valid-shaped attempts per HMAC-pseudonymised network key per 15 minutes and stores only attempt timestamps. Missing IP uses a shared protected bucket.
+- The approved `HKGpipi Privacy Policy.docx` dated 13 September 2026 is faithfully rendered at public `/privacy`, linked from the form and footer, and retained as `noindex, nofollow`. No analytics, advertising/tracking cookies, consent banner, CRM, or Redis is added.
+- Cloudflare staging deployment is live at `https://hkgpipi-enquiry-staging.charltonyalazima.workers.dev` with real Turnstile, Durable Object, HMAC secret, and recipient/sender-restricted Email Service binding. Routes `/`, `/start`, and `/privacy` return 200. The one authorised synthetic submission has not yet been sent, so progress remains below 77% and no inbox receipt is inferred.
 
 ## In progress
 
@@ -85,10 +89,9 @@
 
 ## Blocked
 
-- Gate 7B requires an authorised production delivery destination and approved provider credentials/configuration.
-- Gate 7B requires a production-durable anti-abuse/rate-limit decision.
-- Gate 7B and public conversion launch require an approved privacy policy and legal disclosure.
-- Gate 7B requires controlled end-to-end delivery verification at the external destination and independent conversion approval.
+- 77% requires exactly one controlled staging submission through real Turnstile, Durable Object rate limiting, and Email Service.
+- 78% requires the operator to confirm physical inbox receipt, matching subject/reference, correct body and Reply-To, and no IP/token/secret leakage. Cloudflare acceptance is not sufficient.
+- Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
 
 ## Deferred
 
@@ -162,4 +165,4 @@
 
 ## Next gate
 
-75–78% — Authorised delivery integration, end-to-end external verification, and independent conversion approval.
+75–77% — Cloudflare delivery implementation and controlled staging submission. 78% only after human destination confirmation. Engineering Polish does not begin in this gate.

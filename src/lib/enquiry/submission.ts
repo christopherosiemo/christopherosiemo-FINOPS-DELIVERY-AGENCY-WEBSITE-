@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { EnquiryDelivery } from "./delivery";
 import type { EnquiryPayload, EnquirySubmissionState } from "./types";
 import { validateEnquiry } from "./validation";
+import type { TurnstileOutcome, TurnstileVerification } from "./turnstile";
 
 export type RateLimitDecision = { allowed: true } | { allowed: false; retryAfterSeconds?: number };
 
@@ -15,16 +16,27 @@ export class Gate7aRateLimitHook implements EnquiryRateLimit {
   }
 }
 
+export class TestEnquiryRateLimit implements EnquiryRateLimit {
+  constructor(private readonly allowed = true) {}
+  async check(): Promise<RateLimitDecision> {
+    return { allowed: this.allowed };
+  }
+}
+
 type SubmissionDiagnostic = {
   requestId: string;
   timestamp: string;
   deliveryType: string;
   outcome: "success" | "failure";
   category: string;
+  externalId?: string;
 };
 
 type SubmissionDependencies = {
   delivery: EnquiryDelivery;
+  verification?: TurnstileVerification;
+  turnstileToken?: string;
+  remoteIp?: string;
   rateLimit?: EnquiryRateLimit;
   now?: Date;
   originAllowed?: boolean;
@@ -50,6 +62,9 @@ export async function processEnquirySubmission(
   formData: FormData,
   {
     delivery,
+    verification = { verify: async () => "verified" },
+    turnstileToken = "",
+    remoteIp,
     rateLimit = new Gate7aRateLimitHook(),
     now = new Date(),
     originAllowed = true,
@@ -58,7 +73,7 @@ export async function processEnquirySubmission(
   }:
     SubmissionDependencies,
 ): Promise<EnquirySubmissionState> {
-  const validation = validateEnquiry(formData, now.getTime());
+  const validation = validateEnquiry(formData);
   if (!validation.ok) return { status: "validation-error", values: validation.values, errors: validation.errors };
 
   const id = createRequestId();
@@ -68,13 +83,19 @@ export async function processEnquirySubmission(
     errors: {},
     requestId: id,
   };
-  if (!originAllowed || validation.isLikelyBot) return failedState;
+  if (!originAllowed || validation.honeypotPopulated) return failedState;
 
   const timestamp = now.toISOString();
   const rateDecision = await rateLimit.check({ requestId: id, timestamp });
   if (!rateDecision.allowed) {
     log({ requestId: id, timestamp, deliveryType: delivery.type, outcome: "failure", category: "rate-limited" });
-    return failedState;
+    return { status: "rate-limited", values: validation.values, errors: {}, requestId: id };
+  }
+
+  const verificationOutcome: TurnstileOutcome = await verification.verify(turnstileToken, remoteIp);
+  if (verificationOutcome !== "verified") {
+    log({ requestId: id, timestamp, deliveryType: delivery.type, outcome: "failure", category: `turnstile-${verificationOutcome}` });
+    return { status: "verification-failure", values: validation.values, errors: {}, requestId: id };
   }
 
   const payload: EnquiryPayload = { ...validation.values, requestId: id, receivedAt: timestamp };
@@ -85,6 +106,7 @@ export async function processEnquirySubmission(
     deliveryType: delivery.type,
     outcome: result.ok ? "success" : "failure",
     category: result.ok ? "delivered" : result.reason,
+    externalId: result.ok ? result.externalId : undefined,
   });
 
   return result.ok

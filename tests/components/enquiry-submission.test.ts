@@ -129,16 +129,21 @@ describe("enquiry submission", () => {
     expect(result.status).toBe("delivery-failure");
   });
 
-  it.each([
-    ["honeypot", { website: "https://bot.example" }],
-    ["implausibly fast completion", { __issuedAt: String(now.getTime()) }],
-  ])("does not deliver on %s", async (_reason, override) => {
+  it("does not deliver when the honeypot is populated", async () => {
     const delivery = new CapturingDelivery({ ok: true });
-    const result = await processEnquirySubmission(validForm(override), {
+    const result = await processEnquirySubmission(validForm({ website: "https://bot.example" }), {
       delivery, now, createRequestId: fixedId, log: vi.fn(),
     });
     expect(result.status).toBe("delivery-failure");
     expect(delivery.payloads).toHaveLength(0);
+  });
+
+  it("does not reject a valid fast submission", async () => {
+    const delivery = new CapturingDelivery({ ok: true });
+    const result = await processEnquirySubmission(validForm({ __issuedAt: String(now.getTime()) }), {
+      delivery, now, createRequestId: fixedId, log: vi.fn(),
+    });
+    expect(result.status).toBe("success");
   });
 
   it("honours a rate-limit denial without calling delivery", async () => {
@@ -147,7 +152,7 @@ describe("enquiry submission", () => {
     const result = await processEnquirySubmission(validForm(), {
       delivery, rateLimit, now, createRequestId: fixedId, log: vi.fn(),
     });
-    expect(result.status).toBe("delivery-failure");
+    expect(result.status).toBe("rate-limited");
     expect(delivery.payloads).toHaveLength(0);
   });
 

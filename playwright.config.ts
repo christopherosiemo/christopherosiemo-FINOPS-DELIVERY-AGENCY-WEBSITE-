@@ -38,6 +38,7 @@ export default defineConfig({
     reuseExistingServer: false,
     timeout: 120_000,
     env: {
+      APP_ENVIRONMENT: "test",
       ENQUIRY_TEST_MODE: "1",
     },
   },

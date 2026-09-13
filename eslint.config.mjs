@@ -7,10 +7,12 @@ export default defineConfig([
   ...nextTs,
   globalIgnores([
     ".next/**",
+    "dist/**",
     "coverage/**",
     "playwright-report/**",
     "test-results/**",
     "work/**",
     "next-env.d.ts",
+    "worker-configuration.d.ts",
   ]),
 ]);

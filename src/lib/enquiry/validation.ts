@@ -14,7 +14,6 @@ const limits = {
 } as const;
 
 const minimumProseLength = 20;
-const minimumCompletionTimeMs = 1_000;
 const spendRanges = new Set<string>(spendRangeOptions.map(({ value }) => value));
 
 function readText(formData: FormData, name: string) {
@@ -35,10 +34,11 @@ function hasValidEmailSyntax(value: string) {
 }
 
 export type EnquiryValidationResult =
-  | { ok: true; values: EnquiryValues; isLikelyBot: boolean }
+  | { ok: true; values: EnquiryValues; honeypotPopulated: boolean }
   | { ok: false; values: EnquiryValues; errors: EnquiryFieldErrors };
 
-export function validateEnquiry(formData: FormData, now = Date.now()): EnquiryValidationResult {
+export function validateEnquiry(formData: FormData, _now?: number): EnquiryValidationResult {
+  void _now;
   const rawSpendRange = readText(formData, "spendRange");
   const values: EnquiryValues = {
     email: readText(formData, "email").trim(),
@@ -68,11 +68,9 @@ export function validateEnquiry(formData: FormData, now = Date.now()): EnquiryVa
 
   if (Object.keys(errors).length > 0) return { ok: false, values, errors };
 
-  const issuedAt = Number(readText(formData, "__issuedAt"));
-  const completedTooQuickly = !Number.isFinite(issuedAt) || issuedAt <= 0 || now - issuedAt < minimumCompletionTimeMs;
   const honeypotPopulated = readText(formData, "website").trim().length > 0;
 
-  return { ok: true, values, isLikelyBot: completedTooQuickly || honeypotPopulated };
+  return { ok: true, values, honeypotPopulated };
 }
 
 export const enquiryValidationLimits = limits;

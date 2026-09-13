@@ -85,6 +85,16 @@ main[data-suppress-footer-cta="true"] + .footer [data-footer-cta] {
   margin-bottom: 0;
 }
 
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.metadata a {
+  color: inherit;
+}
+
 @media (min-width: 48rem) {
   .cta {
     grid-template-columns: 1fr auto;

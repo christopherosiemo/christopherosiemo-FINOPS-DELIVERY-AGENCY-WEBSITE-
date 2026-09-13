@@ -1,12 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-async function makeSubmissionHuman(page: Page) {
-  await page.locator('input[name="__issuedAt"]').evaluate((input) => {
-    (input as HTMLInputElement).value = String(Date.now() - 5_000);
-  });
-}
-
 async function fillValidEnquiry(page: Page) {
   await page.getByLabel(/Work email/).fill("alex@example.test");
   await page.getByLabel(/^Name/).fill("Alex Engineer");
@@ -14,7 +8,6 @@ async function fillValidEnquiry(page: Page) {
   await page.getByLabel(/What should we know/).fill("A multi-account estate with material RDS cost pressure.");
   await page.getByLabel(/What do you want to change/).fill("Rightsizing work is blocked by unclear service ownership.");
   await page.getByLabel(/Approximate monthly AWS spend/).selectOption("25k-100k");
-  await makeSubmissionHuman(page);
 }
 
 test("start route presents the canonical, non-indexed enquiry boundary", async ({ page }) => {
@@ -41,7 +34,8 @@ test("start route presents the canonical, non-indexed enquiry boundary", async (
   await expect(page.getByText("Do not include credentials, secrets or AWS access keys.")).toBeVisible();
   await expect(page.getByText("Submitting this form is an enquiry. It does not create an engagement or authorise AWS access.")).toBeVisible();
   await expect(page.getByText("Production privacy terms must be published before public launch.")).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /privacy/i })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /privacy policy/i })).toHaveAttribute("href", "/privacy");
+  await expect(page.getByText("Verification ready")).toBeVisible();
   const html = await page.locator("html").textContent();
   expect(html).not.toContain("ENQUIRY_TEST_MODE");
   expect(html).not.toContain("ENQUIRY_DELIVERY_PROVIDER");
@@ -97,19 +91,26 @@ test("production-disabled delivery fails closed", async ({ page }) => {
   await expect(page.getByText("Enquiry received.")).toHaveCount(0);
 });
 
-for (const [name, prepare] of [
-  ["honeypot", async (page: Page) => page.locator('input[name="website"]').evaluate((input) => (input as HTMLInputElement).value = "bot")],
-  ["fast submit", async (page: Page) => page.locator('input[name="__issuedAt"]').evaluate((input) => (input as HTMLInputElement).value = String(Date.now()))],
-] as const) {
-  test(`${name} is rejected without a false success`, async ({ page }) => {
+test("honeypot is rejected without a false success", async ({ page }) => {
     await page.goto("/start?scenario=success");
     await fillValidEnquiry(page);
-    await prepare(page);
+    await page.locator('input[name="website"]').evaluate((input) => (input as HTMLInputElement).value = "bot");
     await page.getByRole("button", { name: "Send enquiry" }).click();
     await expect(page.locator('[data-submission-result="failure"]')).toBeVisible();
     await expect(page.getByText("Enquiry received.")).toHaveCount(0);
-  });
-}
+});
+
+test("verification and rate-limit failures remain distinct", async ({ page }) => {
+  await page.goto("/start?scenario=verification-error");
+  await fillValidEnquiry(page);
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(page.locator('[data-submission-result="verification-failure"]')).toBeFocused();
+  await expect(page.getByLabel(/Work email/)).toHaveValue("alex@example.test");
+  await page.goto("/start?scenario=rate-limited");
+  await fillValidEnquiry(page);
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(page.locator('[data-submission-result="rate-limited"]')).toBeFocused();
+});
 
 test("start is keyboard operable and has no detectable Axe violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -117,7 +118,7 @@ test("start is keyboard operable and has no detectable Axe violations", async ({
   await page.goto("/start");
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.getByLabel(/Work email/).focus();
-  for (let count = 0; count < 6; count += 1) await page.keyboard.press("Tab");
+  for (let count = 0; count < 7; count += 1) await page.keyboard.press("Tab");
   await expect(page.getByRole("button", { name: "Send enquiry" })).toBeFocused();
   for (const control of await page.locator("form input:not([type=hidden]):not([name=website]), form textarea, form select, form button").all()) {
     expect((await control.boundingBox())?.height).toBeGreaterThanOrEqual(44);
@@ -141,17 +142,12 @@ test("start has no runtime warnings, hydration failures, or external delivery re
   expect(externalRequests).toEqual([]);
 });
 
-test("native no-JavaScript submission returns an understandable server result", async ({ browser }) => {
+test("no-JavaScript mode exposes the authorised manual fallback", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("/start?scenario=success");
-  await fillValidEnquiry(page);
-  await Promise.all([
-    page.waitForNavigation(),
-    page.getByRole("button", { name: "Send enquiry" }).click(),
-  ]);
-  await expect(page.getByRole("heading", { name: "Enquiry received." })).toBeVisible();
-  expect(page.url()).not.toContain("alex");
+  await expect(page.getByText("JavaScript is required to use the protected enquiry form.")).toBeVisible();
+  await expect(page.getByRole("link", { name: "enquiries@hkgpipi.com" })).toHaveAttribute("href", "mailto:enquiries@hkgpipi.com");
   await context.close();
 });
 
@@ -164,9 +160,9 @@ for (const viewport of [
   { width: 1440, height: 900 },
   { width: 1728, height: 1117 },
 ]) {
-  test(`start and contact have no horizontal overflow at ${viewport.width} × ${viewport.height}`, async ({ page }) => {
+  test(`start, privacy and contact have no horizontal overflow at ${viewport.width} × ${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport);
-    for (const path of ["/start", "/contact"]) {
+    for (const path of ["/start", "/privacy", "/contact"]) {
       await page.goto(path);
       const dimensions = await page.locator("html").evaluate((element) => ({
         clientWidth: element.clientWidth,
@@ -181,5 +177,19 @@ test("contact directs enquiries to the canonical flow without collecting fields"
   await page.goto("/contact");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Talk to HKGpipi.");
   await expect(page.getByRole("link", { name: "Start an enquiry" })).toHaveAttribute("href", "/start");
+  await expect(page.getByRole("link", { name: "enquiries@hkgpipi.com" })).toHaveAttribute("href", "mailto:enquiries@hkgpipi.com");
   await expect(page.locator("form")).toHaveCount(0);
+});
+
+test("privacy route protects the approved policy facts and remains public", async ({ page }) => {
+  const response = await page.goto("/privacy");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { level: 1, name: "Privacy Policy" })).toBeVisible();
+  await expect(page.getByText("Last updated: 13 September 2026")).toBeVisible();
+  await expect(page.getByText(/Registered office: 14 Whitworth Rd, Woolwich, LONDON \. SE18 3QB/)).toBeVisible();
+  await expect(page.getByText("A current list of material sub-processors used for client processing is available on request.")).toBeVisible();
+  await expect(page.getByText("We do not currently use non-essential analytics, advertising or tracking cookies.")).toBeVisible();
+  await expect(page.getByRole("link", { name: "privacy@hkgpipi.com" }).first()).toHaveAttribute("href", "mailto:privacy@hkgpipi.com");
+  await expect(page.getByText(/Information Commissioner's Office/)).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
 });

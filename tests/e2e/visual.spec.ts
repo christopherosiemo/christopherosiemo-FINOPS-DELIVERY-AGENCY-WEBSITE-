@@ -8,9 +8,6 @@ async function fillVisualEnquiry(page: import("@playwright/test").Page) {
   await page.getByLabel(/What should we know/).fill("A multi-account estate with material RDS cost pressure.");
   await page.getByLabel(/What do you want to change/).fill("Rightsizing work is blocked by unclear service ownership.");
   await page.getByLabel(/Approximate monthly AWS spend/).selectOption("25k-100k");
-  await page.locator('input[name="__issuedAt"]').evaluate((input) => {
-    (input as HTMLInputElement).value = String(Date.now() - 5_000);
-  });
 }
 
 async function settleConversionCapture(page: import("@playwright/test").Page) {
@@ -138,6 +135,45 @@ test("start-failure-390 conversion baseline", async ({ page }) => {
     fullPage: true,
   });
 });
+
+for (const viewport of [
+  { name: "start-turnstile-1440", width: 1440, height: 900 },
+  { name: "start-turnstile-390", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} Gate 7B baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/start");
+    await settleConversionCapture(page);
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, { animations: "disabled", caret: "initial", fullPage: true });
+  });
+}
+
+for (const scenario of [
+  { name: "start-verification-error-390", value: "verification-error", selector: '[data-submission-result="verification-failure"]' },
+  { name: "start-rate-limited-390", value: "rate-limited", selector: '[data-submission-result="rate-limited"]' },
+]) {
+  test(`${scenario.name} Gate 7B baseline`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/start?scenario=${scenario.value}`);
+    await fillVisualEnquiry(page);
+    await page.getByRole("button", { name: "Send enquiry" }).click();
+    await expect(page.locator(scenario.selector)).toBeVisible();
+    await settleConversionCapture(page);
+    await expect(page).toHaveScreenshot(`${scenario.name}.png`, { animations: "disabled", caret: "initial", fullPage: true });
+  });
+}
+
+for (const viewport of [
+  { name: "privacy-1440", width: 1440, height: 900 },
+  { name: "privacy-390", width: 390, height: 844 },
+]) {
+  test(`${viewport.name} Gate 7B baseline`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/privacy");
+    await settleConversionCapture(page);
+    await expect(page).toHaveScreenshot(`${viewport.name}.png`, { animations: "disabled", caret: "initial", fullPage: true });
+  });
+}
 
 test("savings-sprint-ledger-mobile high-signal revenue baseline", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

@@ -20,11 +20,12 @@ The `HKGpipi` wordmark is the home control and links to `/`; there is no textual
 - `/`: live foundation page; final homepage narrative begins after Global Shell approval.
 - `/savings-sprint`, `/implementation`, `/pricing`: independently approved Revenue Pages; retained as `noindex, nofollow` pending legal review, conversion readiness, and release approval.
 - `/method`, `/verification`, `/security`: independently approved Trust narratives; retained as `noindex, nofollow` pending release approval.
-- `/start`: canonical production-quality enquiry interface and server boundary; retained as `noindex, nofollow` while authorised delivery, privacy, durable anti-abuse, and external verification remain blocked.
-- `/contact`: a small route directing AWS savings and implementation enquiries to `/start`; no competing form or pipeline; retained as `noindex, nofollow`.
+- `/start`: canonical protected enquiry interface and Cloudflare delivery boundary; retained as `noindex, nofollow` pending human destination verification and production qualification.
+- `/contact`: directs enquiries to `/start` and exposes `enquiries@hkgpipi.com` as the secondary manual channel; no competing form; retained as `noindex, nofollow`.
+- `/privacy`: faithful HTML rendering of the approved 13 September 2026 Privacy Policy; publicly accessible and retained as `noindex, nofollow`.
 - `/design-system`: internal calibration specimen; `noindex, nofollow`, absent from public navigation, and subject to removal or access control before production launch.
 
-This is the approved shell IA. Deeper content and composition are specified in `REVENUE_PAGES.md`, `TRUST.md`, and `CONVERSION.md`.
+Privacy sits in the footer's restrained metadata area and beside the form disclosure rather than expanding primary navigation. This is the approved shell IA. Deeper content and composition are specified in `REVENUE_PAGES.md`, `TRUST.md`, and `CONVERSION.md`.
 
 ## Deferred architecture
 
