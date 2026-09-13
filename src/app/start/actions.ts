@@ -38,6 +38,7 @@ export async function submitEnquiry(
     createRequestId: config.testMode ? () => "enq-test000001" : undefined,
     delivery: createConfiguredDelivery({
       binding: bindings.ENQUIRY_EMAIL,
+      destinationAddress: bindings.ENQUIRY_DESTINATION_ADDRESS,
       scenario,
       testMode: config.testMode,
     }),

@@ -4,7 +4,7 @@
 
 **Target for this checkpoint:** 77% pending one controlled submission; 78% requires human inbox confirmation
 
-**Current gate:** Conversion — authorised Cloudflare staging integration deployed; controlled submission and human inbox confirmation pending
+**Current gate:** Conversion — Cloudflare Email destination repair in progress; external delivery remains unverified
 
 ## Completed
 
@@ -81,7 +81,9 @@
 - Gate 7B adds vinext without replacing the ordinary Next path, Cloudflare-generated binding types, a Managed Turnstile widget with mandatory Siteverify action/hostname checks, a SQLite-backed Durable Object rate limiter, and a Cloudflare Email Service adapter.
 - The under-one-second hard rejection is retired. The honeypot remains; the Durable Object allows five valid-shaped attempts per HMAC-pseudonymised network key per 15 minutes and stores only attempt timestamps. Missing IP uses a shared protected bucket.
 - The approved `HKGpipi Privacy Policy.docx` dated 13 September 2026 is faithfully rendered at public `/privacy`, linked from the form and footer, and retained as `noindex, nofollow`. No analytics, advertising/tracking cookies, consent banner, CRM, or Redis is added.
-- Cloudflare staging deployment is live at `https://hkgpipi-enquiry-staging.charltonyalazima.workers.dev` with real Turnstile, Durable Object, HMAC secret, and recipient/sender-restricted Email Service binding. Routes `/`, `/start`, and `/privacy` return 200. The one authorised synthetic submission has not yet been sent, so progress remains below 77% and no inbox receipt is inferred.
+- Cloudflare staging is live at `https://hkgpipi-enquiry-staging.charltonyalazima.workers.dev` with real Turnstile, Durable Object, HMAC secret, and Email Service. Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and Turnstile, but both returned `delivery-failure` and neither arrived. External delivery is not verified.
+- The operator confirms Email Sending for `hkgpipi.com` is enabled, sending DNS is configured, Email preview is enabled, the public enquiry routing rule is active, and one verified destination exists. The private destination is never recorded.
+- Gate 7B.1 corrects the public-alias destination defect: the Email binding restricts only the sender, while a server-only `ENQUIRY_DESTINATION_ADDRESS` secret supplies the verified private recipient. Missing binding or destination fails closed, and provider exceptions are reduced to safe allowlisted diagnostic codes without messages or private data.
 
 ## In progress
 
@@ -89,7 +91,7 @@
 
 ## Blocked
 
-- 77% requires exactly one controlled staging submission through real Turnstile, Durable Object rate limiting, and Email Service.
+- 77% requires a newly authorised controlled staging submission through real Turnstile, Durable Object rate limiting, and Email Service to reach application send success. No further submission is authorised during Gate 7B.1 repair.
 - 78% requires the operator to confirm physical inbox receipt, matching subject/reference, correct body and Reply-To, and no IP/token/secret leakage. Cloudflare acceptance is not sufficient.
 - Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
 

@@ -5,6 +5,7 @@ export const TURNSTILE_ACTION = "savings_sprint_enquiry";
 export type ApplicationEnvironment = "local" | "test" | "staging" | "production";
 
 export type EnquiryRuntimeConfig = {
+  deliveryConfigured: boolean;
   environment: ApplicationEnvironment;
   expectedHostname?: string;
   siteKey?: string;
@@ -31,5 +32,7 @@ export function readRuntimeConfig(bindings: EnquiryRuntimeBindings = process.env
     throw new Error("Staging requires an explicit TURNSTILE_EXPECTED_HOSTNAME.");
   }
 
-  return { environment, expectedHostname, siteKey: bindings.TURNSTILE_SITE_KEY, testMode };
+  const deliveryConfigured = Boolean(bindings.ENQUIRY_EMAIL && bindings.ENQUIRY_DESTINATION_ADDRESS?.trim());
+
+  return { deliveryConfigured, environment, expectedHostname, siteKey: bindings.TURNSTILE_SITE_KEY, testMode };
 }

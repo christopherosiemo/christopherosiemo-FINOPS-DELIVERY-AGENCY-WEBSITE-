@@ -28,7 +28,6 @@
   "send_email": [
     {
       "name": "ENQUIRY_EMAIL",
-      "destination_address": "enquiries@hkgpipi.com",
       "allowed_sender_addresses": ["enquiries@hkgpipi.com"]
     }
   ],
@@ -49,7 +48,6 @@
       "send_email": [
         {
           "name": "ENQUIRY_EMAIL",
-          "destination_address": "enquiries@hkgpipi.com",
           "allowed_sender_addresses": ["enquiries@hkgpipi.com"]
         }
       ]
@@ -69,7 +67,6 @@
       "send_email": [
         {
           "name": "ENQUIRY_EMAIL",
-          "destination_address": "enquiries@hkgpipi.com",
           "allowed_sender_addresses": ["enquiries@hkgpipi.com"]
         }
       ]

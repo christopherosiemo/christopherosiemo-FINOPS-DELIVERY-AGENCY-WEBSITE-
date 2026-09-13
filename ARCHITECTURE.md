@@ -41,7 +41,7 @@ Functional Playwright checks and visual comparisons use separate configurations.
 
 ## Rendering and data
 
-Content is server-rendered by default. Client components must be small and justified by actual interactivity. Cloudflare Workers is the staging runtime through vinext. Durable Object persistence is limited to rate-limit timestamps; enquiries are delivered through the restricted Email Service binding and are not stored in an application database. There is no authentication, analytics provider, CRM, Redis, or CMS.
+Content is server-rendered by default. Client components must be small and justified by actual interactivity. Cloudflare Workers is the staging runtime through vinext. Durable Object persistence is limited to rate-limit timestamps; enquiries are delivered through a sender-restricted Email Service binding to a verified destination held only in a Worker secret and are not stored in an application database. There is no authentication, analytics provider, CRM, Redis, or CMS.
 
 ## Decisions
 

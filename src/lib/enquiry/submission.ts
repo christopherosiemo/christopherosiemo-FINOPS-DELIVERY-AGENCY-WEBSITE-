@@ -105,7 +105,7 @@ export async function processEnquirySubmission(
     timestamp,
     deliveryType: delivery.type,
     outcome: result.ok ? "success" : "failure",
-    category: result.ok ? "delivered" : result.reason,
+    category: result.ok ? "delivered" : result.providerCode ? `email-${result.providerCode}` : result.reason,
     externalId: result.ok ? result.externalId : undefined,
   });
 

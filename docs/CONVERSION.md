@@ -34,7 +34,7 @@ The form posts to a Next.js Server Action and uses React action state only for p
 
 `EnquiryDelivery.deliver(payload)` receives structured plain text and returns either `{ ok: true, externalId? }` or `{ ok: false, retryable, reason }`. The form has no knowledge of whether a later authorised adapter uses email, CRM, webhook, ticket, or persistence. Customer prose is trimmed and line endings are normalised; it is otherwise unchanged. Unknown fields are ignored and never forwarded. Submitted HTML is inert text. A future HTML presentation must escape it.
 
-The production adapter uses Cloudflare Email Service's Worker binding and fails closed when the binding is absent or rejects a send. `ENQUIRY_TEST_MODE=1` enables deterministic scenarios only when `APP_ENVIRONMENT=test`; staging and production configuration reject the switch. Query or hidden scenario values cannot select a test adapter outside that explicit test environment.
+The production adapter uses Cloudflare Email Service's sender-restricted Worker binding. Its recipient is the private verified destination supplied only by the server-side `ENQUIRY_DESTINATION_ADDRESS` secret; the public `enquiries@hkgpipi.com` identity is the sender and inbound routing alias, not the outbound destination. Missing binding or destination configuration fails closed without attempting a send. `ENQUIRY_TEST_MODE=1` enables deterministic scenarios only when `APP_ENVIRONMENT=test`; staging and production configuration reject the switch. Query or hidden scenario values cannot select a test adapter outside that explicit test environment.
 
 ## Validation and anti-abuse
 
@@ -50,7 +50,7 @@ Success is rendered only after `EnquiryDelivery` returns `ok: true`, with “Enq
 
 Delivery failure renders “We could not send your enquiry.” and “Your information has not been confirmed as delivered. Please try again.” Turnstile failure and rate limiting have distinct truthful messages. Entered fields are retained and a consumed widget is reset. Validation errors produce a linked summary, `aria-invalid`, and associated error text. Enhanced submissions focus the result. Pending state changes the button to “Sending…”, disables repeat submission, and leaves the form intact.
 
-A non-sensitive `enq-` request reference may be displayed. It is not an external delivery ID. Production diagnostics may contain only request ID, timestamp, delivery adapter category, outcome, and failure category. They must not contain email, name, company, AWS context, priority, or full payloads. A future email adapter must never put unsanitised customer input into From, Reply-To, or Subject headers; CR/LF-capable values must be rejected or safely encoded.
+A non-sensitive `enq-` request reference may be displayed. It is not an external delivery ID. Production diagnostics may contain only request ID, timestamp, delivery adapter category, outcome, and an allowlisted provider-code category. They must not contain destination address, provider message or stack, email, name, company, AWS context, priority, or full payloads. Customer input never controls the recipient, From, or Subject; validated email alone may enter Reply-To.
 
 ## Prohibited patterns and Gate 7B blockers
 

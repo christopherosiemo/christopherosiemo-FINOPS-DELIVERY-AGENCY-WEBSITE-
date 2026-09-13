@@ -17,6 +17,8 @@ const payload: EnquiryPayload = {
   receivedAt: "2026-09-13T10:00:00.000Z",
 };
 
+const privateDestination = "verified-destination@example.test";
+
 describe("Cloudflare enquiry runtime", () => {
   it("persists five timestamp-only attempts and rejects the sixth atomically", async () => {
     const limiter = new DurableObjectEnquiryRateLimit(env.ENQUIRY_RATE_LIMITER, "runtime-secret", "203.0.113.7");
@@ -61,14 +63,37 @@ describe("Cloudflare enquiry runtime", () => {
   it("uses the Workers email binding shape without leaking security data", async () => {
     const messages: unknown[] = [];
     const binding = { send: async (message: unknown) => { messages.push(message); return { messageId: "cf-message-1" }; } };
-    const delivery = new CloudflareEmailDelivery(binding);
+    const delivery = new CloudflareEmailDelivery(binding, privateDestination);
     await expect(delivery.deliver(payload)).resolves.toEqual({ ok: true, externalId: "cf-message-1" });
     const serialised = JSON.stringify(messages);
     expect(serialised).toContain("HKGpipi Savings Sprint enquiry — enq-runtime01");
     expect(serialised).toContain("enquiries@hkgpipi.com");
+    expect(serialised).toContain(privateDestination);
     expect(serialised).toContain("alex@example.test");
     expect(serialised).not.toContain("203.0.113");
     expect(serialised).not.toContain("turnstile");
     expect(serialised).not.toContain("runtime-secret");
+  });
+
+  it("classifies provider failures safely and fails closed without a destination", async () => {
+    const privateMessage = "PRIVATE MESSAGE MUST NOT LEAK";
+    const codedBinding = {
+      send: async () => {
+        throw Object.assign(new Error(privateMessage), { code: "E_SENDER_NOT_VERIFIED" });
+      },
+    };
+    const coded = await new CloudflareEmailDelivery(codedBinding, privateDestination).deliver(payload);
+    expect(coded).toEqual({ ok: false, providerCode: "E_SENDER_NOT_VERIFIED", reason: "rejected", retryable: false });
+    expect(JSON.stringify(coded)).not.toContain(privateMessage);
+
+    let sendCalled = false;
+    const missing = await new CloudflareEmailDelivery({
+      send: async () => {
+        sendCalled = true;
+        return { messageId: "unexpected" };
+      },
+    }, undefined).deliver(payload);
+    expect(missing).toEqual({ ok: false, reason: "disabled", retryable: true });
+    expect(sendCalled).toBe(false);
   });
 });

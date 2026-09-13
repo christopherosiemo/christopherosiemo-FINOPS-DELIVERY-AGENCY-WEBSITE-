@@ -12,8 +12,9 @@ The vinext 1.0.0-beta.9 compatibility check reports 92% compatibility: 10 suppor
 - `TURNSTILE_SECRET_KEY`: Worker secret.
 - `TURNSTILE_EXPECTED_HOSTNAME`: exact environment hostname; staging is the workers.dev hostname and production is `hkgpipi.com`.
 - `RATE_LIMIT_HMAC_SECRET`: Worker secret.
+- `ENQUIRY_DESTINATION_ADDRESS`: Worker secret containing the private verified destination mailbox.
 - `ENQUIRY_RATE_LIMITER`: SQLite-backed `EnquiryRateLimiter` Durable Object namespace.
-- `ENQUIRY_EMAIL`: Email Service send binding restricted to sender and destination `enquiries@hkgpipi.com`.
+- `ENQUIRY_EMAIL`: Email Service send binding restricted to sender `enquiries@hkgpipi.com`; it has no committed destination restriction.
 
 Wrangler generates `worker-configuration.d.ts`; rerun `pnpm exec wrangler types` whenever bindings change. `.dev.vars.example` contains safe local placeholders only. Never commit secret values, Cloudflare credentials, or the forwarding Gmail address.
 
@@ -29,14 +30,24 @@ The policy is five valid-shaped attempts per pseudonymous network key in 15 minu
 
 ## Email delivery
 
-`CloudflareEmailDelivery` sends structured plain text only after rate-limit and Turnstile success. The binding supplies its single configured destination so the underlying Gmail address is absent from source and runtime payload construction. Sender is `HKGpipi <enquiries@hkgpipi.com>`, Reply-To is the syntactically validated visitor email, and Subject is `HKGpipi Savings Sprint enquiry — <request ID>`. The body includes the reference, UTC receipt timestamp, and approved enquiry fields; it excludes IP data, HMAC values, Turnstile tokens, and secrets. Exceptions fail closed as `delivery-failure`.
+`enquiries@hkgpipi.com` is the public inbound routing identity and outbound sender. The Worker sends directly to the private verified Email Routing destination supplied only by `ENQUIRY_DESTINATION_ADDRESS`; no recipient value comes from form data, URLs, headers, cookies, or client JavaScript. Cloudflare Email Service permits delivery only to eligible verified destinations on the account. Neither the secret nor its value is committed, rendered, or logged.
+
+`CloudflareEmailDelivery` sends structured plain text only after rate-limit and Turnstile success and requires both the binding and destination secret. Sender is `HKGpipi <enquiries@hkgpipi.com>`, Reply-To is the syntactically validated visitor email, and Subject is `HKGpipi Savings Sprint enquiry — <request ID>`. The body includes the reference, UTC receipt timestamp, and approved enquiry fields; it excludes IP data, HMAC values, Turnstile tokens, destinations, and secrets. Missing configuration fails closed without calling the binding.
+
+Provider exceptions are reduced to a narrow code allowlist. Delivery, rate-limit, daily-limit, internal, and unknown failures are treated as retryable; sender, recipient, validation, required-field, and header-policy failures are treated as non-retryable internally. Diagnostics record only `email-<safe code>` and never serialize the provider message, caught error, stack, destination, or enquiry data. Visitors continue to receive the generic `delivery-failure` response.
+
+## Gate 7B.1 account and failure evidence
+
+The operator confirms that Email Sending for `hkgpipi.com` is enabled, sending DNS is configured, Email preview is enabled, the `enquiries@hkgpipi.com` routing rule is active, and a verified destination is present. The destination value remains private.
+
+Controlled references `enq-f80583652a` and `enq-e79dfa976e` passed client validation and displayed successful Turnstile verification, but the application returned `delivery-failure` and no message arrived. Historical Email Activity was not accessible in the authenticated tooling, so no provider code is inferred. Gate 7B external delivery remains unverified and progress remains 76%.
 
 ## Staging and deployment
 
 1. Authenticate interactively with `pnpm exec wrangler login`; never paste a token into chat or source.
 2. Confirm the Managed Turnstile widget allows the exact staging hostname and has pre-clearance set to `no_clearance`.
-3. Store `TURNSTILE_SECRET_KEY` and a random `RATE_LIMIT_HMAC_SECRET` with `wrangler secret put --env staging`.
-4. Confirm Email Service has onboarded `hkgpipi.com`, permits `enquiries@hkgpipi.com` as sender, and can deliver to the configured enquiry alias, whose Email Routing destination remains private.
+3. Store `TURNSTILE_SECRET_KEY`, a random `RATE_LIMIT_HMAC_SECRET`, and the private verified destination as `ENQUIRY_DESTINATION_ADDRESS` with `wrangler secret put --env staging`. Enter values interactively; never place them in command arguments or logs.
+4. Confirm Email Service has onboarded `hkgpipi.com`, permits `enquiries@hkgpipi.com` as sender, and the secret destination remains verified. Email preview should be enabled for the next controlled verification.
 5. Run `pnpm install --frozen-lockfile`, the full validation suite, `pnpm build:cf`, and `pnpm exec vinext-cloudflare deploy --env staging`.
 6. Verify `/`, `/start`, and `/privacy` return 200, the page remains `noindex, nofollow`, Turnstile renders, and no console or horizontal-overflow issue appears.
 7. Submit exactly one synthetic Gate 7B enquiry through the real widget. Record UTC time, reference ID, and the Cloudflare message ID from safe Worker logs if available.

@@ -18,6 +18,7 @@ export interface EnquiryRuntimeBindings {
   TURNSTILE_SECRET_KEY?: string;
   TURNSTILE_EXPECTED_HOSTNAME?: string;
   RATE_LIMIT_HMAC_SECRET?: string;
+  ENQUIRY_DESTINATION_ADDRESS?: string;
   ENQUIRY_RATE_LIMITER?: DurableObjectNamespace;
   ENQUIRY_EMAIL?: EnquiryEmailBinding;
 }
