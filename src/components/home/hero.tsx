@@ -16,7 +16,7 @@ export function HomeHero() {
             <ActionLink href="/start">Start a Savings Sprint</ActionLink>
             <ActionLink href="/verification" variant="secondary">See how verification works</ActionLink>
           </div>
-          <p className={styles.commercialLine}>14-day Savings Sprint · £5,000 · tightly constrained read-only access</p>
+          <p className={styles.commercialLine}><a href="/savings-sprint">14-day Savings Sprint</a> · £5,000 · tightly constrained read-only access</p>
         </div>
         <div className={styles.heroEvidence} data-testid="homepage-ledger">
           <SavingsLedger

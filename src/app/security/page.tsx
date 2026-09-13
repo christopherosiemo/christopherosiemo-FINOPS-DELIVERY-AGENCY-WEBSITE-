@@ -1,8 +1,8 @@
 import { TrustActions, TrustHero, TrustPage, TrustSectionIntro, trustStyles as styles } from "@/components/trust/trust-page";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 import { trustFacts } from "@/config/trust";
 
-export const metadata = scaffoldMetadata("Security", "The access, approval and change-control boundaries for HKGpipi AWS cost-reduction work.");
+export const metadata = routeMetadata("/security");
 
 export default function SecurityPage() {
   return <TrustPage>

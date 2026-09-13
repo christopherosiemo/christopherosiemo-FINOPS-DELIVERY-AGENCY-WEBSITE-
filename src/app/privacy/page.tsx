@@ -1,11 +1,8 @@
 import type { ReactNode } from "react";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 import styles from "./page.module.css";
 
-export const metadata = scaffoldMetadata(
-  "Privacy Policy",
-  "How HKGpipi collects, uses, stores and protects personal data.",
-);
+export const metadata = routeMetadata("/privacy");
 
 function PolicyList({ children }: { children: ReactNode }) {
   return <ul>{children}</ul>;

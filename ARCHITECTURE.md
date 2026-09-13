@@ -12,7 +12,7 @@ The site uses Next.js App Router, React, and strict TypeScript. Routes and layou
 - `src/components/revenue/`: shared server-rendered revenue-page structure and CSS-only commercial decision patterns.
 - `src/components/trust/`: shared server-rendered Trust-page composition and CSS-only evidence structures.
 - `src/components/conversion/`: the server-rendered `/start` composition and its narrowly scoped form-state client boundary.
-- `src/config/`: compact site identity, navigation, action, footer, metadata, commercial, and Trust-fact configuration.
+- `src/config/`: compact site identity, navigation, action, footer, acquisition metadata, commercial, and Trust-fact configuration.
 - `src/components/ui/`: reusable action, field, status, dense-ledger, and verification primitives proven on the homepage or internal specimen.
 - `src/lib/`: framework-independent utilities.
 - `src/lib/enquiry/`: typed enquiry validation, delivery, rate-limit, and submission boundaries.
@@ -28,7 +28,9 @@ CSS custom properties remain the source of truth. `src/styles/tokens.css` separa
 
 The global header and footer remain server components. `SiteNavigation` is the only shell client boundary because it owns pathname-aware `aria-current` state and the native `<dialog>` lifecycle required for the mobile/tablet menu. The native modal supplies background inertness and contained focus; local code handles opening, explicit/Escape close state, and focus return. No state, menu, icon, or animation dependency is used.
 
-Public navigation values and the operator-provided `HKGpipi` identity live in `src/config/site.ts`; the retired `CMR` mark was a working placeholder. Repeated incomplete-route structure is isolated in the server-rendered `RouteScaffold`; it is intentionally not a universal page-template abstraction. Each scaffold exports route metadata with `noindex, nofollow`. Root metadata uses `HKGpipi — Cloud Margin Recovery` with the route template `%s | HKGpipi` and the approved description. Canonical protocol/www policy, social assets, production logo, and organisation metadata remain deferred.
+Public navigation values, the operator-provided `HKGpipi` identity, and the single `https://hkgpipi.com` production origin live in `src/config/site.ts`; the retired `CMR` mark was a working placeholder. `src/config/acquisition.ts` owns the route intent, title, description, canonical, indexing, robots, sitemap, and restricted structured-data model. Only explicit `APP_ENVIRONMENT=production` enables acquisition; every other value fails closed to noindex, a disallow-all robots policy, an empty sitemap, and no JSON-LD. This prevents the production-built staging Worker from becoming indexable or emitting workers.dev acquisition URLs.
+
+Each public page exports route-specific server metadata through `routeMetadata`; the root layout supplies only the production metadata base, fallback title template, and environment-gated Organization/WebSite/Service graph. Framework-native robots, sitemap, Open Graph image, and icon routes add no client JavaScript. Conversion, Privacy, design-system, test/error, and unknown routes remain noindex or excluded. Production DNS, redirects, Search Console verification, and external discovery activation remain deferred.
 
 The homepage is composed from narrative-specific Server Components rather than a config-driven marketing renderer. Its Ledger reuses the existing semantic table/labelled-record primitive through narrowly scoped content props, while the Verification Line accepts only contextual labelling. Gate 4B adds one null-rendering `HomeMotionController` client boundary that progressively enhances stable server-rendered targets through Intersection Observer state; all meaning remains present in initial HTML, and responsive composition remains CSS-only.
 

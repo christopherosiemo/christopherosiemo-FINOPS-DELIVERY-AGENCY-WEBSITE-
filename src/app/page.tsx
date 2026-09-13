@@ -3,6 +3,9 @@ import { ApprovalPath, RemediationEvidence, VerificationEvidence } from "@/compo
 import { HomeMotionController } from "@/components/home/home-motion-controller";
 import { HomeHero } from "@/components/home/hero";
 import { MethodSequence, RecommendationGap } from "@/components/home/narrative-sections";
+import { routeMetadata } from "@/config/metadata";
+
+export const metadata = routeMetadata("/");
 
 export default function Home() {
   return (

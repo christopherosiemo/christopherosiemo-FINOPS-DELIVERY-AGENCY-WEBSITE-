@@ -1,10 +1,10 @@
 import { TrustActions, TrustHero, TrustPage, TrustSectionIntro, trustStyles as styles } from "@/components/trust/trust-page";
 import { DirectionalLink } from "@/components/ui/actions";
 import { VerificationLine } from "@/components/ui/verification-line";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 import { trustFacts } from "@/config/trust";
 
-export const metadata = scaffoldMetadata("Verification", "How expected AWS savings become measured, verified annualised savings after change.");
+export const metadata = routeMetadata("/verification");
 
 export default function VerificationPage() {
   return <TrustPage>

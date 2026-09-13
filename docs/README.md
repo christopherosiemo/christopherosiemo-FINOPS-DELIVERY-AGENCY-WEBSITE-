@@ -10,6 +10,7 @@ This directory is the durable context for product and website work. Read the doc
 - `ACCESSIBILITY.md`: WCAG target and foundational practices.
 - `PERFORMANCE.md`: rendering principles and future budgets.
 - `ANALYTICS.md`: measurement principles and unresolved implementation choices.
+- `ACQUISITION.md`: search intent, canonical, indexing, metadata, sitemap, structured-data, and acquisition-test architecture.
 - `SECURITY_BOUNDARIES.md`: current trust boundaries and prohibited data handling.
 - `CLOUDFLARE.md`: Workers runtime, binding, deployment, and external-verification procedure.
 - `QUALITY_GATES.md`: the 0–100 delivery programme.

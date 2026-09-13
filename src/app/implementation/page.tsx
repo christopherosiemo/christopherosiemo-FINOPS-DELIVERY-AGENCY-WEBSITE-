@@ -1,12 +1,9 @@
 import { DirectionalLink } from "@/components/ui/actions";
 import { RevenueHero, RevenuePage, SectionIntro, StageSequence, StartActions, revenueStyles as styles } from "@/components/revenue/revenue-page";
 import { commercialFacts } from "@/config/commercial";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 
-export const metadata = scaffoldMetadata(
-  "Implementation",
-  "Approved AWS savings delivered through the customer's existing engineering workflow.",
-);
+export const metadata = routeMetadata("/implementation");
 
 export default function ImplementationPage() {
   const stages = [
@@ -25,7 +22,7 @@ export default function ImplementationPage() {
       </RevenueHero>
 
       <section className={styles.sectionSurface} aria-labelledby="implementation-flow">
-        <div className="container"><SectionIntro label="01 · Delivery flow" title="From selected opportunity to measured result." titleId="implementation-flow"><p>Every stage stays connected to the approved work and the customer&apos;s controls.</p></SectionIntro><StageSequence stages={stages} testId="implementation-sequence" /></div>
+        <div className="container"><SectionIntro label="01 · Delivery flow" title="From selected opportunity to measured result." titleId="implementation-flow"><p><a href="/method">Every stage</a> stays connected to the approved work and the customer&apos;s controls.</p></SectionIntro><StageSequence stages={stages} testId="implementation-sequence" /></div>
       </section>
 
       <section className={styles.section} aria-labelledby="evidence-chain">
@@ -34,10 +31,10 @@ export default function ImplementationPage() {
 
       <section className={styles.sectionSurface} aria-labelledby="implementation-options">
         <div className="container">
-          <SectionIntro label="03 · Commercial routes" title="Two alternatives for approved implementation." titleId="implementation-options"><p>Choose a fixed engagement or an outcome-based model. They are alternatives, not combined standard charges.</p></SectionIntro>
+          <SectionIntro label="03 · Commercial routes" title="Two alternatives for approved implementation." titleId="implementation-options"><p>Choose a <a href="/pricing">fixed engagement or an outcome-based model</a>. They are alternatives, not combined standard charges.</p></SectionIntro>
           <div className={styles.offerPair}>
             <article className={styles.offer}><h3>Fixed implementation</h3><p className={styles.offerName}>{commercialFacts.fixedImplementation.name}</p><strong className={styles.price}>{commercialFacts.fixedImplementation.price}</strong><p>A fixed-price implementation engagement for the approved scope.</p></article>
-            <article className={styles.offer}><h3>Outcome-based implementation</h3><strong className={styles.price}>{commercialFacts.outcomeImplementation.price}</strong><span className={styles.priceQualifier}>{commercialFacts.outcomeImplementation.qualifier}</span><p>HKGpipi&apos;s fee is calculated from savings that meet the agreed verification definition.</p><p><strong>The contractual verification basis is agreed before outcome-based implementation begins.</strong></p></article>
+            <article className={styles.offer}><h3>Outcome-based implementation</h3><strong className={styles.price}>{commercialFacts.outcomeImplementation.price}</strong><span className={styles.priceQualifier}>{commercialFacts.outcomeImplementation.qualifier}</span><p>HKGpipi&apos;s fee is calculated from savings that meet the agreed <a href="/verification">verification definition</a>.</p><p><strong>The contractual verification basis is agreed before outcome-based implementation begins.</strong></p></article>
           </div>
           <div className={`${styles.tableFrame} ${styles.decisionTable}`} data-testid="implementation-comparison">
             <div className={styles.tableCaption}><strong>Structured comparison</strong><span>Known distinctions only</span></div>

@@ -13,7 +13,7 @@ test("desktop shell exposes the approved navigation and footer architecture", as
 
   const header = page.locator("header");
   const primary = header.getByRole("navigation", { name: "Primary navigation" });
-  await expect(page).toHaveTitle("HKGpipi — Cloud Margin Recovery");
+  await expect(page).toHaveTitle("AWS Cloud Margin Recovery | HKGpipi");
   await expect(primary.getByRole("link")).toHaveCount(6);
   await expect(primary.getByRole("link", { name: "Home" })).toHaveCount(0);
   const homeLink = header.getByRole("link", { name: "HKGpipi home" });

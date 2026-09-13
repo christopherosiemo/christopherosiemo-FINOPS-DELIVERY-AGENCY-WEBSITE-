@@ -1,9 +1,9 @@
 import { DirectionalLink } from "@/components/ui/actions";
 import { RevenueHero, RevenuePage, SectionIntro, StartActions, revenueStyles as styles } from "@/components/revenue/revenue-page";
 import { commercialFacts } from "@/config/commercial";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 
-export const metadata = scaffoldMetadata("Pricing", "A bounded first engagement and two alternative implementation routes for AWS cost-reduction delivery.");
+export const metadata = routeMetadata("/pricing");
 
 export default function PricingPage() {
   return (

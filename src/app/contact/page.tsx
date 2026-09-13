@@ -1,12 +1,9 @@
 import { RouteScaffold } from "@/components/site/route-scaffold";
 import { ActionLink } from "@/components/ui/actions";
 import { DirectionalLink } from "@/components/ui/actions";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 
-export const metadata = scaffoldMetadata(
-  "Talk to HKGpipi",
-  "For AWS savings and implementation enquiries, use the canonical Savings Sprint enquiry.",
-);
+export const metadata = routeMetadata("/contact");
 
 export default function ContactPage() {
   return (

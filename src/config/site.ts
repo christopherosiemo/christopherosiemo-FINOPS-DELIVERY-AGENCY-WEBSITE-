@@ -5,6 +5,7 @@ export const siteIdentity = {
   categoryDescriptor: "Cloud Margin Recovery",
   defaultDescription: "Engineering-led AWS cost reduction, verified against the bill.",
   domainReference: "hkgpipi.com",
+  productionOrigin: "https://hkgpipi.com",
   status: "provided-brand",
 } as const;
 

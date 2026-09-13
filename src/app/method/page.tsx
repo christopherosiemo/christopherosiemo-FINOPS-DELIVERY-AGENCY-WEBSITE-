@@ -1,8 +1,8 @@
 import { TrustActions, TrustHero, TrustPage, TrustSectionIntro, trustStyles as styles } from "@/components/trust/trust-page";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 import { trustFacts } from "@/config/trust";
 
-export const metadata = scaffoldMetadata("Method", "How HKGpipi turns AWS savings opportunities into verified reductions on the bill.");
+export const metadata = routeMetadata("/method");
 const decisionGates = ["IDENTIFIED", "Technically valid?", "Economically meaningful?", "Acceptable engineering risk?", "Owner / context known?", "Customer approved?", "Deployed?", "Measured?"];
 
 export default function MethodPage() {

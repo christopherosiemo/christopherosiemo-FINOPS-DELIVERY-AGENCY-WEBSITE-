@@ -1,12 +1,9 @@
 import { DirectionalLink } from "@/components/ui/actions";
 import { RevenueHero, RevenuePage, SectionIntro, StageSequence, StartActions, revenueStyles as styles } from "@/components/revenue/revenue-page";
 import { commercialFacts } from "@/config/commercial";
-import { scaffoldMetadata } from "@/config/metadata";
+import { routeMetadata } from "@/config/metadata";
 
-export const metadata = scaffoldMetadata(
-  "Savings Sprint",
-  "A 14-day AWS Savings Sprint that ranks opportunities and creates an implementation roadmap.",
-);
+export const metadata = routeMetadata("/savings-sprint");
 
 export default function SavingsSprintPage() {
   const stages = [
@@ -40,7 +37,7 @@ export default function SavingsSprintPage() {
       <section className={styles.sectionSurface} aria-labelledby="sprint-sequence">
         <div className="container">
           <SectionIntro label="01 · Engagement sequence" title="A bounded review from access to a ranked plan." titleId="sprint-sequence">
-            <p>Six explicit stages turn AWS cost evidence into decisions your engineering team can act on.</p>
+            <p><a href="/method">Six explicit stages</a> turn AWS cost evidence into decisions your engineering team can act on.</p>
           </SectionIntro>
           <StageSequence stages={stages} testId="sprint-sequence" />
           <aside className={styles.boundaryNote}>

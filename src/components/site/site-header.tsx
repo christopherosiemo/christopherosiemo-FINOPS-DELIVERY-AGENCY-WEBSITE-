@@ -7,7 +7,7 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <Link className={styles.wordmark} href="/" aria-label={siteIdentity.accessibleHomeLabel}>
+        <Link className={styles.wordmark} href="/" aria-label={siteIdentity.accessibleHomeLabel} prefetch={false}>
           {siteIdentity.displayMark}
         </Link>
         <SiteNavigation />

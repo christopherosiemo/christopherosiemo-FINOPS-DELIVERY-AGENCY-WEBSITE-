@@ -64,9 +64,7 @@ test("all qualification routes resolve with coherent landmarks, headings and ind
     for (let index = 1; index < headingLevels.length; index += 1) {
       expect(headingLevels[index].level - headingLevels[index - 1].level, `${route}: ${headingLevels[index].text}`).toBeLessThanOrEqual(1);
     }
-    const robots = page.locator('meta[name="robots"]');
-    if (route === "/") await expect(robots).toHaveCount(0);
-    else await expect(robots).toHaveAttribute("content", /noindex/);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   }
 
   const response = await page.goto(missingRoute);
