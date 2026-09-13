@@ -50,6 +50,8 @@ vinext 1.0.0-beta.9 does not apply its compiled `/:path*` header matcher to the 
 
 Gate 8B read-only qualification confirmed staging version `e021e7a2-37f0-40eb-a39f-97515b4fad72`, deployed after source commit `f9bfa3f18923f380e2e08137cd7129033170b126`. The required routes and hard 404 return their expected statuses and headers. `/start` loads the Cloudflare Turnstile script with stable reserved geometry and no horizontal overflow; the isolated review browser did not instantiate a challenge iframe, which is not required by this gate and does not supersede the successful Gate 7B external-delivery proof. No form POST or email occurred.
 
+Gate 9A read-only acquisition qualification deployed staging version `7fd6f06c-0368-443a-be07-e5f50091e1dc` from source commit `bf3649b941953e711ad4cd84451fdaa5edb8041a`. All public routes, robots, sitemap, social image, and icon resolved; an unknown route remained a hard 404. Explicit `APP_ENVIRONMENT=staging` produced `noindex, nofollow`, disallow-all robots, an empty sitemap, no JSON-LD, and production-origin canonicals without a workers.dev acquisition leak. No POST, email, production route, or DNS change occurred.
+
 ## Staging and deployment
 
 1. Authenticate interactively with `pnpm exec wrangler login`; never paste a token into chat or source.

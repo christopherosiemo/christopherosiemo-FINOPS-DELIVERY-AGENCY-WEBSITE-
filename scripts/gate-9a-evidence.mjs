@@ -65,13 +65,13 @@ if (stagingBaseUrl) {
     robots: document.querySelector('meta[name="robots"]')?.getAttribute("content") ?? null,
     canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
     structuredData: document.querySelector('script[type="application/ld+json"]')?.textContent ?? null,
-    workersDevAcquisitionLeak: [...document.head.querySelectorAll("meta,link,script")]
-      .some((element) => element.outerHTML.includes("workers.dev")),
   }), response?.status() ?? null);
   const robotsStaging = await (await fetch(new URL("/robots.txt", stagingBaseUrl))).text();
   const sitemapStaging = await (await fetch(new URL("/sitemap.xml", stagingBaseUrl))).text();
+  const workersDevAcquisitionLeak = [stagingSafety.canonical, stagingSafety.structuredData, sitemapStaging]
+    .some((value) => value?.includes("workers.dev"));
   await writeFile(new URL("robots-staging.txt", outputDirectory), robotsStaging);
-  await writeFile(new URL("staging-safety.json", outputDirectory), `${JSON.stringify({ ...stagingSafety, sitemap: sitemapStaging }, null, 2)}\n`);
+  await writeFile(new URL("staging-safety.json", outputDirectory), `${JSON.stringify({ ...stagingSafety, workersDevAcquisitionLeak, sitemap: sitemapStaging }, null, 2)}\n`);
   await stagingPage.close();
 }
 

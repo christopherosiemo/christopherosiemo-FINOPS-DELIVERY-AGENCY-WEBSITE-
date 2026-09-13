@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 88%
+**Current value:** 92%
 
-**Target for this checkpoint:** 88% after independent Gate 8B engineering qualification; Gate 9A may reach 92%
+**Target for this checkpoint:** 92% after Gate 9A technical acquisition qualification
 
-**Current gate:** Acquisition — Gate 9A technical acquisition foundation
+**Current gate:** Acquisition — external search/discovery configuration and independent approval pending
 
 ## Completed
 
@@ -94,10 +94,13 @@
 - Forced-colours and WCAG text-spacing checks protect core routes and recovery surfaces. Secret-leak, allowed-host, cache, header, 404, dependency, console, and production performance audits are automated.
 - Engineering Polish is independently approved at final Gate 8B SHA `30fc19f74e2c580c9ff73ff24a1454d466154dc7`; GitHub Actions run `34768317020` passed on that exact commit.
 - The Gate 8B review approved whole-site optical coherence, commercial and privacy consistency, hard-404 and recoverable-error behavior, Chromium/Firefox/WebKit qualification, the accessibility matrix, deterministic performance budgets, the security/header baseline, conversion-state integrity, and the absence of secret/PII leakage. No live POST or email occurred during qualification.
+- Gate 9A implements the production-intended acquisition architecture at `bf3649b941953e711ad4cd84451fdaa5edb8041a`: one canonical production origin, explicit environment-safe indexing, framework robots and sitemap routes, unique route metadata, restricted Organization/WebSite/Service JSON-LD, a deterministic social card and icon, contextual internal links, and focused acquisition evidence/tests.
+- GitHub Actions run `34774769806` passed the complete Linux validation matrix for that exact implementation commit, including 46 canonical visual comparisons and the new production-mode acquisition suite.
+- Read-only staging verification deployed version `7fd6f06c-0368-443a-be07-e5f50091e1dc`. Staging remains `noindex, nofollow`, robots disallows all, its sitemap is empty, JSON-LD is absent, canonicals use `https://hkgpipi.com`, and no workers.dev URL leaks through canonical, structured-data, or sitemap acquisition surfaces. No form POST or email occurred.
 
 ## In progress
 
-- Gate 9A technical acquisition architecture is in progress. Production routing, external search/discovery configuration, and independent acquisition approval remain outside this gate.
+- Gate 9A is complete at 92%. Production routing, external search/discovery configuration, production-ready verification surfaces, and independent acquisition approval remain outside this gate.
 
 ## Blocked
 
@@ -182,7 +185,10 @@
 - Gate 8B performance resource maxima exactly match Gate 8A: 9 JavaScript requests / 145,010 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 30 total requests. Median lab LCP ranged 104–164ms and CLS 0.00020–0.03198 without field-performance claims.
 - Nineteen neutral-focus captures and eight machine-readable reports are generated under `outputs/gate-8b-review/`. Read-only staging checks confirmed version `e021e7a2-37f0-40eb-a39f-97515b4fad72`, expected route/404 statuses, approved response headers, Turnstile script availability and reserved geometry, and no horizontal overflow. No live POST, email, production-domain routing, indexing, analytics, or acquisition change occurred.
 - The first Gate 8B CI run exposed nondeterministic React work surviving the error-surface component tests into jsdom teardown. Explicitly unmounting both rendered recovery surfaces closes their test roots before environment disposal; five consecutive full unit runs pass after the focused test-only correction.
+- Gate 9A local validation on 2026-09-13 passed frozen install, lint, strict typecheck, 45 unit/component tests, 5 Workers tests, Next and vinext builds, 97 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, production audit, and diff validation. Canonical Linux CI additionally passed all 46 visual comparisons.
+- The unchanged performance budgets passed with maxima of 9 JavaScript requests / 145,346 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 29 total requests. No audited page contacted a third party, emitted a console error, or overflowed.
+- `outputs/gate-9a-review/` contains the production metadata review, production and staging robots evidence, selective production sitemap, restricted structured-data graph, route/link map, staging-safety record, and one social-card preview.
 
 ## Next gate
 
-84–88% — Independent whole-site engineering, responsive, accessibility, performance, and optical qualification. Acquisition does not begin until that review is complete.
+92–94% — External search/discovery configuration, production-ready verification surfaces, and independent acquisition approval. Production Qualification does not begin until that review is complete.

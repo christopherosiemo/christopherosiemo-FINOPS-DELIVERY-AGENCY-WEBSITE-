@@ -129,6 +129,8 @@ Gate 8B qualification evidence exercises the complete primary route set as one s
 
 **Prohibited shortcuts:** Keyword stuffing, fabricated structured data, misleading previews, invasive tracking, or unowned content programmes.
 
+Gate 9A may reach 92% after the production-intended metadata, canonical, environment-safe robots/indexing, sitemap, restricted structured data, share presentation, intent map, acquisition tests, staging noindex proof, full regression, and synchronized green CI are complete. The 92–94% remainder requires external search/discovery configuration, production-ready verification surfaces, and independent acquisition approval; Gate 9A cannot self-approve 94%.
+
 ## 94–99 — Production qualification
 
 **Objective:** Prove all controllable product, engineering, design, content, measurement, security, and operational criteria are release-ready.

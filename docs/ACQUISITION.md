@@ -62,3 +62,5 @@ The framework-generated 1200×630 PNG uses the approved warm canvas, primary ink
 Gate 9A tests production and non-production policies independently. They cover metadata uniqueness, canonical correctness, route indexing, robots switching, sitemap membership/exclusion and HTTP output, restricted structured data, rendered head output, share assets, staging fail-closed behavior, workers.dev/private-data absence, and the absence of analytics/tracking. Existing accessibility, performance, cross-browser, visual, Cloudflare, and privacy suites remain release requirements.
 
 External Google/Bing verification, production DNS/redirect behavior, Search Console configuration, field acquisition measurement, CSP/HSTS, and independent Gate 9B approval remain unresolved by design.
+
+Gate 9A implementation commit `bf3649b941953e711ad4cd84451fdaa5edb8041a` passed GitHub Actions run `34774769806`. Read-only staging version `7fd6f06c-0368-443a-be07-e5f50091e1dc` confirmed the fail-closed indexing contract without a form submission or email. Machine-readable review evidence is generated under `outputs/gate-9a-review/`.
