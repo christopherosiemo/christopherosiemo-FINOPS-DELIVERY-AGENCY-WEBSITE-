@@ -24,6 +24,21 @@
     "durableObjectUnexpectedBodyHandled": true,
     "productionObservabilityConfigured": "100% persisted logs with query-string redaction; traces disabled"
   },
+  "qualification": {
+    "sourceCommit": "50ec652e25f66644c8c187598f6f04e8e82339fa",
+    "linuxCiRun": 34869355367,
+    "linuxCiResult": "passed",
+    "productionWorkerVersion": "33614413-5be2-46df-9968-d6c928ef94a2",
+    "productionWorkerTrafficPercentage": 100,
+    "deploymentTargets": 0,
+    "customDomainsAfterDeployment": 0,
+    "workerRoutesAfterDeployment": 0,
+    "workersDevEnabled": false,
+    "previewUrlsEnabled": false,
+    "observabilityEventsQueryAvailable": true,
+    "observabilityEventsAfterDeployment": 0,
+    "requiredSecretNamesAndBindingsPresent": true
+  },
   "noLiveEmailCallInTests": true,
   "secondProductionSubmissionPerformed": false,
   "searchActivationPerformed": false,
