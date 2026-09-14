@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-09-14T18:52:17.0200291Z",
+  "sourceCommit": "93c7424960d0e62cab31642e7a7615f46b4e954a",
+  "workerVersion": "c94aecc4-c4d4-4a61-b8f3-c269c90b455e",
+  "worker": "hkgpipi-enquiry-staging",
+  "buildCommand": "pnpm deploy:cf --env staging",
+  "artifactCspAssertionPassed": true,
+  "readOnlyRoutes": {
+    "/": 200,
+    "/start": 200,
+    "/security": 200,
+    "/privacy": 200,
+    "/gate-10b2-live-hard-404": 404
+  },
+  "headers": {
+    "exactApprovedCspOnEveryRoute": true,
+    "turnstileOriginsRetained": true,
+    "unsafeEvalAbsent": true,
+    "wildcardAbsent": true,
+    "hstsAbsent": true
+  },
+  "browser": {
+    "navigationPassed": true,
+    "homepageMotionReady": true,
+    "homepageMotionTransitionedAfterScroll": true,
+    "turnstileScriptLoaded": true,
+    "turnstileSubmitControlEnabled": true,
+    "cspOrRuntimeErrors": 0,
+    "formSubmitted": false
+  },
+  "acquisition": {
+    "noindexNofollow": true,
+    "robotsDisallowAll": true,
+    "sitemapEmpty": true,
+    "productionJsonLdAbsent": true,
+    "stagingHostnameNotPublishedAsAcquisitionIdentity": true
+  },
+  "emailSent": false,
+  "sensitiveValuesOmitted": true
+}

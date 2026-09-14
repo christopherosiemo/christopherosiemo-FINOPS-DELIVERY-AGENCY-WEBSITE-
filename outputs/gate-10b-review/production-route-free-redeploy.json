@@ -1,0 +1,37 @@
+{
+  "capturedAt": "2026-09-14T18:52:17.0200291Z",
+  "sourceCommit": "93c7424960d0e62cab31642e7a7615f46b4e954a",
+  "worker": "hkgpipi-enquiry-production",
+  "workerVersion": "906db28e-99b1-4d67-9435-adc8ea72e782",
+  "trafficPercentage": 100,
+  "buildAndDeployCommand": "pnpm deploy:cf --env production",
+  "artifactCspAssertionPassed": true,
+  "deploymentResult": "uploaded; No targets deployed",
+  "customDomainCount": 0,
+  "workerRouteCount": 0,
+  "workersDevEnabled": false,
+  "previewUrlsEnabled": false,
+  "workersDevProbe": "404 / Worker URL disabled",
+  "observability": {
+    "persistedLogs": true,
+    "headSamplingRate": 1,
+    "queryStringRedaction": true,
+    "invocationLogs": true,
+    "traces": false
+  },
+  "zoneBaseline": {
+    "minimumTls": "1.2",
+    "alwaysUseHttps": false,
+    "hsts": false,
+    "apexAddressOrCnameRecords": 0,
+    "wwwAddressOrCnameRecords": 0,
+    "emailMxPresent": true,
+    "emailSpfPresent": true,
+    "googleOwnershipTxtRetained": true
+  },
+  "productionSubmissionPerformed": false,
+  "emailSent": false,
+  "searchActionPerformed": false,
+  "gateProgress": 96,
+  "sensitiveValuesOmitted": true
+}

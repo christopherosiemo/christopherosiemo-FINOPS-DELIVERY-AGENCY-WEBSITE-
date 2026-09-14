@@ -25,5 +25,9 @@
   },
   "testCommand": "pnpm test:production-cf-headers",
   "testResult": "passed",
+  "productionTargetDryRun": "hkgpipi-enquiry-production",
+  "productionTargetDryRunPassed": true,
+  "exactShaCiRun": 34882172708,
+  "exactShaCiResult": "passed",
   "sensitiveValuesOmitted": true
 }

@@ -24,7 +24,7 @@
     "install": "passed",
     "lint": "passed",
     "typecheck": "passed after deterministic Next route-type regeneration",
-    "unitAndComponentTests": "65 passed",
+    "unitAndComponentTests": "66 passed",
     "cloudflareTests": "5 passed",
     "nextBuild": "passed",
     "cloudflareBuild": "passed",
@@ -39,7 +39,10 @@
     "dependencyAudit": "no known production vulnerabilities",
     "diffCheck": "passed",
     "windowsVisual": "46 known platform-mismatch failures against Linux-authored baselines; no snapshots or tolerances changed",
-    "canonicalVisualPendingExactShaCi": true
+    "canonicalVisualPendingExactShaCi": false,
+    "exactShaCiCommit": "93c7424960d0e62cab31642e7a7615f46b4e954a",
+    "exactShaCiRun": 34882172708,
+    "exactShaCiResult": "passed"
   },
   "deploymentTargetingQualification": {
     "discoveredIssue": "The redirected vinext deployment config discarded --env staging and targeted the top-level Worker name.",
