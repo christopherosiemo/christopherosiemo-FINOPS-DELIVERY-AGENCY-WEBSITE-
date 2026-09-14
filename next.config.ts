@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { productionContentSecurityPolicy } from "./src/config/security-headers";
 
 const vinextRuntime = process.argv.some((argument) => argument.includes("vinext"))
   || process.env.npm_lifecycle_event?.endsWith(":cf") === true;
@@ -8,6 +9,9 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
   { key: "X-Frame-Options", value: "DENY" },
+  ...(process.env.APP_ENVIRONMENT === "production"
+    ? [{ key: "Content-Security-Policy", value: productionContentSecurityPolicy }]
+    : []),
 ];
 
 const nextConfig: NextConfig = {

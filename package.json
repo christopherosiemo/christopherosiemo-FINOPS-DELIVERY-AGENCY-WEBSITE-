@@ -15,6 +15,7 @@
     "test:performance": "node scripts/performance-audit.mjs --check",
     "test:qualification": "playwright test --config=playwright.qualification.config.ts",
     "test:acquisition": "playwright test --config=playwright.acquisition.config.ts",
+    "test:production-readiness": "playwright test --config=playwright.production.config.ts",
     "evidence:acquisition": "node scripts/gate-9a-evidence.mjs",
     "evidence:qualification": "node scripts/gate-8b-evidence.mjs",
     "test:smoke:cross-browser": "playwright test --config=playwright.smoke.config.ts",

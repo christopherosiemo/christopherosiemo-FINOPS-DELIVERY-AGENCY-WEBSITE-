@@ -12,6 +12,23 @@ export type EnquiryRuntimeConfig = {
   testMode: boolean;
 };
 
+export const productionSubmissionDependencies = [
+  "TURNSTILE_SITE_KEY",
+  "TURNSTILE_SECRET_KEY",
+  "TURNSTILE_EXPECTED_HOSTNAME",
+  "RATE_LIMIT_HMAC_SECRET",
+  "ENQUIRY_RATE_LIMITER",
+  "ENQUIRY_EMAIL",
+  "ENQUIRY_DESTINATION_ADDRESS",
+] as const;
+
+export function missingProductionSubmissionDependencies(bindings: EnquiryRuntimeBindings): string[] {
+  return productionSubmissionDependencies.filter((name) => {
+    const value = bindings[name];
+    return typeof value === "string" ? value.trim().length === 0 : !value;
+  });
+}
+
 export function readRuntimeConfig(bindings: EnquiryRuntimeBindings = process.env as unknown as EnquiryRuntimeBindings): EnquiryRuntimeConfig {
   const rawEnvironment = bindings.APP_ENVIRONMENT ?? "local";
   if (!["local", "test", "staging", "production"].includes(rawEnvironment)) {
