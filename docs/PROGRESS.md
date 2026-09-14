@@ -2,9 +2,9 @@
 
 **Current value:** 96%
 
-**Target for this checkpoint:** 96% during Gate 10B.1 production submission failure diagnosis and route-free repair
+**Target for this checkpoint:** 96% during Gate 10B.2 Cloudflare CSP build-path repair
 
-**Current gate:** Production qualification — Gate 10B.1 diagnosis, rollback, and route-free repair
+**Current gate:** Production qualification — Gate 10B.2 CSP build-path repair and route-free qualification
 
 ## Completed
 
@@ -119,10 +119,11 @@
 - Gate 10B.1 local validation passed the frozen install, lint, strict typecheck, 64 unit/component tests, 5 Workers tests, Next and production vinext builds, 98 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, 3 production-readiness/CSP checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; no snapshot or tolerance changed, and exact-SHA Linux CI remains the canonical visual authority.
 - Exact-SHA Linux CI run `34869355367` passed every configured check, including all 46 canonical visual baselines, for repair commit `50ec652e25f66644c8c187598f6f04e8e82339fa`. Production version `33614413-5be2-46df-9968-d6c928ef94a2` now carries that repair at 100% traffic while remaining route-free; Wrangler reported `No targets deployed`, and the dashboard shows no Custom Domain or route, both Worker URL switches off, and an available Observability events query with no post-deployment requests.
 - The authorized Gate 10B controlled recutover attached only the apex and passed certificate, TLS, route-status, metadata, noindex, and HSTS-absence checks. It then stopped at the required read-only security preflight because production HTML responses lacked the `Content-Security-Policy` header. Always Use HTTPS was not enabled, no production POST or search action occurred, and the apex Custom Domain was removed immediately. The route-free, TLS 1.2, HSTS-disabled, email/ownership DNS, and staging baselines remain intact; progress remains 96%.
+- Gate 10B.2 reproduced the release defect locally: the environment-injected ordinary Next production build emitted CSP, while the actual unqualified vinext build did not. CSP selection now depends only on non-development build mode, never `APP_ENVIRONMENT`; the guarded Cloudflare build asserts the exact policy in `dist/server`, and the dedicated Wrangler-runtime test covers `/`, `/start`, `/security`, `/privacy`, and a hard 404 with the full header boundary.
 
 ## In progress
 
-- Gate 10B recutover is blocked pending correction and independent qualification of the missing production CSP header. The public application remains deliberately rolled back and unreachable at the apex.
+- Gate 10B.2 awaits full regression, exact-SHA CI, read-only staging qualification, and route-free production redeployment. The public application remains deliberately rolled back and unreachable at the apex.
 
 ## Blocked
 

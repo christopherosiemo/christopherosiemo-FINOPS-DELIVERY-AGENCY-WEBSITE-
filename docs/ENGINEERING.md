@@ -23,9 +23,12 @@ pnpm test:engineering
 pnpm test:qualification
 pnpm test:smoke:cross-browser
 pnpm test:performance
+pnpm test:production-cf-headers
 ```
 
 Functional E2E uses `next dev` locally for iteration. CI builds first and switches Playwright to `next start`, then runs functional E2E and visual comparison. This keeps production-build evidence independent from browser-test outcomes.
+
+`pnpm build:cf` is the authoritative Cloudflare build. It runs `vinext build` and then inspects the generated Worker artifact for the exact approved CSP; a missing or changed policy fails before upload. `pnpm test:production-cf-headers` builds by that same path, starts `dist/server/wrangler.json` under the local Workers runtime, and verifies the root, conversion, security, privacy, and hard-404 response headers. `pnpm deploy:cf --env <environment>` first runs that guarded build and then deploys the same `dist/` output with vinext's `--skip-build` option, so CI and deployment cannot silently produce different artifacts.
 
 Ubuntu/Linux with Chromium from the pinned Playwright 1.63.0 image is the canonical visual-baseline platform. The six full-page review surfaces are retained and supplemented by four targeted high-signal captures for controls, financial typography, the Savings Ledger, and the Verification Line. Animations are frozen, data is deterministic, fonts are awaited, and the full-page differing-pixel allowance is 0.2% with a 0.2 per-pixel antialiasing threshold.
 
@@ -43,7 +46,7 @@ Keep route-specific work close to routes, site-wide compositions in `src/compone
 
 ## Production resilience
 
-The supported browser floor follows Next.js 16: Chrome, Edge, and Firefox 111+, and Safari 16.4+. CI runs a bounded critical-path smoke matrix in current Playwright Chromium, Firefox, and WebKit at 390px; broader responsive behavior remains covered by Chromium from 320px through 1728px. The matrix covers the public narrative, modal navigation, enquiry validation, native-select value retention, hard 404 behavior, keyboard activation, overflow, and runtime errors.
+The supported browser floor follows Next.js 16: Chrome, Edge, and Firefox 111+, and Safari 16.4+. CI runs a bounded critical-path smoke matrix in current Playwright Chromium, Firefox, and WebKit at 390px; broader responsive behavior remains covered by Chromium from 320px through 1728px. The matrix boots the generated vinext Worker on a local HTTPS origin so `upgrade-insecure-requests` remains active without corrupting WebKit's loopback navigation. It covers the public narrative, modal navigation, enquiry validation, native-select value retention, hard 404 behavior, keyboard activation, overflow, and runtime errors.
 
 `not-found.tsx` returns a calm hard-404 surface with framework-generated `noindex`; `error.tsx` is the nearest recoverable client error boundary and exposes retry/home actions without rendering exception messages, digests, or stacks. A root `global-error.tsx` is intentionally absent: the root layout has no request-time failure source, and duplicating the document shell would add an unproved client boundary.
 

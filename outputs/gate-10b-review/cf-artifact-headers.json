@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-09-14T18:03:29.5521538Z",
+  "artifact": "dist/server",
+  "buildCommand": "pnpm build:cf",
+  "artifactAssertionPassed": true,
+  "runtimeCommand": "wrangler dev --config dist/server/wrangler.json --local",
+  "runtime": "generated vinext Cloudflare Worker",
+  "routes": {
+    "/": 200,
+    "/start": 200,
+    "/security": 200,
+    "/privacy": 200,
+    "/gate-10b2-hard-404": 404
+  },
+  "headersOnEveryRoute": {
+    "contentSecurityPolicyExact": true,
+    "unsafeEvalAbsent": true,
+    "wildcardAbsent": true,
+    "xContentTypeOptions": "nosniff",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "permissionsPolicyExact": true,
+    "xFrameOptions": "DENY",
+    "xPoweredByAbsent": true,
+    "strictTransportSecurityAbsent": true
+  },
+  "testCommand": "pnpm test:production-cf-headers",
+  "testResult": "passed",
+  "sensitiveValuesOmitted": true
+}

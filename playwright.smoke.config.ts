@@ -9,10 +9,11 @@ export default defineConfig({
   reporter: process.env.CI ? "github" : "list",
   outputDir: "test-results/cross-browser",
   use: {
-    baseURL: "http://127.0.0.1:3112",
+    baseURL: "https://127.0.0.1:3112",
     colorScheme: "light",
     locale: "en-GB",
     trace: "retain-on-failure",
+    ignoreHTTPSErrors: true,
     viewport: { width: 390, height: 844 },
   },
   projects: [
@@ -24,10 +25,10 @@ export default defineConfig({
     { name: "webkit-1440", use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } } },
   ],
   webServer: {
-    command: "pnpm start --hostname 127.0.0.1 --port 3112",
-    env: { APP_ENVIRONMENT: "test", ENQUIRY_TEST_MODE: "1" },
+    command: "pnpm build:cf && pnpm exec wrangler dev --config dist/server/wrangler.json --port 3112 --local --local-protocol https --var APP_ENVIRONMENT:test --var ENQUIRY_TEST_MODE:1",
+    ignoreHTTPSErrors: true,
     reuseExistingServer: false,
     timeout: 120_000,
-    url: "http://127.0.0.1:3112",
+    url: "https://127.0.0.1:3112",
   },
 });

@@ -51,6 +51,8 @@ default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudfl
 
 Retain `nosniff`, strict-origin referrer handling, the approved Permissions Policy, `X-Frame-Options: DENY`, and the absent `X-Powered-By` header.
 
+The static CSP is selected by build mode, not by the Worker runtime variable `APP_ENVIRONMENT`: every non-development Next/vinext build receives the same approved policy, while development remains exempt for HMR compatibility. The supported Cloudflare release path is `pnpm build:cf`, which asserts the exact policy in the generated `dist/server` artifact, followed by `pnpm deploy:cf --env production`, which deploys that already-qualified output without rebuilding it. CI must execute `pnpm test:production-cf-headers`, which boots the generated Worker rather than an ordinary `next start` artifact.
+
 ## Gate 10B cutover plan
 
 1. Confirm every abort condition below is false and capture the current DNS and Worker routing state.

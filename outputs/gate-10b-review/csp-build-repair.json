@@ -1,0 +1,49 @@
+{
+  "capturedAt": "2026-09-14T18:03:29.5521538Z",
+  "startingCommit": "b8c018ba651ae8b9f31e3545f38e6095b04d4f00",
+  "classification": "release-pipeline build-time configuration defect",
+  "preRepairReproduction": {
+    "ordinaryNextCommand": "APP_ENVIRONMENT=production pnpm build; pnpm start",
+    "ordinaryNextRootCspPresent": true,
+    "cloudflareCommand": "APP_ENVIRONMENT unset; pnpm build:cf; wrangler dev dist/server/wrangler.json",
+    "cloudflareRootCspPresent": false,
+    "conclusion": "The ordinary Next production artifact and the actual vinext Worker artifact differed because CSP compilation depended on APP_ENVIRONMENT."
+  },
+  "repair": {
+    "appEnvironmentControlsCsp": false,
+    "selection": "CSP is present when NODE_ENV is not development",
+    "developmentExemptForHmr": true,
+    "approvedPolicyChanged": false,
+    "cloudflareBuildCommand": "pnpm build:cf",
+    "artifactAssertion": "exact approved CSP must exist in dist/server",
+    "cloudflareDeployCommand": "pnpm deploy:cf --env <environment>",
+    "deployRebuildsArtifact": false,
+    "productionDryRunPassed": true
+  },
+  "localQualification": {
+    "install": "passed",
+    "lint": "passed",
+    "typecheck": "passed after deterministic Next route-type regeneration",
+    "unitAndComponentTests": "65 passed",
+    "cloudflareTests": "5 passed",
+    "nextBuild": "passed",
+    "cloudflareBuild": "passed",
+    "functionalE2e": "98 passed",
+    "engineering": "5 passed",
+    "qualification": "14 passed",
+    "crossBrowserWorkerSmoke": "18 passed",
+    "acquisition": "5 passed",
+    "productionReadiness": "3 passed",
+    "cloudflareArtifactHeaders": "1 passed",
+    "performance": "passed",
+    "dependencyAudit": "no known production vulnerabilities",
+    "diffCheck": "passed",
+    "windowsVisual": "46 known platform-mismatch failures against Linux-authored baselines; no snapshots or tolerances changed",
+    "canonicalVisualPendingExactShaCi": true
+  },
+  "publicRoutingChanged": false,
+  "productionSubmissionPerformed": false,
+  "searchActivationPerformed": false,
+  "gateProgress": 96,
+  "sensitiveValuesOmitted": true
+}

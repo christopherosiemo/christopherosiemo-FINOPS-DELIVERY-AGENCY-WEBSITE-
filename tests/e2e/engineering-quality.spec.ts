@@ -27,7 +27,8 @@ test("responses carry the safe header baseline and correct cache boundaries", as
     expect(headers["x-frame-options"]).toBe("DENY");
     expect(headers["x-powered-by"]).toBeUndefined();
     expect(headers["strict-transport-security"]).toBeUndefined();
-    expect(headers["content-security-policy"]).toBeUndefined();
+    expect(headers["content-security-policy"]).toContain("default-src 'self'");
+    expect(headers["content-security-policy"]).not.toContain("unsafe-eval");
   }
 
   const start = await request.get("/start");

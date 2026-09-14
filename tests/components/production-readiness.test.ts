@@ -102,4 +102,10 @@ describe("production CSP", () => {
     expect(productionContentSecurityPolicy).not.toContain("unsafe-eval");
     expect(productionContentSecurityPolicy).not.toMatch(/(?:^|\s)\*(?:;|\s|$)/);
   });
+
+  it("cannot be removed from a deployable build by APP_ENVIRONMENT", () => {
+    const nextConfig = readFileSync("next.config.ts", "utf8");
+    expect(nextConfig).not.toContain("APP_ENVIRONMENT");
+    expect(nextConfig).toContain('process.env.NODE_ENV !== "development"');
+  });
 });

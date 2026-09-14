@@ -34,7 +34,7 @@ jobs:
       - run: pnpm test:smoke:cross-browser
       - run: pnpm test:performance
       - run: pnpm test:visual
-      - run: pnpm build:cf
+      - run: pnpm test:production-cf-headers
       - run: pnpm test:acquisition
       - run: pnpm test:production-readiness
       - name: Upload Playwright failure evidence
