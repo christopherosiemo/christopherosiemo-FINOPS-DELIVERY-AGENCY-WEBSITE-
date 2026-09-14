@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-09-14T17:14:31.6512161Z",
+  "authorized": true,
+  "performed": false,
+  "sendClicks": 0,
+  "reason": "Blocked by the missing production Content-Security-Policy header during read-only preflight.",
+  "gateProgress": 96,
+  "sensitiveValuesOmitted": true
+}

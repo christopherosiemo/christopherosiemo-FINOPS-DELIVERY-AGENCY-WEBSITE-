@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-09-14T17:14:31.6512161Z",
+  "worker": "hkgpipi-enquiry-production",
+  "workerVersion": "33614413-5be2-46df-9968-d6c928ef94a2",
+  "observabilityEnabled": true,
+  "persistedInvocationLogsConfigured": true,
+  "headSamplingRate": 1,
+  "queryStringRedactionConfigured": true,
+  "tracesEnabled": false,
+  "eventsQueryAvailable": true,
+  "postPreflightGetProofAttempted": false,
+  "reason": "The security-header preflight failed before the mandatory current-GET observability gate.",
+  "productionPostPerformed": false,
+  "sensitiveValuesOmitted": true
+}

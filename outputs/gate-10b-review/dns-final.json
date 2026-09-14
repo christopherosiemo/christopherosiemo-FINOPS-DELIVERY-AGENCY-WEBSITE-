@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-09-14T17:14:31.6512161Z",
+  "dashboardRecordCount": 12,
+  "recordCounts": {"A": 0, "AAAA": 0, "CNAME": 0, "Worker": 0, "MX": 6, "TXT": 6},
+  "googleOwnershipTxtPresent": true,
+  "spfPresent": true,
+  "dkimPresent": true,
+  "dmarcPresent": true,
+  "wwwRecordPresent": false,
+  "emailRouting": "enabled",
+  "emailRoutingDns": "locked",
+  "emailSending": "enabled",
+  "emailSendingDns": "configured",
+  "customDomainsAfterRollback": 0,
+  "workerRoutesAfterRollback": 0,
+  "apexResolves": false,
+  "apexHttpsStatus": "unreachable",
+  "recordValuesOmitted": true
+}

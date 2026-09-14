@@ -118,10 +118,11 @@
 - Gate 10B.1 hardens the proven silent-action defect: infrastructure exceptions and malformed Durable Object responses now fail closed into a truthful generic failure with preserved safe values and a non-sensitive reference. Production persisted logs are configured at 100% head sampling with query-string redaction and traces disabled.
 - Gate 10B.1 local validation passed the frozen install, lint, strict typecheck, 64 unit/component tests, 5 Workers tests, Next and production vinext builds, 98 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, 3 production-readiness/CSP checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; no snapshot or tolerance changed, and exact-SHA Linux CI remains the canonical visual authority.
 - Exact-SHA Linux CI run `34869355367` passed every configured check, including all 46 canonical visual baselines, for repair commit `50ec652e25f66644c8c187598f6f04e8e82339fa`. Production version `33614413-5be2-46df-9968-d6c928ef94a2` now carries that repair at 100% traffic while remaining route-free; Wrangler reported `No targets deployed`, and the dashboard shows no Custom Domain or route, both Worker URL switches off, and an available Observability events query with no post-deployment requests.
+- The authorized Gate 10B controlled recutover attached only the apex and passed certificate, TLS, route-status, metadata, noindex, and HSTS-absence checks. It then stopped at the required read-only security preflight because production HTML responses lacked the `Content-Security-Policy` header. Always Use HTTPS was not enabled, no production POST or search action occurred, and the apex Custom Domain was removed immediately. The route-free, TLS 1.2, HSTS-disabled, email/ownership DNS, and staging baselines remain intact; progress remains 96%.
 
 ## In progress
 
-- Gate 10B.1 repair evidence awaits independent review. The public application remains deliberately rolled back and unreachable at the apex.
+- Gate 10B recutover is blocked pending correction and independent qualification of the missing production CSP header. The public application remains deliberately rolled back and unreachable at the apex.
 
 ## Blocked
 

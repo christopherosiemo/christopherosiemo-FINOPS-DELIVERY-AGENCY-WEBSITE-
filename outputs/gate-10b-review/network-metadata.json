@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-09-14T17:14:31.6512161Z",
+  "requestMethods": ["GET"],
+  "allExpectedRouteStatusesPassed": true,
+  "htmlRoutesCheckedForCsp": ["/", "/start", "/security"],
+  "contentSecurityPolicyPresent": false,
+  "hstsPresent": false,
+  "productionPostEmitted": false,
+  "formDataCaptured": false,
+  "cookiesCaptured": false,
+  "tokensCaptured": false,
+  "sensitiveValuesOmitted": true
+}

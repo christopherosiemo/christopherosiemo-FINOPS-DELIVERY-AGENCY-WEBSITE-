@@ -1,0 +1,7 @@
+{
+  "capturedAt": "2026-09-14T17:14:31.6512161Z",
+  "workerVersion": "33614413-5be2-46df-9968-d6c928ef94a2",
+  "applicationPostDiagnostic": null,
+  "reason": "No production POST occurred after the preflight abort.",
+  "sensitiveValuesOmitted": true
+}

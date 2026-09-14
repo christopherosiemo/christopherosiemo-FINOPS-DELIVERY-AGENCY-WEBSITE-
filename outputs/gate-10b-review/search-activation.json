@@ -4,5 +4,5 @@
   "googleUrlInspectionRequested": false,
   "googleHomepageIndexingRequested": false,
   "bingSitemapSubmitted": false,
-  "reason": "Blocked before search activation because the controlled production enquiry did not show the required success state."
+  "reason": "Blocked before search activation because the controlled recutover failed the production CSP preflight and no second controlled enquiry was submitted."
 }
