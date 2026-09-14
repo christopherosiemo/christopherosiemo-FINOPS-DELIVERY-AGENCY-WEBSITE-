@@ -108,4 +108,11 @@ describe("production CSP", () => {
     expect(nextConfig).not.toContain("APP_ENVIRONMENT");
     expect(nextConfig).toContain('process.env.NODE_ENV !== "development"');
   });
+
+  it("requires an explicit named Cloudflare deployment environment", () => {
+    const deployScript = readFileSync("scripts/deploy-cloudflare.mjs", "utf8");
+    expect(deployScript).toContain('["staging", "production"].includes(environment)');
+    expect(deployScript).toContain("environmentConfig.name");
+    expect(deployScript).toContain('delete deployConfig.env');
+  });
 });

@@ -41,6 +41,18 @@
     "windowsVisual": "46 known platform-mismatch failures against Linux-authored baselines; no snapshots or tolerances changed",
     "canonicalVisualPendingExactShaCi": true
   },
+  "deploymentTargetingQualification": {
+    "discoveredIssue": "The redirected vinext deployment config discarded --env staging and targeted the top-level Worker name.",
+    "unintendedTopLevelVersion": "0d10956b-3aa4-4e50-b6dc-ecdac3ec4a86",
+    "topLevelWorkerDeletedImmediately": true,
+    "topLevelWorkersDevAfterCleanup": "404 / Worker absent",
+    "stagingWorkerChangedByFailedAttempt": false,
+    "productionWorkerChangedByFailedAttempt": false,
+    "correctedWrapperRequiresNamedEnvironment": true,
+    "stagingDryRunTarget": "hkgpipi-enquiry-staging",
+    "productionDryRunTarget": "hkgpipi-enquiry-production",
+    "dryRunsPassed": true
+  },
   "publicRoutingChanged": false,
   "productionSubmissionPerformed": false,
   "searchActivationPerformed": false,
