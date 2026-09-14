@@ -2,9 +2,9 @@
 
 **Current value:** 92%
 
-**Target for this checkpoint:** 92% after Gate 9A technical acquisition qualification
+**Target for this checkpoint:** 93% after verified external search ownership and operational-readiness evidence
 
-**Current gate:** Acquisition — external search/discovery configuration and independent approval pending
+**Current gate:** Acquisition — Gate 9B external search ownership and qualification
 
 ## Completed
 
@@ -97,10 +97,11 @@
 - Gate 9A implements the production-intended acquisition architecture at `bf3649b941953e711ad4cd84451fdaa5edb8041a`: one canonical production origin, explicit environment-safe indexing, framework robots and sitemap routes, unique route metadata, restricted Organization/WebSite/Service JSON-LD, a deterministic social card and icon, contextual internal links, and focused acquisition evidence/tests.
 - GitHub Actions run `34774769806` passed the complete Linux validation matrix for that exact implementation commit, including 46 canonical visual comparisons and the new production-mode acquisition suite.
 - Read-only staging verification deployed version `7fd6f06c-0368-443a-be07-e5f50091e1dc`. Staging remains `noindex, nofollow`, robots disallows all, its sitemap is empty, JSON-LD is absent, canonicals use `https://hkgpipi.com`, and no workers.dev URL leaks through canonical, structured-data, or sitemap acquisition surfaces. No form POST or email occurred.
+- Gate 9A is independently approved at final documentation SHA `dae886fec3127f50c554911c5ab6b412395640ed`; GitHub Actions run `34775359033` passed on that exact commit. Review confirmed the single production origin, explicit production/non-production indexing controls, staging disallow-all behavior, selective seven-route production sitemap, utility-route noindex policy, production-only JSON-LD, workers.dev exclusion, tracking-free implementation, approved social card, and absence of performance or accessibility regressions.
 
 ## In progress
 
-- Gate 9A is complete at 92%. Production routing, external search/discovery configuration, production-ready verification surfaces, and independent acquisition approval remain outside this gate.
+- Gate 9B external Google/Bing search ownership and the production search-operations runbook are in progress. Production cutover, sitemap/URL submission, indexing requests, and independent 94% approval remain outside this work.
 
 ## Blocked
 
