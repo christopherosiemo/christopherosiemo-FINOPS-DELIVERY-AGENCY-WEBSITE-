@@ -156,6 +156,43 @@ describe("enquiry submission", () => {
     expect(delivery.payloads).toHaveLength(0);
   });
 
+  it("fails closed with a truthful browser state when rate-limit infrastructure throws", async () => {
+    const delivery = new CapturingDelivery({ ok: true });
+    const log = vi.fn();
+    const result = await processEnquirySubmission(validForm(), {
+      delivery,
+      rateLimit: { check: vi.fn().mockRejectedValue(new Error("PRIVATE INFRASTRUCTURE DETAIL")) },
+      now,
+      createRequestId: fixedId,
+      log,
+    });
+    expect(result).toMatchObject({
+      status: "delivery-failure",
+      requestId: "enq-test000001",
+      values: { email: "alex@example.test" },
+    });
+    expect(delivery.payloads).toHaveLength(0);
+    expect(log).toHaveBeenCalledWith(expect.objectContaining({ category: "rate-limit-unavailable", outcome: "failure" }));
+    expect(JSON.stringify(log.mock.calls)).not.toContain("PRIVATE INFRASTRUCTURE DETAIL");
+  });
+
+  it.each([
+    ["verification", { verification: { verify: vi.fn().mockRejectedValue(new Error("PRIVATE VERIFICATION DETAIL")) } }],
+    ["delivery", { delivery: { type: "throwing", deliver: vi.fn().mockRejectedValue(new Error("PRIVATE DELIVERY DETAIL")) } }],
+  ])("fails closed without false success when %s throws unexpectedly", async (_stage, overrides) => {
+    const result = await processEnquirySubmission(validForm(), {
+      delivery: new CapturingDelivery({ ok: true }),
+      rateLimit: { check: async () => ({ allowed: true }) },
+      verification: { verify: async () => "verified" },
+      now,
+      createRequestId: fixedId,
+      log: vi.fn(),
+      ...overrides,
+    });
+    expect(result).toMatchObject({ status: "delivery-failure", requestId: "enq-test000001" });
+    expect(result.status).not.toBe("success");
+  });
+
   it("emits only a safe structured diagnostic", async () => {
     const log = vi.fn();
     await processEnquirySubmission(validForm(), {

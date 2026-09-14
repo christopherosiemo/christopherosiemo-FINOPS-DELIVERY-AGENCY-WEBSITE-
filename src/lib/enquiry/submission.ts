@@ -1,10 +1,13 @@
 import { randomUUID } from "node:crypto";
-import type { EnquiryDelivery } from "./delivery";
+import type { EnquiryDelivery, EnquiryDeliveryResult } from "./delivery";
 import type { EnquiryPayload, EnquirySubmissionState } from "./types";
 import { validateEnquiry } from "./validation";
 import type { TurnstileOutcome, TurnstileVerification } from "./turnstile";
 
-export type RateLimitDecision = { allowed: true } | { allowed: false; retryAfterSeconds?: number };
+export type RateLimitDecision =
+  | { allowed: true }
+  | { allowed: false; reason?: "rate-limited"; retryAfterSeconds?: number }
+  | { allowed: false; reason: "unavailable" };
 
 export interface EnquiryRateLimit {
   check(input: { requestId: string; timestamp: string }): Promise<RateLimitDecision>;
@@ -19,11 +22,11 @@ export class Gate7aRateLimitHook implements EnquiryRateLimit {
 export class TestEnquiryRateLimit implements EnquiryRateLimit {
   constructor(private readonly allowed = true) {}
   async check(): Promise<RateLimitDecision> {
-    return { allowed: this.allowed };
+    return this.allowed ? { allowed: true } : { allowed: false };
   }
 }
 
-type SubmissionDiagnostic = {
+export type SubmissionDiagnostic = {
   requestId: string;
   timestamp: string;
   deliveryType: string;
@@ -44,8 +47,31 @@ type SubmissionDependencies = {
   createRequestId?: () => string;
 };
 
-function requestId() {
+export function createEnquiryRequestId() {
   return `enq-${randomUUID().replaceAll("-", "").slice(0, 10)}`;
+}
+
+export function createFailClosedSubmissionState(
+  formData: FormData,
+  id = createEnquiryRequestId(),
+): EnquirySubmissionState {
+  return {
+    status: "delivery-failure",
+    values: validateEnquiry(formData).values,
+    errors: {},
+    requestId: id,
+  };
+}
+
+function emitDiagnostic(
+  log: (diagnostic: SubmissionDiagnostic) => void,
+  diagnostic: SubmissionDiagnostic,
+) {
+  try {
+    log(diagnostic);
+  } catch {
+    // Diagnostics must never change the truthful browser outcome.
+  }
 }
 
 export function isAllowedSubmissionOrigin(origin: string | null, host: string | null) {
@@ -69,7 +95,7 @@ export async function processEnquirySubmission(
     now = new Date(),
     originAllowed = true,
     log = console.info,
-    createRequestId = requestId,
+    createRequestId = createEnquiryRequestId,
   }:
     SubmissionDependencies,
 ): Promise<EnquirySubmissionState> {
@@ -86,21 +112,65 @@ export async function processEnquirySubmission(
   if (!originAllowed || validation.honeypotPopulated) return failedState;
 
   const timestamp = now.toISOString();
-  const rateDecision = await rateLimit.check({ requestId: id, timestamp });
+  let rateDecision: RateLimitDecision;
+  try {
+    rateDecision = await rateLimit.check({ requestId: id, timestamp });
+  } catch {
+    emitDiagnostic(log, {
+      requestId: id,
+      timestamp,
+      deliveryType: delivery.type,
+      outcome: "failure",
+      category: "rate-limit-unavailable",
+    });
+    return failedState;
+  }
   if (!rateDecision.allowed) {
-    log({ requestId: id, timestamp, deliveryType: delivery.type, outcome: "failure", category: "rate-limited" });
+    const unavailable = rateDecision.reason === "unavailable";
+    emitDiagnostic(log, {
+      requestId: id,
+      timestamp,
+      deliveryType: delivery.type,
+      outcome: "failure",
+      category: unavailable ? "rate-limit-unavailable" : "rate-limited",
+    });
+    if (unavailable) return failedState;
     return { status: "rate-limited", values: validation.values, errors: {}, requestId: id };
   }
 
-  const verificationOutcome: TurnstileOutcome = await verification.verify(turnstileToken, remoteIp);
+  let verificationOutcome: TurnstileOutcome;
+  try {
+    verificationOutcome = await verification.verify(turnstileToken, remoteIp);
+  } catch {
+    emitDiagnostic(log, {
+      requestId: id,
+      timestamp,
+      deliveryType: delivery.type,
+      outcome: "failure",
+      category: "turnstile-unavailable",
+    });
+    return failedState;
+  }
   if (verificationOutcome !== "verified") {
-    log({ requestId: id, timestamp, deliveryType: delivery.type, outcome: "failure", category: `turnstile-${verificationOutcome}` });
+    emitDiagnostic(log, { requestId: id, timestamp, deliveryType: delivery.type, outcome: "failure", category: `turnstile-${verificationOutcome}` });
     return { status: "verification-failure", values: validation.values, errors: {}, requestId: id };
   }
 
   const payload: EnquiryPayload = { ...validation.values, requestId: id, receivedAt: timestamp };
-  const result = await delivery.deliver(payload);
-  log({
+  let result: EnquiryDeliveryResult;
+  try {
+    result = await delivery.deliver(payload);
+  } catch {
+    emitDiagnostic(log, {
+      requestId: id,
+      timestamp,
+      deliveryType: delivery.type,
+      outcome: "failure",
+      category: "email-unavailable",
+    });
+    return failedState;
+  }
+  emitDiagnostic(log, {
     requestId: id,
     timestamp,
     deliveryType: delivery.type,

@@ -1,0 +1,32 @@
+{
+  "capturedAt": "2026-09-14T16:18:03.6660640Z",
+  "classification": "C — uncaught server exception",
+  "classificationBasis": [
+    "The browser rendered neither success nor handled failure after the single submission and reset the verification widget.",
+    "No matching destination message or Email Sending Activity event exists.",
+    "The submitted production version allowed rate-limit dependency exceptions and malformed Durable Object responses to escape the Server Action."
+  ],
+  "productionTrigger": {
+    "status": "unproven",
+    "reason": "Workers Observability was disabled and no browser network trace or HAR was preserved.",
+    "durableObjectDeclaredAsProductionRootCause": false
+  },
+  "provenDefect": "The Server Action lacked a fail-closed boundary, so any unexpected dependency exception could reject the action instead of returning a truthful generic failure state.",
+  "repair": {
+    "unexpectedDependencyFailuresFailClosed": true,
+    "falseSuccessPossible": false,
+    "safeValuesPreserved": true,
+    "safeRequestReferenceReturned": true,
+    "exceptionMessagesOrStacksReturned": false,
+    "durableObjectFetchRejectionHandled": true,
+    "durableObjectNamespaceExceptionHandled": true,
+    "durableObjectNon2xxHandled": true,
+    "durableObjectUnexpectedBodyHandled": true,
+    "productionObservabilityConfigured": "100% persisted logs with query-string redaction; traces disabled"
+  },
+  "noLiveEmailCallInTests": true,
+  "secondProductionSubmissionPerformed": false,
+  "searchActivationPerformed": false,
+  "gateProgress": 96,
+  "sensitiveValuesOmitted": true
+}

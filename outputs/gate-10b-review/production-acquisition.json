@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-09-14T15:34:42.9125666Z",
+  "indexableRoutes": 7,
+  "canonicalsPassed": true,
+  "indexFollowPassed": true,
+  "openGraphPassed": true,
+  "robotsPassed": true,
+  "sitemapUrlCount": 7,
+  "sitemapSelective": true,
+  "workersDevIdentityAbsent": true,
+  "structuredData": {
+    "scriptCount": 1,
+    "types": ["Organization", "WebSite", "Service"],
+    "privateOrFabricatedDataAbsent": true
+  },
+  "utilityRoutesNoindex": true,
+  "unknownRouteNoindex": true,
+  "socialImageStatus": 200,
+  "iconStatus": 200,
+  "searchSubmissionsPerformed": false
+}

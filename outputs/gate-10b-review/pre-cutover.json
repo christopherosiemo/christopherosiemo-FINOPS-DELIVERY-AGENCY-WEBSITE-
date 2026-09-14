@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-09-14T15:23:45.2007046Z",
+  "sourceCommit": "50f98a829135cffa435f42f22419e47b88c5435c",
+  "ci": "passed",
+  "productionWorker": "hkgpipi-enquiry-production",
+  "workerVersion": "a6321226-ddb6-4e37-b6eb-d73280d2856a",
+  "runtimeImplementationSha": "54aa0a05d67f60809212938e48d46e807c5b63f9",
+  "requiredSecretNamesPresent": true,
+  "requiredBindingsPresent": true,
+  "workersDevEnabled": false,
+  "previewUrlsEnabled": false,
+  "customDomains": 0,
+  "routes": 0,
+  "dnsRecordCounts": {
+    "A": 0,
+    "AAAA": 0,
+    "CNAME": 0,
+    "MX": 6,
+    "TXT": 6
+  },
+  "wwwRecordPresent": false,
+  "googleOwnershipTxtPresent": true,
+  "emailRouting": "enabled",
+  "emailSending": "enabled",
+  "stagingReadOnlyChecks": "passed",
+  "rollbackBaseline": "no apex application routing",
+  "sensitiveValuesOmitted": true
+}

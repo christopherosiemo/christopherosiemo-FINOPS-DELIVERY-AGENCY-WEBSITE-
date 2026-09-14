@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { CloudflareEmailDelivery, createConfiguredDelivery, safeEmailProviderCodes } from "@/lib/enquiry/delivery";
+import { DurableObjectEnquiryRateLimit } from "@/lib/enquiry/rate-limit";
 import { readRuntimeConfig, TURNSTILE_ACTION } from "@/lib/enquiry/runtime-config";
 import { processEnquirySubmission } from "@/lib/enquiry/submission";
 import { CloudflareTurnstileVerification } from "@/lib/enquiry/turnstile";
@@ -124,6 +125,31 @@ describe("Cloudflare email delivery", () => {
   });
 });
 
+describe("Durable Object rate-limit failure handling", () => {
+  const limiterWith = (fetcher: () => Promise<Response>) => new DurableObjectEnquiryRateLimit({
+    getByName: () => ({ fetch: fetcher }),
+  }, "runtime-secret", "203.0.113.7");
+
+  it.each([
+    ["fetch rejection", () => Promise.reject(new Error("PRIVATE FETCH DETAIL"))],
+    ["non-2xx response", () => Promise.resolve(new Response("unavailable", { status: 503 }))],
+    ["unexpected response body", () => Promise.resolve(new Response("not-json", { status: 200 }))],
+    ["unexpected decision shape", () => Promise.resolve(Response.json({ allowed: "yes" }))],
+    ["unexpected denial reason", () => Promise.resolve(Response.json({ allowed: false, reason: "unknown" }))],
+  ])("fails closed when the Durable Object returns a %s", async (_case, fetcher) => {
+    await expect(limiterWith(fetcher).check({ timestamp: "2026-09-14T15:47:31.223Z" }))
+      .resolves.toEqual({ allowed: false, reason: "unavailable" });
+  });
+
+  it("fails closed when namespace lookup throws", async () => {
+    const limiter = new DurableObjectEnquiryRateLimit({
+      getByName: () => { throw new Error("PRIVATE NAMESPACE DETAIL"); },
+    }, "runtime-secret", "203.0.113.7");
+    await expect(limiter.check({ timestamp: "2026-09-14T15:47:31.223Z" }))
+      .resolves.toEqual({ allowed: false, reason: "unavailable" });
+  });
+});
+
 describe("environment safety", () => {
   it("permits query-controlled adapters only in the explicit test environment", () => {
     vi.stubEnv("ENQUIRY_TEST_MODE", "1");
@@ -160,5 +186,22 @@ describe("Wrangler email binding model", () => {
       expect(binding).not.toHaveProperty("allowed_destination_addresses");
     }
     expect(JSON.stringify(config)).not.toContain("gmail.com");
+  });
+
+  it("enables persisted query-redacted production observability without exposing preview URLs", () => {
+    const config = JSON.parse(readFileSync("wrangler.jsonc", "utf8")) as {
+      env: Record<string, { observability?: Record<string, unknown>; preview_urls?: boolean; workers_dev?: boolean }>;
+    };
+    expect(config.env.production).toMatchObject({
+      workers_dev: false,
+      preview_urls: false,
+      observability: {
+        enabled: true,
+        head_sampling_rate: 1,
+        redact_query_string: true,
+        logs: { enabled: true, head_sampling_rate: 1, invocation_logs: true, persist: true },
+        traces: { enabled: false },
+      },
+    });
   });
 });

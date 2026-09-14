@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-09-14T15:34:42.9125666Z",
+  "expectedApexWorkerRecord": 1,
+  "apexApplicationRecord": "Cloudflare-managed Worker Custom Domain",
+  "otherApplicationRecordCounts": {
+    "A": 0,
+    "AAAA": 0,
+    "CNAME": 0
+  },
+  "emailRecordCounts": {
+    "MX": 6,
+    "TXT": 6
+  },
+  "wwwRecordPresent": false,
+  "googleOwnershipTxtPresent": true,
+  "emailRouting": "enabled",
+  "emailRoutingDns": "locked",
+  "emailSending": "enabled",
+  "emailSendingDns": "configured",
+  "unintendedChangesObserved": false,
+  "recordValuesOmitted": true
+}

@@ -2,9 +2,9 @@
 
 **Current value:** 96%
 
-**Target for this checkpoint:** 96% after Gate 10A production readiness without cutover
+**Target for this checkpoint:** 96% during Gate 10B.1 production submission failure diagnosis and route-free repair
 
-**Current gate:** Production qualification — Gate 10A readiness without cutover
+**Current gate:** Production qualification — Gate 10B.1 diagnosis, rollback, and route-free repair
 
 ## Completed
 
@@ -111,14 +111,20 @@
 - Read-only staging checks retain noindex/nofollow, disallow-all robots, empty sitemap, absent production JSON-LD and workers.dev acquisition identity, functioning `/start`/Turnstile loading, and a hard 404. No production or staging enquiry or email occurred.
 - Sanitized Gate 10A configuration, Worker, DNS, Turnstile, email, Durable Object, CSP, cutover, rollback, and staging evidence is recorded under `outputs/gate-10a-review/`.
 - Gate 10A local validation passed frozen install, lint, regenerated Next route types, strict typecheck, 54 unit/component tests, 5 Workers tests, Next and production vinext builds, 97 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, 3 production-readiness/CSP checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; no snapshot or tolerance changed, and exact-SHA Linux CI remains the canonical visual authority.
+- Gate 10B temporarily attached only the apex Custom Domain, verified a valid TLS 1.2 certificate, all production HTTPS routes and security/acquisition surfaces, a 301 HTTP redirect, absent HSTS, unchanged email/ownership DNS, and read-only Turnstile/runtime behavior. Exactly one controlled production submission was attempted.
+- That submission rendered neither success nor handled failure, reset Turnstile, created no Email Sending Activity event, and did not arrive in the verified inbox. No request reference appeared. No second submission, manual email, sitemap submission, indexing request, or IndexNow action occurred.
+- Workers Observability was disabled, and no browser network trace or HAR was preserved, so the exact production exception trigger cannot be proven. Category C (uncaught server exception) is the best-supported classification; the Durable Object is not declared the production root cause.
+- The safe rollback removed the apex Custom Domain, restored Always Use HTTPS to OFF, and reverified no apex application DNS, route, `www`, workers.dev, or preview exposure. Minimum TLS remains 1.2, HSTS remains disabled, all 6 MX and 6 TXT records including Google ownership remain, both email services are unchanged, and staging remains healthy and non-indexable.
+- Gate 10B.1 hardens the proven silent-action defect: infrastructure exceptions and malformed Durable Object responses now fail closed into a truthful generic failure with preserved safe values and a non-sensitive reference. Production persisted logs are configured at 100% head sampling with query-string redaction and traces disabled.
+- Gate 10B.1 local validation passed the frozen install, lint, strict typecheck, 64 unit/component tests, 5 Workers tests, Next and production vinext builds, 98 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, 3 production-readiness/CSP checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; no snapshot or tolerance changed, and exact-SHA Linux CI remains the canonical visual authority.
 
 ## In progress
 
-- Gate 10B awaits explicit authorization for the controlled apex Custom Domain cutover, live TLS/redirect/header verification, exactly one controlled production enquiry, and post-cutover search activation.
+- Gate 10B.1 awaits synchronized green CI and route-free deployment verification of the hardened production Worker.
 
 ## Blocked
 
-- Production cutover remains blocked pending explicit Gate 10B authorization and its live certificate, HTTPS, redirect, rollback, and exact-version preflight.
+- Production cutover remains blocked by the unconfirmed controlled-conversion result. Reconnecting the apex or making a second production submission requires new explicit authorization after independent review of the Gate 10B.1 repair and evidence.
 - 100% requires a genuine external prospect/customer conversion.
 
 ## Deferred

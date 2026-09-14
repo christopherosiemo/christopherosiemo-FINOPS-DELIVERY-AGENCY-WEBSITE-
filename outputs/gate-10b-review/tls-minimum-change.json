@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-09-14T15:23:45.2007046Z",
+  "zone": "hkgpipi.com",
+  "change": {
+    "setting": "Minimum TLS Version",
+    "before": "TLS 1.0 (default)",
+    "after": "TLS 1.2",
+    "verifiedAfterReload": true
+  },
+  "zoneSecurity": {
+    "hstsEnabled": false,
+    "alwaysUseHttpsEnabled": false,
+    "tls13Supported": true,
+    "tls13IsMinimum": false
+  },
+  "workerRouting": {
+    "workersDevEnabled": false,
+    "customDomains": 0,
+    "routes": 0,
+    "noUrlsEnabled": true
+  },
+  "dns": {
+    "recordCounts": {
+      "A": 0,
+      "AAAA": 0,
+      "CNAME": 0,
+      "MX": 6,
+      "TXT": 6
+    },
+    "wwwRecordPresent": false,
+    "googleOwnershipTxtPresent": true,
+    "recordValuesOmitted": true
+  },
+  "email": {
+    "routing": "enabled",
+    "routingDns": "locked",
+    "sending": "enabled",
+    "sendingDns": "configured"
+  },
+  "unrelatedChangesObserved": false,
+  "notes": [
+    "No DNS record values, secret values, destination addresses, account identifiers, or authentication material are recorded.",
+    "No Custom Domain or Worker route was attached during this change."
+  ]
+}

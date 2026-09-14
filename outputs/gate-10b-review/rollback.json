@@ -1,0 +1,52 @@
+{
+  "capturedAt": "2026-09-14T16:18:03.6660640Z",
+  "rollbackExecuted": true,
+  "customDomain": {
+    "hostname": "hkgpipi.com",
+    "removed": true,
+    "remainingCustomDomains": 0,
+    "remainingWorkerRoutes": 0
+  },
+  "publicExposure": {
+    "apexResolves": false,
+    "productionWorkersDevEnabled": false,
+    "productionPreviewUrlsEnabled": false
+  },
+  "zoneSecurity": {
+    "alwaysUseHttps": "off",
+    "minimumTls": "TLS 1.2",
+    "hstsEnabled": false
+  },
+  "dns": {
+    "recordCounts": {
+      "A": 0,
+      "AAAA": 0,
+      "CNAME": 0,
+      "Worker": 0,
+      "MX": 6,
+      "TXT": 6
+    },
+    "wwwRecordPresent": false,
+    "googleOwnershipTxtPresent": true,
+    "recordValuesOmitted": true
+  },
+  "email": {
+    "routing": "enabled",
+    "routingDns": "locked",
+    "sending": "enabled",
+    "sendingDns": "configured",
+    "configurationChanged": false
+  },
+  "staging": {
+    "homeStatus": 200,
+    "startStatus": 200,
+    "noindexNofollow": true,
+    "robotsDisallowAll": true,
+    "turnstileScriptPresent": true
+  },
+  "additionalProductionPosts": 0,
+  "manualEmails": 0,
+  "searchActions": 0,
+  "gateProgress": 96,
+  "sensitiveValuesOmitted": true
+}

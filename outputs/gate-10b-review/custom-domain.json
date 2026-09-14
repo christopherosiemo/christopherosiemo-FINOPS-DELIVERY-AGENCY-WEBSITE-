@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-09-14T15:34:42.9125666Z",
+  "worker": "hkgpipi-enquiry-production",
+  "hostname": "hkgpipi.com",
+  "subdomain": null,
+  "type": "Production Custom Domain",
+  "dashboardListingPresent": true,
+  "broadWorkerRouteAdded": false,
+  "wwwAdded": false,
+  "workersDevEnabled": false,
+  "previewUrlsEnabled": false,
+  "httpsStatus": 200,
+  "certificate": {
+    "hostname": "hkgpipi.com",
+    "issuerCategory": "publicly trusted ACME certificate",
+    "validFromUtc": "2026-09-13T06:50:21Z",
+    "validUntilUtc": "2026-12-12T06:50:20Z",
+    "tls12Handshake": "passed",
+    "certificateValidation": "passed"
+  }
+}

@@ -60,7 +60,7 @@ Retain `nosniff`, strict-origin referrer handling, the approved Permissions Poli
 5. Verify HTTPS routes and the complete production CSP/security-header matrix before any form submission.
 6. Enable Cloudflare's zone-level **Always Use HTTPS** edge setting and verify that `http://hkgpipi.com` returns a permanent redirect to `https://hkgpipi.com`; HSTS does not replace the first-request redirect.
 7. `www` is currently absent and must remain absent unless support is separately authorized. If introduced later, configure it only as a permanent redirect to `https://hkgpipi.com`, never as duplicate canonical content.
-8. After certificate, HTTPS, redirect, and rollback checks pass, enable the initial apex-only HSTS policy `max-age=15552000`; keep `includeSubDomains` and `preload` off to avoid committing unknown subdomains or an irreversible preload state.
+8. Keep HSTS disabled throughout Gate 10B. Any future HSTS policy requires a separate Gate 10C authorization after the certificate, HTTPS redirect, and rollback path have been independently qualified.
 9. Run production browser/runtime verification, then exactly one controlled production enquiry and independently confirm delivery. Do not use an enquiry to debug incomplete configuration.
 10. Only after the live canonical site passes, execute the ordered search runbook: verify robots/sitemap/metadata, submit the sitemap to Google and Bing, and optionally request homepage indexing once. IndexNow remains unjustified for the current stable site.
 
@@ -80,4 +80,4 @@ Do not start or continue Gate 10B if production secrets or bindings are incomple
 
 ## Evidence and release decisions
 
-Sanitized evidence belongs in `outputs/gate-10a-review/` and must omit secret values, private destinations, account/session identifiers, and verification tokens. At 96%, the production Worker, bindings, secrets, DNS and security decisions, cutover and rollback plans, and unreachable deployment are proven while public routing remains disconnected. At 98%, controlled cutover, production verification, one controlled enquiry, and authorized search activation have passed. Only independent review may award 99%. HKGpipi must not claim 100% before a genuine external conversion is verified.
+Sanitized readiness evidence belongs in `outputs/gate-10a-review/`; cutover and rollback evidence belongs in `outputs/gate-10b-review/`. Both must omit secret values, private destinations, account/session identifiers, and verification tokens. At 96%, the production Worker, bindings, secrets, DNS and security decisions, cutover and rollback plans, and unreachable deployment are proven while public routing remains disconnected. At 98%, controlled cutover, production verification, one controlled enquiry, and authorized search activation have passed. Only independent review may award 99%. HKGpipi must not claim 100% before a genuine external conversion is verified.

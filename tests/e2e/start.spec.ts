@@ -83,6 +83,19 @@ for (const scenario of ["retryable-failure", "permanent-failure"]) {
   });
 }
 
+test("unexpected infrastructure failure returns a focused truthful failure state", async ({ page }) => {
+  await page.goto("/start?scenario=infrastructure-failure");
+  await fillValidEnquiry(page);
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  const result = page.locator('[data-submission-result="failure"]');
+  await expect(result).toBeFocused();
+  await expect(result.getByRole("heading", { name: "We could not send your enquiry." })).toBeVisible();
+  await expect(result).toContainText("Your information has not been confirmed as delivered.");
+  await expect(result).toContainText("enq-test000001");
+  await expect(page.getByLabel(/Work email/)).toHaveValue("alex@example.test");
+  await expect(page.getByText("Enquiry received.")).toHaveCount(0);
+});
+
 test("production-disabled delivery fails closed", async ({ page }) => {
   await page.goto("/start");
   await fillValidEnquiry(page);

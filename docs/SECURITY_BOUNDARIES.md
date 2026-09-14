@@ -12,6 +12,8 @@ No secrets belong in the repository or client bundle. `.env` files are ignored; 
 
 Cloudflare's SQLite Durable Object stores attempt timestamps only. Raw addresses are HMAC-pseudonymised before object selection, never persisted or logged, and missing IP uses a shared protected bucket. The Email Service binding is restricted to the approved public sender and destination. Production logging excludes personal/customer prose, IP/HMAC, tokens, secrets, and the private forwarding address; it records request reference, timestamp, adapter, safe outcomes, and provider message ID when available.
 
+Unexpected rate-limit, verification, delivery, or Server Action setup failures fail closed into the same truthful generic delivery-failure surface. The browser receives normalized entered values and a non-sensitive request reference, never an exception message, stack, provider detail, token, raw address, HMAC key, secret, or private destination. Durable Object transport and response-shape failures are logged only as `rate-limit-unavailable`; they are not misreported as allowed or as a user-exhausted rate limit.
+
 Test adapters require the explicit test environment and cannot be activated in staging or production. The production Worker has dedicated secrets and a dedicated Turnstile widget, but remains publicly unreachable until custom-domain approval. Secret rotation ownership, cutover verification, and operational response remain required for live production.
 
 ## Browser response boundary
@@ -20,7 +22,7 @@ All routes set `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origi
 
 Production uses an enforceable static CSP with explicit self/data/blob allowances and only `https://challenges.cloudflare.com` as a browser third party. `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'` narrow the boundary; wildcards and `unsafe-eval` are absent. The bounded `unsafe-inline` allowance supports Next hydration and generated styles. A strict nonce policy is not selected because Next.js 16 requires every protected page to render dynamically, disabling static optimization and normal CDN caching; vinext also cannot reliably classify the current routes. Production-mode browser tests instantiate Turnstile and collect CSP violations without submitting the form.
 
-HSTS remains deferred until the custom-domain certificate, HTTPS behavior, first-request HTTP redirect, and rollback route have passed live verification. The planned initial policy is `max-age=15552000` with `includeSubDomains` and preload off.
+HSTS remains disabled throughout Gate 10B and requires separate Gate 10C authorization after the custom-domain certificate, HTTPS behavior, first-request HTTP redirect, and rollback route have passed independent verification.
 
 Gate 8B revalidated the actual staging header matrix on the root, conversion, privacy, pricing, verification, security, and hard-404 responses. The approved nosniff, referrer, framing, and Permissions Policy fields are present; disclosure, CSP, and HSTS fields are absent as intended. The current vinext Worker emits `no-store, must-revalidate` for these HTML responses, while `/start` remains non-cacheable and hashed assets retain immutable caching. CSP and HSTS remain explicit production-domain requirements, not completed staging controls.
 

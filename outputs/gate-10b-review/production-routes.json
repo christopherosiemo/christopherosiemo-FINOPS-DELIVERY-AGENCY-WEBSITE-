@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-09-14T15:34:42.9125666Z",
+  "origin": "https://hkgpipi.com",
+  "expected200": [
+    "/",
+    "/savings-sprint",
+    "/implementation",
+    "/pricing",
+    "/method",
+    "/verification",
+    "/security",
+    "/start",
+    "/contact",
+    "/privacy",
+    "/design-system",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/opengraph-image",
+    "/icon.svg"
+  ],
+  "allExpected200Passed": true,
+  "unknownRoute": {
+    "path": "/gate-10b-intentional-404",
+    "status": 404
+  },
+  "securityHeaderMatrixPassed": true,
+  "hstsAbsent": true,
+  "httpRedirect": {
+    "status": 301,
+    "location": "https://hkgpipi.com/"
+  },
+  "alwaysUseHttps": true
+}
