@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 92%
+**Current value:** 93%
 
 **Target for this checkpoint:** 93% after verified external search ownership and operational-readiness evidence
 
-**Current gate:** Acquisition — Gate 9B external search ownership and qualification
+**Current gate:** Acquisition — Gate 9B external ownership complete; independent 94% approval pending
 
 ## Completed
 
@@ -98,14 +98,16 @@
 - GitHub Actions run `34774769806` passed the complete Linux validation matrix for that exact implementation commit, including 46 canonical visual comparisons and the new production-mode acquisition suite.
 - Read-only staging verification deployed version `7fd6f06c-0368-443a-be07-e5f50091e1dc`. Staging remains `noindex, nofollow`, robots disallows all, its sitemap is empty, JSON-LD is absent, canonicals use `https://hkgpipi.com`, and no workers.dev URL leaks through canonical, structured-data, or sitemap acquisition surfaces. No form POST or email occurred.
 - Gate 9A is independently approved at final documentation SHA `dae886fec3127f50c554911c5ab6b412395640ed`; GitHub Actions run `34775359033` passed on that exact commit. Review confirmed the single production origin, explicit production/non-production indexing controls, staging disallow-all behavior, selective seven-route production sitemap, utility-route noindex policy, production-only JSON-LD, workers.dev exclusion, tracking-free implementation, approved social card, and absence of performance or accessibility regressions.
+- The `hkgpipi.com` Google Search Console Domain property is verified through DNS, and Bing Webmaster Tools contains the canonical site through Google Search Console import. No verification value, account identifier, OAuth credential, or browser-session data is stored in the repository.
+- The ordered post-cutover search-operations runbook is complete. Production sitemap submission, URL inspection/indexing requests, Bing URL submission, and IndexNow remain deliberately deferred until Production Qualification authorizes and validates the live domain.
 
 ## In progress
 
-- Gate 9B external Google/Bing search ownership and the production search-operations runbook are in progress. Production cutover, sitemap/URL submission, indexing requests, and independent 94% approval remain outside this work.
+- Independent Acquisition review is pending. Production cutover, sitemap/URL submission, indexing requests, and Production Qualification remain outside this work.
 
 ## Blocked
 
-- 94% requires external search/discovery configuration, production-ready verification surfaces, and independent acquisition approval after Gate 9A.
+- 94% requires independent review of the verified external ownership evidence, deferred-submission boundary, production-ready verification surfaces, and completed search-operations runbook.
 - Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
 - 100% requires a genuine external prospect/customer conversion.
 
@@ -189,7 +191,10 @@
 - Gate 9A local validation on 2026-09-13 passed frozen install, lint, strict typecheck, 45 unit/component tests, 5 Workers tests, Next and vinext builds, 97 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, production audit, and diff validation. Canonical Linux CI additionally passed all 46 visual comparisons.
 - The unchanged performance budgets passed with maxima of 9 JavaScript requests / 145,346 encoded bytes, 3 CSS requests / 13,909 bytes, 3 local-font requests / 50,016 bytes, and 29 total requests. No audited page contacted a third party, emitted a console error, or overflowed.
 - `outputs/gate-9a-review/` contains the production metadata review, production and staging robots evidence, selective production sitemap, restricted structured-data graph, route/link map, staging-safety record, and one social-card preview.
+- Gate 9B read-only checks on 2026-09-14 confirmed staging remains `noindex, nofollow`, robots remains disallow-all, its sitemap remains empty, production JSON-LD remains absent, and no `workers.dev` acquisition identity leaks. The unchanged production-mode social card remains 1200×630 with approved copy and no private data.
+- `outputs/gate-9b-review/` contains sanitized Google and Bing ownership records, the external-search boundary checklist, and the ordered post-cutover search runbook. Google and Bing show verified ownership; Bing imported zero sitemaps. No live POST, email, production cutover, sitemap submission, indexing request, or IndexNow submission occurred.
+- Gate 9B local validation on 2026-09-14 passed frozen install, lint, strict typecheck, 45 unit/component tests, 5 Workers tests, Next and vinext builds, 97 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; canonical Linux CI remains the release authority and no snapshot was changed.
 
 ## Next gate
 
-92–94% — External search/discovery configuration, production-ready verification surfaces, and independent acquisition approval. Production Qualification does not begin until that review is complete.
+94% — Independent Acquisition approval of the verified external ownership evidence and completed post-cutover runbook. Production Qualification does not begin until that review is complete.

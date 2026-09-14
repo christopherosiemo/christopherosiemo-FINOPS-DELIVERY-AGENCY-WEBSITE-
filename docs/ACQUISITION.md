@@ -64,3 +64,32 @@ Gate 9A tests production and non-production policies independently. They cover m
 External Google/Bing verification, production DNS/redirect behavior, Search Console configuration, field acquisition measurement, CSP/HSTS, and independent Gate 9B approval remain unresolved by design.
 
 Gate 9A implementation commit `bf3649b941953e711ad4cd84451fdaa5edb8041a` passed GitHub Actions run `34774769806`. Read-only staging version `7fd6f06c-0368-443a-be07-e5f50091e1dc` confirmed the fail-closed indexing contract without a form submission or email. Machine-readable review evidence is generated under `outputs/gate-9a-review/`.
+
+## External search ownership
+
+The `hkgpipi.com` Google Search Console Domain property is verified through a root DNS TXT record. Bing Webmaster Tools contains the canonical `https://hkgpipi.com/` site, imported from the verified Google property with read-only Search Console access. The import found zero submitted sitemaps. Verification values, account identifiers, OAuth credentials, and browser-session data are external configuration and must never enter source control or review evidence.
+
+The Google verification TXT record must remain in DNS. No application metadata or public verification file is required. This ownership work added no analytics, pixels, cookies, Tag Manager, tracking script, application route, production Worker binding, or change to application-routing or email DNS records.
+
+Ownership is controllable; crawling, indexing, ranking, impressions, and their timing are not. Before production activation, zero impressions, zero indexed pages, or an unknown-URL result is expected external state rather than an application defect. Search ranking, traffic, clicks, impressions, and backlinks are outcomes, not gate conditions.
+
+## Post-cutover search operations
+
+Run these steps in order only after Production Qualification authorizes `hkgpipi.com`:
+
+1. Verify `https://hkgpipi.com` returns the approved production site.
+2. Verify canonical host and redirect rules: HTTP redirects to HTTPS, and `www` redirects to the approved non-`www` canonical if `www` exists.
+3. Verify the intended production indexable routes return HTTP 200.
+4. Verify `/robots.txt` returns the production policy.
+5. Verify `/sitemap.xml` returns the seven production URLs.
+6. Verify production pages emit `index, follow` where intended, the correct canonical and Open Graph URL, the correct JSON-LD, and no `workers.dev` identity.
+7. Verify `/start`, `/contact`, and `/privacy` remain `noindex`.
+8. Confirm the hard 404 response.
+9. Submit `https://hkgpipi.com/sitemap.xml` in Google Search Console.
+10. Submit the production sitemap in Bing Webmaster Tools if it was not imported automatically.
+11. Use Google URL Inspection on the homepage once the production site is live.
+12. Request indexing of the homepage only if the inspector shows it is eligible and the operator wants to accelerate discovery.
+13. Do not repeatedly request indexing.
+14. Monitor pages/indexing, sitemap processing, crawl errors, search queries and impressions, and structured-data warnings.
+
+Do not promise indexing times. Until the sequence's production prerequisites pass, sitemap submission and all Google, Bing, URL Submission API, and IndexNow URL submissions remain deferred. IndexNow is not justified for the current small, stable seven-route site; reconsider it only if HKGpipi later introduces frequently changing editorial or product content.

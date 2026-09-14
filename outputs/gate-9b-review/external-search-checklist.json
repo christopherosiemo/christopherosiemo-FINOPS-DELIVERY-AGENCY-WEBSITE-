@@ -1,0 +1,29 @@
+{
+  "checkedOn": "2026-09-14",
+  "googleDomainPropertyVerified": true,
+  "bingCanonicalSiteVerified": true,
+  "googleVerificationValueCommitted": false,
+  "bingCredentialCommitted": false,
+  "applicationRoutingDnsChanged": false,
+  "emailDnsChanged": false,
+  "productionDomainCutoverPerformed": false,
+  "productionSitemapSubmitted": false,
+  "googleIndexingRequested": false,
+  "bingUrlSubmitted": false,
+  "indexNowSubmitted": false,
+  "analyticsOrTrackingAdded": false,
+  "liveFormPostPerformed": false,
+  "emailSent": false,
+  "stagingNoindexNofollow": true,
+  "stagingRobotsDisallowAll": true,
+  "stagingSitemapUrlCount": 0,
+  "stagingProductionJsonLdPresent": false,
+  "stagingWorkersDevAcquisitionIdentityPresent": false,
+  "socialCard": {
+    "width": 1200,
+    "height": 630,
+    "approvedCopyPresent": true,
+    "privateDataPresent": false,
+    "workersDevUrlPresent": false
+  }
+}

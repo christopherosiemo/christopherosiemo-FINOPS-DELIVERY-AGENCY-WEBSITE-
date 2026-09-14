@@ -1,0 +1,25 @@
+{
+  "status": "prepared-not-executed",
+  "prerequisite": "Production Qualification authorizes hkgpipi.com",
+  "steps": [
+    "Verify https://hkgpipi.com returns the approved production site.",
+    "Verify HTTP redirects to HTTPS and www redirects to the approved non-www canonical if www exists.",
+    "Verify intended production indexable routes return HTTP 200.",
+    "Verify /robots.txt returns the production policy.",
+    "Verify /sitemap.xml returns the seven production URLs.",
+    "Verify production pages emit index/follow where intended, correct canonical, correct Open Graph URL, correct JSON-LD, and no workers.dev identity.",
+    "Verify /start, /contact, and /privacy remain noindex.",
+    "Confirm the hard 404 response.",
+    "Submit https://hkgpipi.com/sitemap.xml in Google Search Console.",
+    "Submit the production sitemap in Bing Webmaster Tools if it was not imported automatically.",
+    "Use Google URL Inspection on the homepage once the production site is live.",
+    "Request indexing of the homepage only if the inspector shows it is eligible and the operator wants to accelerate discovery.",
+    "Do not repeatedly request indexing.",
+    "Monitor pages/indexing, sitemap processing, crawl errors, search queries/impressions, and structured-data warnings."
+  ],
+  "indexNow": {
+    "implemented": false,
+    "decision": "deferred",
+    "reason": "The current seven-route site is small and relatively stable; sitemap and internal links are sufficient for launch."
+  }
+}
