@@ -1,0 +1,15 @@
+{
+  "preCutoverApexWebRouting": "none",
+  "steps": [
+    "Stop verification and preserve sanitized timestamps, version IDs and symptoms",
+    "Detach the apex Custom Domain or Worker route from hkgpipi-enquiry-production",
+    "Restore the recorded prior state: no apex application-routing record",
+    "Confirm apex traffic no longer reaches the production Worker",
+    "Confirm workers.dev and preview URLs remain disabled",
+    "Confirm MX, SPF, DKIM, DMARC, Email Routing, Email Sending and Google ownership are unchanged",
+    "Confirm staging remains operational and non-indexable",
+    "Require a new exact-SHA green qualification before retrying"
+  ],
+  "dependsOnMemory": false,
+  "executed": false
+}

@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-09-14",
+  "emailSendingDomain": "hkgpipi.com",
+  "emailSendingStatus": "enabled",
+  "emailRoutingStatus": "enabled-locked",
+  "senderBinding": "ENQUIRY_EMAIL",
+  "allowedSender": "enquiries@hkgpipi.com",
+  "destinationSecret": "present",
+  "destinationValueRecorded": false,
+  "emailDnsChanged": false,
+  "productionEmailSent": false
+}

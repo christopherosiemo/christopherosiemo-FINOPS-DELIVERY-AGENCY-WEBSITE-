@@ -1,0 +1,12 @@
+{
+  "decision": "B",
+  "status": "ENFORCEABLE STATIC CSP READY, NONCE HARDENING BLOCKED BY A SPECIFIC VERIFIED COMPATIBILITY LIMITATION",
+  "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests",
+  "nonceLimitation": "Next.js 16 nonce CSP requires dynamic rendering for every protected page, disables static optimization and normal CDN caching, and is incompatible with Partial Prerendering; vinext also reports unknown route classification for this build",
+  "unsafeInline": "Bounded compatibility compromise for Next.js hydration and generated styles; independently review before cutover",
+  "wildcards": false,
+  "unsafeEval": false,
+  "browserThirdParties": ["https://challenges.cloudflare.com"],
+  "turnstileInstantiatedWithoutPost": true,
+  "observedCspViolations": 0
+}

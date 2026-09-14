@@ -1,0 +1,10 @@
+{
+  "capturedAt": "2026-09-14T13:03:49.850Z",
+  "binding": "ENQUIRY_RATE_LIMITER",
+  "class": "EnquiryRateLimiter",
+  "storage": "sqlite",
+  "deployedBindingConfirmed": true,
+  "isolationBasis": "Production and staging are distinct Worker scripts with independently deployed Durable Object namespaces and persisted state",
+  "productionSubmissionPerformed": false,
+  "productionRateLimitStateCreatedByGate": false
+}

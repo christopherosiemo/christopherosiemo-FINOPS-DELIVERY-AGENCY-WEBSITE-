@@ -141,6 +141,13 @@ Gate 9A may reach 92% after the production-intended metadata, canonical, environ
 
 **Prohibited shortcuts:** Treating staging as production proof, open critical risks, untested rollback, unverifiable telemetry, or declaring 100% from internal testing.
 
+The production-qualification split is fixed unless independent review approves a change:
+
+- **94–96:** production Worker configuration, production bindings and secrets, sanitized DNS inventory, security and cutover design, rollback preparation, and an unreachable production deployment with no custom domain, Worker route, workers.dev route, or preview URL.
+- **96–98:** controlled custom-domain cutover, production browser/runtime verification, one controlled production enquiry, and the authorized post-cutover search activation.
+- **98–99:** independent whole-production qualification and release approval.
+- **100:** a genuine external prospect or customer conversion; internal, operator, staging, and synthetic activity cannot satisfy this boundary.
+
 ## 100 — First verified real commercial conversion
 
 **Objective:** Demonstrate that the production website supports the agreed real-world commercial outcome.

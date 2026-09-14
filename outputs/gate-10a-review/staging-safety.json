@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-09-14",
+  "mode": "read-only",
+  "routes": {"/": 200, "/start": 200, "/privacy": 200, "/robots.txt": 200, "/sitemap.xml": 200, "/definitely-not-a-page": 404},
+  "metadata": "noindex,nofollow",
+  "robots": "disallow-all",
+  "sitemap": "empty",
+  "productionJsonLd": false,
+  "workersDevAcquisitionIdentity": false,
+  "turnstileScriptPresent": true,
+  "formPostPerformed": false,
+  "emailSent": false,
+  "productionSecretsCopiedToStaging": false
+}

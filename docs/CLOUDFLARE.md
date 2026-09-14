@@ -63,4 +63,10 @@ Gate 9A read-only acquisition qualification deployed staging version `7fd6f06c-0
 7. Submit exactly one synthetic Gate 7B enquiry through the real widget. Record UTC time, reference ID, and the Cloudflare message ID from safe Worker logs if available.
 8. Ask the operator to confirm inbox arrival, subject, matching reference, body fields, Reply-To, and absence of IP/token/secret leakage. Cloudflare acceptance is not inbox proof.
 
-Production qualification requires a separate production Turnstile widget/secret, HMAC secret, verified Email Service configuration, and explicit custom-domain routing approval. Do not point `hkgpipi.com` at this Worker during Gate 7B.
+## Production readiness without routing
+
+Gate 10A deploys the separate `hkgpipi-enquiry-production` script with `APP_ENVIRONMENT=production`, a production-only Managed Turnstile widget for `hkgpipi.com`, three production secrets, the sender-restricted Email binding, and the SQLite `ENQUIRY_RATE_LIMITER`. `workers_dev` and preview URLs are disabled and the deployed configuration has no route or Custom Domain, so Wrangler reports `No targets deployed`. Production and staging state are isolated by distinct Worker script deployments and Durable Object namespaces, not merely by the shared class name.
+
+The production secret inventory is verified by names only: `TURNSTILE_SECRET_KEY`, `RATE_LIMIT_HMAC_SECRET`, and `ENQUIRY_DESTINATION_ADDRESS`. Values and the private destination are never read back or recorded. Production test mode and query-selected delivery scenarios remain forbidden, and missing critical bindings or exact-host configuration fails closed.
+
+The DNS baseline contains no apex A, AAAA, CNAME, Worker route, or Custom Domain and no `www` record. Email-related MX, SPF, DKIM, DMARC, Email Routing, and Email Sending state is immutable during web cutover. The exact Gate 10B Custom Domain, TLS, redirect, HSTS, verification, and rollback sequence is authoritative in `PRODUCTION.md`. Do not point `hkgpipi.com` at the production Worker without explicit Gate 10B authorization.

@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-09-14",
+  "zone": "hkgpipi.com",
+  "recordCount": 12,
+  "apexWebRouting": {"A": 0, "AAAA": 0, "CNAME": 0, "workerCustomDomain": false, "workerRoute": false},
+  "www": {"exists": false},
+  "googleSearchConsoleVerificationTxt": {"present": true, "valueOmitted": true},
+  "emailDns": {
+    "MX": 6,
+    "SPF_TXT": 2,
+    "DKIM_TXT": 2,
+    "DMARC_TXT": 1,
+    "valuesOmitted": true,
+    "mutationDuringGate10A": false
+  },
+  "existingApexApplication": false
+}

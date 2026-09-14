@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-09-14T13:03:49.850Z",
+  "worker": "hkgpipi-enquiry-production",
+  "versionId": "a6321226-ddb6-4e37-b6eb-d73280d2856a",
+  "runtimeSourceSha": "54aa0a05d67f60809212938e48d46e807c5b63f9",
+  "deploymentSource": "Wrangler upload from production vinext build",
+  "deploymentWeightPercent": 100,
+  "deploymentResult": "No targets deployed",
+  "publiclyReachable": false,
+  "formPosts": 0,
+  "emailsSent": 0
+}

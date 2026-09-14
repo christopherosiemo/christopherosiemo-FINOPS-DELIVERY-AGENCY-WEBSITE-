@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-09-14",
+  "dedicatedProductionWidget": true,
+  "mode": "managed",
+  "allowedHostnames": ["hkgpipi.com"],
+  "preClearance": "off",
+  "expectedAction": "savings_sprint_enquiry",
+  "siteKeyConfigured": true,
+  "siteKeyIsPublic": true,
+  "secretPresent": true,
+  "secretValueRecorded": false,
+  "compromisedEarlierSecretRotated": true
+}

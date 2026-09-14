@@ -1,8 +1,8 @@
 # Progress
 
-**Current value:** 94%
+**Current value:** 96%
 
-**Target for this checkpoint:** 94% after independent Acquisition approval
+**Target for this checkpoint:** 96% after Gate 10A production readiness without cutover
 
 **Current gate:** Production qualification — Gate 10A readiness without cutover
 
@@ -103,21 +103,29 @@
 - Acquisition is independently approved at final Gate 9B SHA `3247ee0b7e3aeab94ec15cebc6fcd250c94be515`; GitHub Actions run `34822968143` passed on that exact commit.
 - Independent approval confirms the Google Search Console Domain property and Bing Webmaster Tools ownership, with verification tokens uncommitted, staging still non-indexable, no analytics or tracking, and no production cutover.
 - Production sitemap submission, Google indexing requests, Bing URL submission, and IndexNow were not performed and remain frozen until the post-cutover runbook is authorized.
+- Gate 10A defines the fixed 94–96, 96–98, 98–99, and external-conversion 100% boundaries and establishes `docs/PRODUCTION.md` as the production operations runbook.
+- The separate `hkgpipi-enquiry-production` Worker is deployed from runtime source `54aa0a05d67f60809212938e48d46e807c5b63f9` as version `a6321226-ddb6-4e37-b6eb-d73280d2856a` with all required bindings and three secret names present. Values and the private destination were not read or recorded.
+- Production workers.dev and preview URLs are disabled. Wrangler reported `No targets deployed`; no apex Custom Domain or Worker route is attached, so public production routing remains intentionally disconnected.
+- The pre-cutover DNS inventory records no apex A, AAAA, CNAME, Worker route, or Custom Domain and no `www` record. Google ownership remains present with its value omitted. MX, SPF, DKIM, DMARC, Email Routing, and Email Sending state was not changed.
+- CSP decision B is implemented for production: a bounded enforceable static policy supports Next hydration and Turnstile with no wildcard or `unsafe-eval`. Focused production tests instantiate Turnstile, collect zero CSP violations, and perform no form POST.
+- Read-only staging checks retain noindex/nofollow, disallow-all robots, empty sitemap, absent production JSON-LD and workers.dev acquisition identity, functioning `/start`/Turnstile loading, and a hard 404. No production or staging enquiry or email occurred.
+- Sanitized Gate 10A configuration, Worker, DNS, Turnstile, email, Durable Object, CSP, cutover, rollback, and staging evidence is recorded under `outputs/gate-10a-review/`.
+- Gate 10A local validation passed frozen install, lint, regenerated Next route types, strict typecheck, 54 unit/component tests, 5 Workers tests, Next and production vinext builds, 97 established Chromium E2E checks, 5 engineering checks, 14 qualification checks, 18 Chromium/Firefox/WebKit checks, 5 production-mode acquisition checks, 3 production-readiness/CSP checks, performance budgets, the production dependency audit, and diff validation. The Windows visual run reproduced the established platform mismatch against all 46 Linux-authored snapshots; no snapshot or tolerance changed, and exact-SHA Linux CI remains the canonical visual authority.
 
 ## In progress
 
-- Gate 10A production-readiness preparation is beginning from the independently approved 94% Acquisition state. Public production routing, live production submission, and search activation remain outside this work.
+- Gate 10B awaits explicit authorization for the controlled apex Custom Domain cutover, live TLS/redirect/header verification, exactly one controlled production enquiry, and post-cutover search activation.
 
 ## Blocked
 
-- Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, DNS and security readiness, and explicit custom-domain routing approval.
+- Production cutover remains blocked pending explicit Gate 10B authorization and its live certificate, HTTPS, redirect, rollback, and exact-version preflight.
 - 100% requires a genuine external prospect/customer conversion.
 
 ## Deferred
 
 - Interactive Savings Ledger and Verification Line product behavior beyond the approved static homepage evidence.
 - Engagement-specific verification contractual mechanics.
-- Analytics implementation, broader security integrations, field-performance instrumentation, production-domain CSP/HSTS, and production qualification.
+- Analytics implementation, broader security integrations, field-performance instrumentation, live-domain HSTS activation, and final production qualification.
 
 ## Evidence
 

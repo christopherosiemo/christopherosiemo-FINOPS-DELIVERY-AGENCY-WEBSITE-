@@ -12,13 +12,15 @@ No secrets belong in the repository or client bundle. `.env` files are ignored; 
 
 Cloudflare's SQLite Durable Object stores attempt timestamps only. Raw addresses are HMAC-pseudonymised before object selection, never persisted or logged, and missing IP uses a shared protected bucket. The Email Service binding is restricted to the approved public sender and destination. Production logging excludes personal/customer prose, IP/HMAC, tokens, secrets, and the private forwarding address; it records request reference, timestamp, adapter, safe outcomes, and provider message ID when available.
 
-Test adapters require the explicit test environment and cannot be activated in staging or production. The staging Worker is configured, but human destination verification, production secrets/widget, custom-domain approval, secret rotation ownership, and operational response remain required before production qualification.
+Test adapters require the explicit test environment and cannot be activated in staging or production. The production Worker has dedicated secrets and a dedicated Turnstile widget, but remains publicly unreachable until custom-domain approval. Secret rotation ownership, cutover verification, and operational response remain required for live production.
 
 ## Browser response boundary
 
 All routes set `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY`, and a Permissions Policy disabling camera, microphone, geolocation, payment, and USB. The framework disclosure header is disabled. Dynamic `/start` responses retain private/no-store behavior; static pages retain framework-managed shared caching; hashed Next assets retain immutable caching.
 
-A Content Security Policy is deferred rather than shipping an ineffective `unsafe-inline` policy. A strict nonce policy would force dynamic rendering and must be designed with Next hydration, vinext/Workers output, and the route-scoped Turnstile script. HSTS is also deferred: the current host is a shared `workers.dev` staging hostname, while production preload/subdomain policy belongs to the explicitly approved custom domain. Neither deferral weakens the requirement for HTTPS staging or the production security review.
+Production uses an enforceable static CSP with explicit self/data/blob allowances and only `https://challenges.cloudflare.com` as a browser third party. `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'` narrow the boundary; wildcards and `unsafe-eval` are absent. The bounded `unsafe-inline` allowance supports Next hydration and generated styles. A strict nonce policy is not selected because Next.js 16 requires every protected page to render dynamically, disabling static optimization and normal CDN caching; vinext also cannot reliably classify the current routes. Production-mode browser tests instantiate Turnstile and collect CSP violations without submitting the form.
+
+HSTS remains deferred until the custom-domain certificate, HTTPS behavior, first-request HTTP redirect, and rollback route have passed live verification. The planned initial policy is `max-age=15552000` with `includeSubDomains` and preload off.
 
 Gate 8B revalidated the actual staging header matrix on the root, conversion, privacy, pricing, verification, security, and hard-404 responses. The approved nosniff, referrer, framing, and Permissions Policy fields are present; disclosure, CSP, and HSTS fields are absent as intended. The current vinext Worker emits `no-store, must-revalidate` for these HTML responses, while `/start` remains non-cacheable and hashed assets retain immutable caching. CSP and HSTS remain explicit production-domain requirements, not completed staging controls.
 
@@ -45,4 +47,4 @@ Before any form, AWS access, billing data, customer evidence, analytics, or exte
 - vendor and regional data-processing boundaries;
 - incident response and disclosure requirements.
 
-Threat model, legal terms, security contact, final production-domain CSP/HSTS decisions, detailed data-handling commitments, and the production access-policy artifact remain required before production qualification. The public privacy policy and staging response-header baseline now exist.
+Threat model, legal terms, security contact, live-domain HSTS activation, detailed data-handling commitments, and the production access-policy artifact remain required before final production qualification. The static production CSP decision, public privacy policy, and staging response-header baseline now exist.

@@ -1,0 +1,18 @@
+{
+  "gate": "10B-explicit-authorization-required",
+  "preferredRouting": "Cloudflare Workers Custom Domain",
+  "hostname": "hkgpipi.com",
+  "steps": [
+    "Reconfirm exact-source green CI, secrets, bindings, version and sanitized DNS baseline",
+    "Attach only the apex hkgpipi.com Custom Domain to hkgpipi-enquiry-production",
+    "Wait for and verify the Cloudflare-managed edge certificate",
+    "Verify TLS 1.2 minimum and TLS 1.3 where supported",
+    "Verify production routes, CSP and security headers before any submission",
+    "Enable Cloudflare Always Use HTTPS and verify a permanent edge redirect from http://hkgpipi.com to https://hkgpipi.com",
+    "After HTTPS and rollback checks, enable HSTS max-age 15552000 without includeSubDomains or preload",
+    "Run production browser/runtime qualification and exactly one controlled enquiry",
+    "Only after live qualification, execute the approved Google and Bing search runbook"
+  ],
+  "wwwPolicy": "Absent today; do not create during Gate 10A. If later authorized, permanently redirect to https://hkgpipi.com and never serve duplicate canonical content",
+  "executed": false
+}

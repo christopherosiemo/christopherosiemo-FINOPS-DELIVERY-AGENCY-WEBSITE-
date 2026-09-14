@@ -12,4 +12,3 @@ export const productionContentSecurityPolicy = [
   "frame-ancestors 'none'",
   "upgrade-insecure-requests",
 ].join("; ");
-

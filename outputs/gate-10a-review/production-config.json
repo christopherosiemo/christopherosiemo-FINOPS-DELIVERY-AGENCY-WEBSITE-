@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-09-14T13:03:49.850Z",
+  "worker": "hkgpipi-enquiry-production",
+  "applicationEnvironment": "production",
+  "canonicalOrigin": "https://hkgpipi.com",
+  "expectedHostname": "hkgpipi.com",
+  "workersDev": false,
+  "previewUrls": false,
+  "customDomains": [],
+  "routes": [],
+  "bindings": ["ASSETS", "CF_VERSION_METADATA", "ENQUIRY_EMAIL", "ENQUIRY_RATE_LIMITER"],
+  "publicVariables": ["APP_ENVIRONMENT", "TURNSTILE_EXPECTED_HOSTNAME", "TURNSTILE_SITE_KEY"]
+}
