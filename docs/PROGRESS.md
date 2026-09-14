@@ -1,10 +1,10 @@
 # Progress
 
-**Current value:** 93%
+**Current value:** 94%
 
-**Target for this checkpoint:** 93% after verified external search ownership and operational-readiness evidence
+**Target for this checkpoint:** 94% after independent Acquisition approval
 
-**Current gate:** Acquisition — Gate 9B external ownership complete; independent 94% approval pending
+**Current gate:** Production qualification — Gate 10A readiness without cutover
 
 ## Completed
 
@@ -100,15 +100,17 @@
 - Gate 9A is independently approved at final documentation SHA `dae886fec3127f50c554911c5ab6b412395640ed`; GitHub Actions run `34775359033` passed on that exact commit. Review confirmed the single production origin, explicit production/non-production indexing controls, staging disallow-all behavior, selective seven-route production sitemap, utility-route noindex policy, production-only JSON-LD, workers.dev exclusion, tracking-free implementation, approved social card, and absence of performance or accessibility regressions.
 - The `hkgpipi.com` Google Search Console Domain property is verified through DNS, and Bing Webmaster Tools contains the canonical site through Google Search Console import. No verification value, account identifier, OAuth credential, or browser-session data is stored in the repository.
 - The ordered post-cutover search-operations runbook is complete. Production sitemap submission, URL inspection/indexing requests, Bing URL submission, and IndexNow remain deliberately deferred until Production Qualification authorizes and validates the live domain.
+- Acquisition is independently approved at final Gate 9B SHA `3247ee0b7e3aeab94ec15cebc6fcd250c94be515`; GitHub Actions run `34822968143` passed on that exact commit.
+- Independent approval confirms the Google Search Console Domain property and Bing Webmaster Tools ownership, with verification tokens uncommitted, staging still non-indexable, no analytics or tracking, and no production cutover.
+- Production sitemap submission, Google indexing requests, Bing URL submission, and IndexNow were not performed and remain frozen until the post-cutover runbook is authorized.
 
 ## In progress
 
-- Independent Acquisition review is pending. Production cutover, sitemap/URL submission, indexing requests, and Production Qualification remain outside this work.
+- Gate 10A production-readiness preparation is beginning from the independently approved 94% Acquisition state. Public production routing, live production submission, and search activation remain outside this work.
 
 ## Blocked
 
-- 94% requires independent review of the verified external ownership evidence, deferred-submission boundary, production-ready verification surfaces, and completed search-operations runbook.
-- Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, and explicit custom-domain routing approval.
+- Production qualification still requires production-specific Turnstile/secrets, Email Service sender verification, DNS and security readiness, and explicit custom-domain routing approval.
 - 100% requires a genuine external prospect/customer conversion.
 
 ## Deferred
@@ -197,4 +199,4 @@
 
 ## Next gate
 
-94% — Independent Acquisition approval of the verified external ownership evidence and completed post-cutover runbook. Production Qualification does not begin until that review is complete.
+96% — Production Worker, bindings, secrets, security decisions, DNS inventory, cutover plan, rollback plan, and unreachable deployment are ready while public production routing remains intentionally disconnected.
